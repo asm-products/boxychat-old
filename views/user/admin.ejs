@@ -1,0 +1,33 @@
+<section class="container home">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <table class="table">
+
+        <tr>
+          <th>User</th>
+          <th>User ID</th>
+          <th>User Email</th>
+          <th>Delete</th>
+        </tr>
+
+        <% _.each(users, function (user) { %>
+        <tr data-id="<%= user.id %>" data-model="user">
+        <td><%= user.username %></td>
+        <td><%= user.id %></td>
+        <td><%= user.email %></td>
+      <td>
+            <form action="/user/destroy/" method="POST">
+              <input type="hidden" name="id" value="<%= user.id %>"/>
+                  <input type="hidden" name="_method" value="delete"/>
+          <input type="submit" class="btn btn-sm btn-danger" value="Delete"/>
+          <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+          </form>
+              </td>
+        </tr>
+        <% }) %>
+      </table>
+
+    </div>
+  </div>
+</div>
