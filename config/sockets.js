@@ -45,7 +45,7 @@ module.exports.sockets = {
                   });
               }
           });
-
+          socket.emit('ready', {type: 'system'});
         session.save();
       });
       //delete socket

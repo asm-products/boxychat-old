@@ -1,6 +1,3 @@
-var APPLICATION_NAME = 'Boxy';
-var API_KEY = '4d8fe84d85a6964c248b3c8571bf2190';
-require('strong-agent').profile(API_KEY, APPLICATION_NAME);
 /**
  * app.js
  *

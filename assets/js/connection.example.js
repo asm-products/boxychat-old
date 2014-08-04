@@ -233,37 +233,39 @@ socket.on('user', function (msg) {
 
 // on connect we get the available conversations (user/group list)
 socket.on('connect', function socketConnected() {
-    socket.get('/chat/conversations', function (res) {
-        res.groups.forEach(function (el) {
-            if (!session.groups[el.id]) {
-                session.groups[el.id] = el;
-                $('#user-list').append(BoxyChat.loadTemplate('templates/chat/userListEntry.html', {
-                    id: el.id,
-                    name: 'GROUP ' + el.name,
-                    avatar: '/images/tomas.jpg',
-                    type: 'room'
-                }));
-            }
-        });
+    socket.on('ready', function () {
+        socket.get('/chat/conversations', function (res) {
+            res.groups.forEach(function (el) {
+                if (!session.groups[el.id]) {
+                    session.groups[el.id] = el;
+                    $('#user-list').append(BoxyChat.loadTemplate('templates/chat/userListEntry.html', {
+                        id: el.id,
+                        name: 'GROUP ' + el.name,
+                        avatar: '/images/tomas.jpg',
+                        type: 'room'
+                    }));
+                }
+            });
 
-        res.users.forEach(function (el) {
-            if (!session.users[el.id]) {
-                session.users[el.id] = el;
-                $('#user-list').append(BoxyChat.loadTemplate('templates/chat/userListEntry.html', {
-                    id: el.id,
-                    name: el.name,
-                    avatar: '/images/tomas.jpg',
-                    type: 'user'
-                }));
-            }
-        });
+            res.users.forEach(function (el) {
+                if (!session.users[el.id]) {
+                    session.users[el.id] = el;
+                    $('#user-list').append(BoxyChat.loadTemplate('templates/chat/userListEntry.html', {
+                        id: el.id,
+                        name: el.name,
+                        avatar: '/images/tomas.jpg',
+                        type: 'user'
+                    }));
+                }
+            });
 
-        res.online.forEach(function (el) {
-            if (!session.online[el.id])
-                session.online[el.id] = el;
-            if ($('#user-' + el).length) {
-                $('#user-' + el + ' .figureimage').append(BoxyChat.loadTemplate('templates/chat/onlineUserTick.html'));
-            }
+            res.online.forEach(function (el) {
+                if (!session.online[el.id])
+                    session.online[el.id] = el;
+                if ($('#user-' + el).length) {
+                    $('#user-' + el + ' .figureimage').append(BoxyChat.loadTemplate('templates/chat/onlineUserTick.html'));
+                }
+            });
         });
     });
 });

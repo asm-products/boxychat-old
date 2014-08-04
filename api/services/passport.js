@@ -73,7 +73,8 @@ passport.use(new LocalStrategy(
       findByEmail(email, function(err, user) {
         if (err) { return done(null, err); }
         if (!user) { return done(null, false, { message: 'Unknown user ' + email }); }
-        crypto.compare(password, user.password, function(response) {
+        crypto.compare(password, user.password, function(error, response) {
+            if(error) return done(null, false, {message: error});
           if(!response) return done(null, false, { message: 'Invalid Password' }); // error passwords dont compare
           var returnUser = { email: user.email, createdAt: user.createdAt, id: user.id };
           return done(null, returnUser, { message: 'Logged In Successfully'} );
