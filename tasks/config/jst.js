@@ -22,11 +22,16 @@ module.exports = function(grunt) {
 		dev: {
 
 			// To use other sorts of templates, specify a regexp like the example below:
-			// options: {
-			//   templateSettings: {
-			//     interpolate: /\{\{(.+?)\}\}/g
-			//   }
-			// },
+			options: {
+			   templateSettings: {
+			     interpolate: /\{\{(.+?)\}\}/g
+			   },
+                processName: function(filename) {
+                    //Shortens the file path for the template.
+                    console.log(filename)
+                    return filename.slice(filename.indexOf("template"), filename.length);
+                }
+			},
 
 			// Note that the interpolate setting above is simply an example of overwriting lodash's
 			// default interpolation. If you want to parse templates with the default _.template behavior

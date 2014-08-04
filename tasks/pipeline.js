@@ -22,7 +22,7 @@ var cssFilesToInject = [
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
-
+    'jst.js',
   // Below, as a demonstration, you'll see the built-in dependencies
   // linked in the proper order order
 
@@ -34,6 +34,9 @@ var jsFilesToInject = [
 
   // finally, include a simple boilerplate script that connects a socket
   // to the Sails backend with some example code
+    'js/linkify.js',
+    'js/EventManager.js',
+  'js/chatManager.js',
   'js/connection.example.js',
 
   //

@@ -50,13 +50,22 @@ module.exports.connections = {
   //
   someMongodbServer: {
     adapter   : 'sails-mongo',
-    host      : 'localhost',
-    port      : 27017,
-    user      : 'username',
-    password  : 'password',
-    database  : 'your mongo db name here'
+    url      : 'mongodb://localhost/test',
+    // port      : 27017,
+    // user      : 'username',
+    // password  : 'password',
+    // database  : 'your mongo db name here'
   },
 
+    redis: {
+        adapter   : 'sails-redis',
+        host      : 'localhost',
+        options    : {auth_pass: 'letmego'}
+        // port      : 27017,
+        // user      : 'username',
+        // password  : 'password',
+        // database  : 'your mongo db name here'
+    },
   // PostgreSQL is another officially supported relational database. 
   // http://en.wikipedia.org/wiki/PostgreSQL
   //

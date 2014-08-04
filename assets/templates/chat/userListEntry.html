@@ -1,0 +1,23 @@
+<li id="{{ type }}-{{ id }}" class="chat-conversation">
+    <a href="#">
+        <figure style="position:relative">
+            <span class="more"><span class="fa fa-ellipsis-v"></span></span>
+            <div class="figureimage">
+                <img src="{{ avatar }}" alt="{{ name }} avatar" />
+                <div class="figureshadow"></div>
+                <div class="test"><span style="
+                    position: absolute;
+                    top: 0;
+                    width: 15px; height: 15px;
+                    float: left; background: #f9f9f9; color: #44b100; border-radius: 15px; text-align: center;
+                    margin-right: -4;
+                    margin-top: -1px; font-size: 10px;
+                    line-height: 18px;
+                    border-left: 10px;
+                    margin-left: 22px;
+                    "><span class="icon-{{ type }} ic"></span><span class="number hidden">0</span></span></div>
+            </div>
+            <figcaption>{{ name }}</figcaption>
+            </figure>
+        </a>
+    </li>

@@ -14,8 +14,6 @@ module.exports = {
 		owner: {
 			type: 'String'
 		}
-		
-
 	}
 
 };

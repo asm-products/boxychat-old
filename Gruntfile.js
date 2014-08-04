@@ -1,17 +1,17 @@
 /**
  * Gruntfile
- *
  * This Node script is executed when you run `grunt` or `sails lift`.
  * It's purpose is to load the Grunt tasks in your project's `tasks`
  * folder, and allow you to add and remove tasks as you see fit.
  * For more information on how this works, check out the `README.md`
  * file that was generated in your `tasks` folder.
- *
  * WARNING:
  * Unless you know what you're doing, you shouldn't change this file.
  * Check out the `tasks` directory instead.
+ * @method exports
+ * @param {} grunt
+ * @return 
  */
-
 module.exports = function(grunt) {
 
 
@@ -42,6 +42,9 @@ module.exports = function(grunt) {
 	 * relative path. These modules should export a function
 	 * that, when run, should either load/configure or register
 	 * a Grunt task.
+	 * @method loadTasks
+	 * @param {} relPath
+	 * @return LogicalExpression
 	 */
 	function loadTasks(relPath) {
 		return includeAll({
@@ -53,6 +56,9 @@ module.exports = function(grunt) {
 	/**
 	 * Invokes the function from a Grunt configuration module with
 	 * a single argument - the `grunt` object.
+	 * @method invokeConfigFn
+	 * @param {} tasks
+	 * @return 
 	 */
 	function invokeConfigFn(tasks) {
 		for (var taskName in tasks) {
@@ -71,6 +77,12 @@ module.exports = function(grunt) {
 
 	// (ensure that a default task exists)
 	if (!registerDefinitions.default) {
+		/**
+		 * Description
+		 * @method default
+		 * @param {} grunt
+		 * @return 
+		 */
 		registerDefinitions.default = function (grunt) { grunt.registerTask('default', []); };
 	}
 

@@ -14,56 +14,76 @@ module.exports.sockets = {
   // (To control whether a socket is allowed to connect, check out `authorization` config.)
   // Keep in mind that Sails' RESTful simulation for sockets 
   // mixes in socket.io events for your routes and blueprints automatically.
+  /**
+   * Description
+   * @method onConnect
+   * @param {} session
+   * @param {} socket
+   * @return 
+   */
   onConnect: function(session, socket) {
-
-    console.log(session)
-    console.log('socket')
-    //console.log(sails.users)
     var socketId = sails.sockets.id(socket);
-    console.log(socketId)
     if(session.passport && session.passport.user) {
       User.findOneById(session.passport.user, function(err, user){
-        sails.users = sails.users || [];
-        sails.users[user.email] = user;
-        sails.socketUsers = sails.socketUsers || [];
-        sails.socketUsers[user.email] = sails.socketUsers[user.email] || [];
-        sails.socketUsers[user.email].push(socketId);
-        //sails.users[user.email].push(socket);
-        console.log(sails.socketUsers);
+        session.sockets = session.sockets || [];
+        session.sockets.push(socketId);
+        session.user = user;
+          SessionUser.findOne({id: user.id}).exec(function(err,sessionUser){
+              if(err) return console.log(err);
+              if(sessionUser) {
+                  sessionUser.sockets.push(socketId);
+                  sessionUser.save(function(err,s){
+                      if(err) return console.log(err);
+                  });
+              }
+              else {
+                  User.publishUpdate(user.id,{ type:"userStatus", id:user.id });
+                  var sockets = [socketId];
+                  var params = {id: user.id, sockets: sockets};
+                  SessionUser.create(params, function(err, user) {
+                      if(err) return console.log(err);
+                  });
+              }
+          });
+
+        session.save();
       });
       //delete socket
     }
     // By default, do nothing.
-    
   },
 
   // This custom onDisconnect function will be run each time a socket disconnects
+  /**
+   * Description
+   * @method onDisconnect
+   * @param {} session
+   * @param {} socket
+   * @return 
+   */
   onDisconnect: function(session, socket) {
-    console.log("disconnect")
-    console.log(session)
 
     var socketId = sails.sockets.id(socket);
-    if(session.passport && session.passport.user && sails.socketUsers) {
+    if(session.passport && session.passport.user && session.sockets) {
       User.findOneById(session.passport.user, function(err, user){
-        if(!sails.socketUsers[user.email])
+        if(session.sockets.length < 1){
+          //session.xmpp.disconnect();
+          //delete session.xmpp;
           return true;
-        var index = sails.socketUsers[user.email].indexOf(socketId);
-        if (index > -1) {
-            sails.socketUsers[user.email].splice(index, 1);
-        }
-        if(sails.socketUsers[user.email].length == 0){
-          index = sails.socketUsers.indexOf(user.email);
-          if (index > -1) {
-              sails.socketUsers.splice(index, 1);
-          }
-          index = sails.users.indexOf(user.email);
-          if (index > -1) {
-              sails.users.splice(index, 1);
-          }
         }
 
+        var index = session.sockets.indexOf(socketId);
+        if (index > -1) {
+            session.sockets.splice(index, 1);
+        }
+
+        if(session.sockets.length < 1){
+          //session.xmpp.disconnect();
+//          delete session.xmpp;
+          return true;
+        }
+        session.save();
       });
-      //delete socket
     }
   },
 
@@ -86,8 +106,8 @@ module.exports.sockets = {
 
   // Use this option to set the datastore socket.io will use to manage rooms/sockets/subscriptions:
   // default: memory
-  adapter: 'memory',
-
+  adapter: 'redis',
+  //pass: "letmego",
   
   // Node.js (and consequently Sails.js) apps scale horizontally.
   // It's a powerful, efficient approach, but it involves a tiny bit of planning.
@@ -104,10 +124,10 @@ module.exports.sockets = {
   // Luckily, Socket.io (and consequently Sails.js) apps support Redis for sockets by default.
   // To enable a remote redis pubsub server: 
   // adapter: 'redis',
-  // host: '127.0.0.1',
-  // port: 6379,
-  // db: 'sails',
-  // pass: '<redis auth password>'
+  host: '127.0.0.1',
+  port: 6379,
+  db: 'sails',
+  pass: 'letmego',
   // Worth mentioning is that, if `adapter` config is `redis`, 
   // but host/port is left unset, Sails will try to connect to redis 
   // running on localhost via port 6379 

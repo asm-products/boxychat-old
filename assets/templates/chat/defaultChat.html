@@ -1,0 +1,25 @@
+<section id="chat-{{ type }}-{{ id }}" class="chat-section hidden">
+    <header class="box-header">
+           <div class="chat-buttons">
+                   <button class="unstyled-button"><span class="fa fa-microphone"></span></button>
+                   <button id="video-{{ type }}-{{ id }}" class="unstyled-button videochatbtn"><span class="fa fa-video-camera"></span></button>
+               </div>
+           <a href="#">{{ session.name }}<span class="fa fa-chevron-down"></span></a>
+        </header>
+    <section class="videochat hidden"></section>
+    <section class="chat">
+        <div class="chat-messages">
+            </div>
+        </section>
+
+    <div class="message-box">
+        <div class="message-tools">
+                 <button class="send-emoticon-button"><span class="fa fa-smile-o"></span></button>
+                  <button class="send-picture-button"><span class="fa fa-camera"></span></button>
+                   <button class="send-button"><img src="/images/send.png" /></button>
+                </div>
+             <div class="message-text-container">
+                      <input type="text" class="message-text" id="text-{{ type }}-{{ id }}" placeholder="Type your message" />
+                   </div>
+            </div>
+     </section>

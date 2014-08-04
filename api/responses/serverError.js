@@ -1,16 +1,14 @@
 /**
  * 500 (Server Error) Handler
- * 
  * Usage:
  * return res.serverError(err);
- *
- * @param {Array|Object|String|Error} error(s)     [optional]
- *
  * NOTE:
  * If something throws in a policy or controller, or an internal
  * error is encountered, Sails will call `res.serverError()`.
+ * @method exports
+ * @param {} errors
+ * @return 
  */
-
 module.exports = function serverError (errors) {
 
   // Get access to `req` and `res`

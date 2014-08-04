@@ -19,6 +19,9 @@ module.exports.policies = {
   'home':{
     '*': true
   },
+  'company': {
+  	'companyExists': true
+  },
   'auth': {
     '*': true
   },

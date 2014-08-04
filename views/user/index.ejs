@@ -5,14 +5,23 @@
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="/css/boxychat.css">
-		
-		
 	</head>
 	<body>
 		<!-- main header -->
 		<header id="boxyheader">
+		<!-- user profile -->
+				<section class="user-profile">
+					<figure>
+						<img src="/images/tomas.jpg" alt="Tomas avatar" />
+						<figcaption>
+							<span><span class="icon-check"></span></span>
+						</figcaption>
+					</figure>
+				</section>
+				<!-- /user profile -->
 			<!-- left notifications -->
 			<section class="notifications-bar">
+
 				<button class="unstyled-button notifications-button">
 					<span class="badge">4</span>
 					<span class="fa fa-bell"></span>
@@ -25,23 +34,14 @@
 				<!-- tabs -->
 				<nav class="navtabs">
 					<ul>
-						<li><a href="#"><span class="fa fa-user"></span> People</a></li>
-						<li class="active"><a href="#"><span class="icon-chat"></span> Chat</a></li>
-						<li><a href="#"><span class="fa fa-inbox"></span> Files</a></li>
-						<li><a href="#"><span class="fa fa-check-circle"></span> Tasks</a></li>
+						<li class="tpmenu active"><a href="#"><span class="icon-chat"></span> <span class="menuLabel">Chats</span></a></li>
+						<li class="tpmenu"><a href="#"><span class="fa fa-user"></span> <span class="menuLabel hidden">People</span></a></li>
+						<li class="tpmenu"><a href="#"><span class="fa fa-folder"></span> <span class="menuLabel hidden">Files</span></a></li>
+						<li class="tpmenu"><a href="#"><span class="fa fa-check-circle"></span> <span class="menuLabel hidden">Tasks</span></a></li>
 					</ul>
 				</nav>
 				<!-- /tabs -->
-				<!-- user profile -->
-				<section class="user-profile">
-					<figure>
-						<img src="/images/tomas.jpg" alt="Tomas avatar" />
-						<figcaption>
-							<span><span class="icon-check"></span></span>
-						</figcaption>
-					</figure>
-				</section>
-				<!-- /user profile -->
+				
 				<!-- more button -->
 				<nav class="navextra">
 					<a href="#" class="extrabt"><span class="fa fa-ellipsis-v"></span></a>
@@ -56,62 +56,24 @@
 			<!-- first row -->
 			<section>
 				<!-- user list -->
-				<ul class="user-list">
-					<!-- Sir Arthur Ryan Doyle Roberts -->
-					<li>
-						<a href="#">
-							<figure>
-								<span class="more"><span class="fa fa-ellipsis-v"></span></span>
-								<div class="figureimage">
-									<img src="/images/tomas.jpg" alt="Tomas avatar" />
-									<div class="figureshadow"></div>
-								</div>
-								<figcaption>Sir Arthur Ryan Doyle Roberts</figcaption>
-							</figure>
-						</a>
-					</li>
-					<!-- Mr McGuffy McGufferson -->
-					<li>
-						<a href="#">
-							<figure>
-								<span class="more"><span class="fa fa-ellipsis-v"></span></span>
-								<div class="figureimage">
-									<img src="/images/tomas.jpg" alt="Tomas avatar" />
-									<div class="figureshadow"></div>
-								</div>
-								<figcaption>Mr McGuffy McGufferson</figcaption>
-							</figure>
-						</a>
-					</li>
-					<!-- Mr Nagasaki -->
-					<li>
-						<a href="#">
-							<figure>
-								<span class="more"><span class="fa fa-ellipsis-v"></span></span>
-								<div class="figureimage">
-									<img src="/images/tomas.jpg" alt="Tomas avatar" />
-									<div class="figureshadow"></div>
-								</div>
-								<figcaption>Mr Nagasaki</figcaption>
-							</figure>
-						</a>
-					</li>
+				<ul id="user-list" class="user-list">
+				
 				</ul>
 				<!-- /user list -->
 				
 			</section>
 			<!-- /first row -->
 			<!-- second row -->
-			<section>
+			<!--<section>
 				<div class="float-right">
 					<button class="unstyled-button"><span class="icon-search"></span></button>
 				</div>
 				<div class="margin-bottom">
 					<a href="#">BoxyChat Team <span class="fa fa-chevron-down"></span></a>
 				</div>
-				<!-- user list -->
+				&lt;!&ndash; user list &ndash;&gt;
 				<ul class="user-list">
-					<!-- Mr. Nagasaki Assistant -->
+					&lt;!&ndash; Mr. Nagasaki Assistant &ndash;&gt;
 					<li>
 						<a href="#">
 							<figure>
@@ -124,7 +86,7 @@
 							</figure>
 						</a>
 					</li>
-					<!-- Mr. Nagasaki -->
+					&lt;!&ndash; Mr. Nagasaki &ndash;&gt;
 					<li>
 						<a href="#">
 							<figure>
@@ -137,7 +99,7 @@
 							</figure>
 						</a>
 					</li>
-					<!-- Amy Stake, Ph.D -->
+					&lt;!&ndash; Amy Stake, Ph.D &ndash;&gt;
 					<li>
 						<a href="#">
 							<figure>
@@ -150,7 +112,7 @@
 							</figure>
 						</a>
 					</li>
-					<!-- Mr McGuffy McGufferson -->
+					&lt;!&ndash; Mr McGuffy McGufferson &ndash;&gt;
 					<li>
 						<a href="#">
 							<figure>
@@ -163,7 +125,7 @@
 							</figure>
 						</a>
 					</li>
-					<!-- Sir Arthur Ryan Doyle Roberts -->
+					&lt;!&ndash; Sir Arthur Ryan Doyle Roberts &ndash;&gt;
 					<li>
 						<a href="#">
 							<figure>
@@ -177,129 +139,650 @@
 						</a>
 					</li>
 				</ul>
-				<!-- /user list -->
-				
-			</section>
+				&lt;!&ndash; /user list &ndash;&gt;
+
+			</section>-->
+			
 			<!-- /second row -->
 		</section>
+		<div style="position: fixed;
+left: 0;
+bottom: 0;
+height: 60px;
+background-color: #fff;
+border: 0px white;
+border-right: 1px solid #cbcbcb;
+width: 320px;
+padding-bottom: 15px;
+padding-top: 19px;
+padding-left:25px">
+<span style="border-top-width: 20px;
+margin-top: 0px;
+font-size: 13px;
+color: #999999;
+padding-right: 20px;">
+Help</span><span style="border-top-width: 20px;
+margin-top: 0px;
+font-size: 13px;
+color: #999999;
+padding-right: 20px;">
+Privacy</span>
+			</div>
 		<!-- /sidebar -->
 		<!-- content -->
-		<section id="boxycontent">
-			<header class="box-header">
-				<div class="chat-buttons">
-					<button class="unstyled-button"><span class="fa fa-microphone"></span></button>
-					<button class="unstyled-button"><span class="fa fa-video-camera"></span></button>
-				</div>
-				<a href="#">Accounting chat <span class="fa fa-chevron-down"></span></a>
-			</header>
-			<section class="chat">
-				<!-- message -->
-				<div class="message message-left">
-					
-					<figure>
-						<img src="/images/tomas.jpg" alt="Tomas avatar" />
-						<figcaption></figcaption>
-					</figure>
-					
-					<div class="bubble">That was a fun discussion about accounting.</div>
-					<div class="sent-by">Sir Conan Ryan Doyle Roberts</div>
-				</div>
-				
-				<!-- hr -->
-				<div class="message-hr"><span>Today, 10:42 PM</span></div>
-				
-				<!-- message -->
-				<div class="message message-right no-figure">
-					<div class="bubble no-triangle">Well, hello. I like what you have done.</div>
-					<div class="sent-by">10:42</div>
-				</div>
-				
-				<!-- message -->
-				<div class="message message-right">
-					
-					<figure>
-						<img src="/images/tomas.jpg" alt="Tomas avatar" />
-						<figcaption></figcaption>
-					</figure>
-					
-					<div class="bubble">Well, hello. I like what you have done.</div>
-					<div class="sent-by">10:42</div>
-				</div>
-				
-				<!-- message -->
-				<div class="message message-left">
-					
-					<figure>
-						<img src="/images/tomas.jpg" alt="Tomas avatar" />
-						<figcaption></figcaption>
-					</figure>
-					
-					<div class="bubble">Why are you always a dick to me Cletus ?</div>
-					<div class="sent-by">Mr McGuffy McGufferson</div>
-				</div>
-				
-				<!-- message -->
-				<div class="message message-right no-figure">
-					
-					<div class="bubble no-triangle">Because I have to put up with your shit.</div>
-					<div class="sent-by">10:48</div>
-				</div>
-				
-				<!-- message -->
-				<div class="message message-left">
-					
-					<figure>
-						<img src="/images/tomas.jpg" alt="Tomas avatar" />
-						<figcaption></figcaption>
-					</figure>
-					
-					<div class="bubble">I ain't got to take this.<br />I am never going to talk to you again.</div>
-					<div class="sent-by">Mr McGuffy McGufferson</div>
-				</div>
-				
-				<!-- message -->
-				<div class="message message-left">
-					
-					<figure>
-						<img src="/images/tomas.jpg" alt="Tomas avatar" />
-						<figcaption></figcaption>
-					</figure>
-					
-					<div class="bubble">Dramatic reading by Sir Conan Ryan Doyle Roberts.</div>
-					<div class="sent-by">Sir Conan Ryan Doyle Roberts.</div>
-				</div>
-				
-				<!-- message -->
-				<div class="message message-left">
-					
-					<figure>
-						<img src="/images/tomas.jpg" alt="Tomas avatar" />
-						<figcaption></figcaption>
-					</figure>
-					
-					<div class="bubble">Do you have my money yet?</div>
-					<div class="sent-by">Mr. Nagasaki</div>
-				</div>
-				
-			</section>
-			<div class="message-box">
-				<div class="message-tools">
-					<button class="send-emoticon-button"><span class="fa fa-smile-o"></span></button>
-					<button class="send-picture-button"><span class="fa fa-camera"></span></button>
-					<button class="send-button">Share</button>
-				</div>
-				<div class="message-text-container">
-					<input type="text" class="message-text" placeholder="Type your message" />
-				</div>
-			</div>
-		</section>
+		<div id="central-container">
+            <div id="chats" class="centrals"></div>
+            <div id="files" class="centrals hidden">
+                <section class="files-section">
+                    <header class="box-header files-header">
+                        <div class="chat-buttons">
+                            <button class="unstyled-button"><span class="fa fa-microphone"></span></button>
+                            <button id="video-room-538f34f9b0ffe684901afb2a" class="unstyled-button videochatbtn"><span class="fa fa-video-camera"></span></button>
+                            <input type="text" class="form-control file-search search-query" placeholder="Search..." />
+                        </div>
+                        <a href="#">Super<span class="fa fa-chevron-down"></span></a>
+                    </header>
+                    <section class="files-content">
+                        <div class="chat-messages">
+                            <ul style="
+    padding: 0; margin: 0 auto; list-style: none;
+">
+                                <li style="
+    display: inline-block; width: 80px; border: 0;
+    /* margin: 4px; */ margin-bottom: 8px;
+    /* padding: 0; */ vertical-align: top; };
+
+    text-align: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 19px;
+    margin-right: 19px;
+    cursor: pointer;
+"><div style="
+    background: url('/images/folder.png') no-repeat;
+    background-position: center center;
+            height: 52px;
+    display: table;
+    position: static;
+    width: 80px;
+"><i class="fa fa-group" style="
+    font-size: 30px;
+    color: white;
+    margin: auto;
+    padding: auto;
+    display: table-cell; vertical-align: middle;
+    position: static;
+"></i></div><div style="
+    font-size: 12px; font-weight: bold; color: #535353;
+    padding-top: 12px;
+    text-align: center;
+">Hello
+                                    </div></li>
+                                <li style="
+    display: inline-block; width: 80px; border: 0;
+    /* margin: 4px; */ margin-bottom: 8px;
+    /* padding: 0; */ vertical-align: top; };
+
+    text-align: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 19px;
+    margin-right: 19px;
+"><img src="/images/folder.png" style="
+    text-align: center;
+    border-left-width: 19px;
+"><div style="
+    font-size: 12px; font-weight: bold; color: #535353;
+    padding-top: 12px;
+    text-align: center;
+">Hello
+                                    </div></li>
+                                <li style="
+    display: inline-block; width: 80px; border: 0;
+    /* margin: 4px; */ margin-bottom: 8px;
+    /* padding: 0; */ vertical-align: top; };
+
+    text-align: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 19px;
+    margin-right: 19px;
+"><img src="/images/folder.png" style="
+    text-align: center;
+    border-left-width: 19px;
+"><div style="
+    font-size: 12px; font-weight: bold; color: #535353;
+    padding-top: 12px;
+    text-align: center;
+">Hello
+                                    </div></li>
+                                <li style="
+    display: inline-block; width: 124px; border: 0; margin: 4px; margin-bottom: 8px; padding: 0; vertical-align: top; };
+">duehudhe</li><li style="
+    display: inline-block; width: 124px; border: 0; margin: 4px; margin-bottom: 8px; padding: 0; vertical-align: top; };
+">duehudhe</li>
+                            </ul>
+                        </div>
+                    </section>
+                </section>
+                test</div>
+
+
+            <div id="tasks" class="centrals hidden">
+                <section class="files-section">
+                    <header class="box-header files-header">
+                        <div class="chat-buttons">
+                            <button class="unstyled-button"><span class="fa fa-microphone"></span></button>
+                            <button id="video-room-538f34f9b0ffe684901afb2a" class="unstyled-button videochatbtn"><span class="fa fa-video-camera"></span></button>
+                            <input type="text" class="form-control file-search search-query" placeholder="Search..." />
+                        </div>
+                        <a href="#">Super<span class="fa fa-chevron-down"></span></a>
+                    </header>
+                    <section class="files-content">
+                        <div class="chat-messages">
+                        <ul style="
+    padding: 0; margin: 0 auto;
+    list-style: none;
+"><li style="
+    /* display: inline-block; */
+    /* width: 80px; */ border: 0;
+    /* margin: 4px; */ margin-bottom: 0px;
+    /* padding: 0; */ vertical-align: top; };
+
+    text-align: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 1px;
+    margin-right: 1px;
+    cursor: pointer;
+    height: 55px;
+    border-bottom: 1px solid #E6E6E6;
+"><div style="
+    /* background: url('/images/folder.png') no-repeat; */
+    background-position: center center;
+            height: 52px;
+    display: table;
+    position: static;
+    width: 40px;
+    float: left;
+"><i class="fa fa-circle-o" style="
+    font-size: 20px;
+    color: black;
+    margin: auto;
+    padding: auto;
+    display: table-cell; vertical-align: middle;
+    position: static;
+"></i></div><div style="
+    /* background: url('/images/folder.png') no-repeat; */
+    background-position: center center;
+            height: 52px;
+    display: table;
+    position: static;
+    float: left;
+            "><div style="
+    display: table-cell; vertical-align: middle; position: static;
+"><div style="
+    /* position: static; */
+    /* display: table-cell; */
+    /* vertical-align: middle; */
+    text-align: left;
+">Hello Test</div><div style="
+    /* position: static; */
+    /* display: table-cell; */
+    /* vertical-align: middle; */
+    font-size: 12px;
+
+    text-align: left;
+                              ">Hello Test duejud ejdeu djeu dej duejdue jdue deud jeu dje</div></div></div><div style="
+    float: right;
+    display: table; position: static;
+    height: 52px;
+"><figure style="
+    width: 34px; height: 34px; border-radius: 34px; position: relative;
+    display: table-cell; vertical-align: middle; position: static;
+">
+                                        <img src="/images/tomas.jpg" alt="Tomas avatar" style="
+    width: 26px;
+    border-radius: 26px;
+">
+
+                                    </figure></div></li>
+                            <li style="
+    /* display: inline-block; */
+    /* width: 80px; */ border: 0;
+    /* margin: 4px; */ margin-bottom: 0px;
+    /* padding: 0; */ vertical-align: top; };
+
+    text-align: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 1px;
+    margin-right: 1px;
+    cursor: pointer;
+    height: 55px;
+    border-bottom: 1px solid #E6E6E6;
+"><div style="
+    /* background: url('/images/folder.png') no-repeat; */
+    background-position: center center;
+            height: 52px;
+    display: table;
+    position: static;
+    width: 40px;
+    float: left;
+"><i class="fa fa-circle-o" style="
+    font-size: 20px;
+    color: black;
+    margin: auto;
+    padding: auto;
+    display: table-cell; vertical-align: middle;
+    position: static;
+"></i></div><div style="
+    /* background: url('/images/folder.png') no-repeat; */
+    background-position: center center;
+            height: 52px;
+    display: table;
+    position: static;
+    float: left;
+            "><div style="
+    display: table-cell; vertical-align: middle; position: static;
+"><div style="
+    /* position: static; */
+    /* display: table-cell; */
+    /* vertical-align: middle; */
+    text-align: left;
+">Hello Test</div><div style="
+    /* position: static; */
+    /* display: table-cell; */
+    /* vertical-align: middle; */
+    font-size: 12px;
+
+    text-align: left;
+                              ">Hello Test duejud ejdeu djeu dej duejdue jdue deud jeu dje</div></div></div><div style="
+    float: right;
+    display: table; position: static;
+    height: 52px;
+"><figure style="
+    width: 34px; height: 34px; border-radius: 34px; position: relative;
+    display: table-cell; vertical-align: middle; position: static;
+">
+                                        <img src="/images/tomas.jpg" alt="Tomas avatar" style="
+    width: 26px;
+    border-radius: 26px;
+">
+
+                                    </figure></div></li>
+                            <li style="
+    /* display: inline-block; */
+    /* width: 80px; */ border: 0;
+    /* margin: 4px; */ margin-bottom: 0px;
+    /* padding: 0; */ vertical-align: top; };
+
+    text-align: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 1px;
+    margin-right: 1px;
+    cursor: pointer;
+    height: 55px;
+    border-bottom: 1px solid #E6E6E6;
+"><div style="
+    /* background: url('/images/folder.png') no-repeat; */
+    background-position: center center;
+            height: 52px;
+    display: table;
+    position: static;
+    width: 40px;
+    float: left;
+"><i class="fa fa-circle-o" style="
+    font-size: 20px;
+    color: black;
+    margin: auto;
+    padding: auto;
+    display: table-cell; vertical-align: middle;
+    position: static;
+"></i></div><div style="
+    /* background: url('/images/folder.png') no-repeat; */
+    background-position: center center;
+            height: 52px;
+    display: table;
+    position: static;
+    float: left;
+            "><div style="
+    display: table-cell; vertical-align: middle; position: static;
+"><div style="
+    /* position: static; */
+    /* display: table-cell; */
+    /* vertical-align: middle; */
+    text-align: left;
+">Hello Test</div><div style="
+    /* position: static; */
+    /* display: table-cell; */
+    /* vertical-align: middle; */
+    font-size: 12px;
+
+    text-align: left;
+                              ">Hello Test duejud ejdeu djeu dej duejdue jdue deud jeu dje</div></div></div><div style="
+    float: right;
+    display: table; position: static;
+    height: 52px;
+"><figure style="
+    width: 34px; height: 34px; border-radius: 34px; position: relative;
+    display: table-cell; vertical-align: middle; position: static;
+">
+                                        <img src="/images/tomas.jpg" alt="Tomas avatar" style="
+    width: 26px;
+    border-radius: 26px;
+">
+
+                                    </figure></div></li>
+                        <li style="
+    /* display: inline-block; */
+    /* width: 80px; */ border: 0;
+    /* margin: 4px; */ margin-bottom: 0px;
+    /* padding: 0; */ vertical-align: top; };
+
+    text-align: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 1px;
+    margin-right: 1px;
+    cursor: pointer;
+    height: 55px;
+    border-bottom: 1px solid #E6E6E6;
+"><div style="
+    /* background: url('/images/folder.png') no-repeat; */
+    background-position: center center;
+            height: 52px;
+    display: table;
+    position: static;
+    width: 40px;
+    float: left;
+"><i class="fa fa-circle-o" style="
+    font-size: 20px;
+    color: black;
+    margin: auto;
+    padding: auto;
+    display: table-cell; vertical-align: middle;
+    position: static;
+"></i></div><div style="
+    /* background: url('/images/folder.png') no-repeat; */
+    background-position: center center;
+            height: 52px;
+    display: table;
+    position: static;
+    float: left;
+            "><div style="
+    display: table-cell; vertical-align: middle; position: static;
+"><div style="
+    /* position: static; */
+    /* display: table-cell; */
+    /* vertical-align: middle; */
+    text-align: left;
+">Hello Test</div><div style="
+    /* position: static; */
+    /* display: table-cell; */
+    /* vertical-align: middle; */
+    font-size: 12px;
+
+    text-align: left;
+                              ">Hello Test duejud ejdeu djeu dej duejdue jdue deud jeu dje</div></div></div><div style="
+    float: right;
+    display: table; position: static;
+    height: 52px;
+"><figure style="
+    width: 34px; height: 34px; border-radius: 34px; position: relative;
+    display: table-cell; vertical-align: middle; position: static;
+">
+                                    <img src="/images/tomas.jpg" alt="Tomas avatar" style="
+    width: 26px;
+    border-radius: 26px;
+">
+
+                                </figure></div></li>
+                        <li style="
+    /* display: inline-block; */
+    /* width: 80px; */ border: 0;
+    /* margin: 4px; */ margin-bottom: 0px;
+    /* padding: 0; */ vertical-align: top; };
+
+    text-align: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 1px;
+    margin-right: 1px;
+    cursor: pointer;
+    height: 55px;
+    border-bottom: 1px solid #E6E6E6;
+"><div style="
+    /* background: url('/images/folder.png') no-repeat; */
+    background-position: center center;
+            height: 52px;
+    display: table;
+    position: static;
+    width: 40px;
+    float: left;
+"><i class="fa fa-circle-o" style="
+    font-size: 20px;
+    color: black;
+    margin: auto;
+    padding: auto;
+    display: table-cell; vertical-align: middle;
+    position: static;
+"></i></div><div style="
+    /* background: url('/images/folder.png') no-repeat; */
+    background-position: center center;
+            height: 52px;
+    display: table;
+    position: static;
+    float: left;
+            "><div style="
+    display: table-cell; vertical-align: middle; position: static;
+"><div style="
+    /* position: static; */
+    /* display: table-cell; */
+    /* vertical-align: middle; */
+    text-align: left;
+">Hello Test</div><div style="
+    /* position: static; */
+    /* display: table-cell; */
+    /* vertical-align: middle; */
+    font-size: 12px;
+
+    text-align: left;
+                              ">Hello Test duejud ejdeu djeu dej duejdue jdue deud jeu dje</div></div></div><div style="
+    float: right;
+    display: table; position: static;
+    height: 52px;
+"><figure style="
+    width: 34px; height: 34px; border-radius: 34px; position: relative;
+    display: table-cell; vertical-align: middle; position: static;
+">
+                                    <img src="/images/tomas.jpg" alt="Tomas avatar" style="
+    width: 26px;
+    border-radius: 26px;
+">
+
+                                </figure></div></li>
+
+
+</ul>
+                        </div>
+                    </section>
+                </section>
+                test</div>
+
+
+		</div>
 		<!-- /content -->
 
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <!--SCRIPTS-->
-    <script src="/js/socket.io.js"></script>
-    <script src="/js/sails.io.js"></script>
-    <script src="/js/connection.example.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+        <div class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="false" style="display: none;">
+            <div class="modal-dialog modal-sm" style="
+    width: 420px;
+">
+                <div class="modal-content" style="
+    border-radius: 2px;
+"><div style="
+    margin-top: 24px;
+    margin-left: 19px;
+    color: #666666;
+">Accountin Chat</div>
+                    <div style="
+    margin-top: 21px;
+    margin-left: 19px;
+    height: 57px;
+"><input type="text" class="form-control" placeholder="Search" style="
+    width: 294px;
+    float: left;
+    border-radius: 2px;
+"><button type="submit" class="btn" style="
+    width: 80px;
+    float: right;
+    margin-right: 17px;
+    background-color: #1557F0;
+    border-radius: 2px;
+    color: white;
+">Invite
+                        </button></div>
+                    <div style="
+    padding-left: 21px;
+"><ul class="user-list" style="
+    margin-right: 20px;
+">
+
+                            <li id="room-538f34f9b0ffe684901afb2a" class="chat-conversation">
+                                <a href="#">
+                                    <figure style="position:relative;float: left;">
+                                        <span class="more"><span class="fa fa-ellipsis-v"></span></span>
+                                        <div class="figureimage">
+                                            <img src="/images/tomas.jpg" alt="GROUP Super avatar">
+
+
+                                        </div>
+                                        <figcaption style="
+    font-weight: normal;
+    font-size: 14px;
+    float: left;
+">Scooby Dick</figcaption>
+                                    </figure><span style="
+    float: right;
+    color: #1557F0;
+"><i class="fa fa-check-circle">
+                                        </i></span></a>
+                            </li>
+                            <li id="room-538f34f9b0ffe684901afb2a" class="chat-conversation">
+                                <a href="#">
+                                    <figure style="position:relative;float: left;">
+                                        <span class="more"><span class="fa fa-ellipsis-v"></span></span>
+                                        <div class="figureimage">
+                                            <img src="/images/tomas.jpg" alt="GROUP Super avatar">
+
+
+                                        </div>
+                                        <figcaption style="
+    font-weight: normal;
+    font-size: 14px;
+    float: left;
+">Scooby Dick</figcaption>
+                                    </figure><span style="
+    float: right;
+    color: #1557F0;
+"></span></a>
+                            </li>
+                            <li id="room-538f34f9b0ffe684901afb2a" class="chat-conversation">
+                                <a href="#">
+                                    <figure style="position:relative;float: left;">
+                                        <span class="more"><span class="fa fa-ellipsis-v"></span></span>
+                                        <div class="figureimage">
+                                            <img src="/images/tomas.jpg" alt="GROUP Super avatar">
+
+
+                                        </div>
+                                        <figcaption style="
+    font-weight: normal;
+    font-size: 14px;
+    float: left;
+">Scooby Dick</figcaption>
+                                    </figure><span style="
+    float: right;
+    color: #1557F0;
+"></span></a>
+                            </li>
+                            <li id="room-538f34f9b0ffe684901afb2a" class="chat-conversation">
+                                <a href="#">
+                                    <figure style="position:relative;float: left;">
+                                        <span class="more"><span class="fa fa-ellipsis-v"></span></span>
+                                        <div class="figureimage">
+                                            <img src="/images/tomas.jpg" alt="GROUP Super avatar">
+
+
+                                        </div>
+                                        <figcaption style="
+    font-weight: normal;
+    font-size: 14px;
+    float: left;
+">Scooby Dick</figcaption>
+                                    </figure><span style="
+    float: right;
+    color: #1557F0;
+"><span style="font-size: 12px">Invited</span><i class="fa fa-envelope">
+                                        </i></span></a>
+                            </li>
+                        </ul></div>
+                    <div style="
+    height: 57px;
+    background-color: #F5F5F5;
+    border-top: 1px solid #E6E6E6;
+            border-left-width: 0px;
+    padding-left: 21px;
+    padding-top: 10px;
+"><div><span style="
+    font-size: 12px;
+    color: #8A8A8A;
+">Invite link</span></div><div><span style="
+    font-size: 12px;
+"><a href="http://bc.at/invite/asd">http://bc.at/invite/asd</a></span></div></div></div>
+            </div>
+        </div>
+
+
+        <div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+            <button type="button" class="close" data-dismiss="modal" style="
+    padding-right: 5px;
+    color: white;
+">×</button><div class="modal-dialog" style="width:100%">
+                <div class="modal-body" style="width: 100%;
+  text-align: center;"><a href="#" title="Image 2"><img src="http://placehold.it/600x350/2255EE" class="thumbnail img-responsive"></a></div>
+            </div>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>
+
+        <!--SCRIPTS-->
+        <script src="/jst.js"></script>
+        <script src="/js/socket.io.js"></script>
+        <script src="/js/sails.io.js"></script>
+        <script src="/js/linkify.js"></script>
+        <script src="/js/EventManager.js"></script>
+        <script src="/js/chatManager.js"></script>
+        <script src="/js/connection.example.js"></script>
+        <script src="/js/bootstrap.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/homepage.js"></script>
+        <script src="/js/unveil.js"></script>
+        <!--SCRIPTS END-->
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+                $(".thumblightbox").unveil(300);
+                $(document).on('click', '.thumblightbox', function (ev) {
+                    $('.modal-body').empty();
+                    $($(this).parents('span').html()).appendTo('.modal-body').css("width", "");
+                    $('#myModal').modal({show:true});
+                });
+
+            });
+
+        </script>
 	</body>
 </html>

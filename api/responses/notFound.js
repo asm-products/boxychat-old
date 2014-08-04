@@ -1,14 +1,13 @@
 /**
  * 404 (Not Found) Handler
- *
  * Usage:
  * return res.notFound();
- * 
  * NOTE:
  * If no user-defined route, blueprint route, or static file matches
  * the requested URL, Sails will call `res.notFound()`.
+ * @method exports
+ * @return 
  */
-
 module.exports = function notFound() {
 
   // Get access to `req` and `res`

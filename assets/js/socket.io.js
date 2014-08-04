@@ -64,12 +64,13 @@ var io = {};
 
   /**
    * Manages connections to hosts.
-   *
-   * @param {String} uri
    * @Param {Boolean} force creation of new socket (defaults to false)
    * @api public
+   * @method connect
+   * @param {} host
+   * @param {} details
+   * @return CallExpression
    */
-
   io.connect = function (host, details) {
     var uri = io.util.parseUri(host)
       , uuri
@@ -137,6 +138,12 @@ var io = {};
                'host', 'port', 'relative', 'path', 'directory', 'file', 'query',
                'anchor'];
 
+  /**
+   * Description
+   * @method parseUri
+   * @param {} str
+   * @return uri
+   */
   util.parseUri = function (str) {
     var m = re.exec(str || '')
       , uri = {}
@@ -151,11 +158,11 @@ var io = {};
 
   /**
    * Produces a unique url that identifies a Socket.IO connection.
-   *
-   * @param {Object} uri
    * @api public
+   * @method uniqueUri
+   * @param {Object} uri
+   * @return BinaryExpression
    */
-
   util.uniqueUri = function (uri) {
     var protocol = uri.protocol
       , host = uri.host
@@ -178,12 +185,12 @@ var io = {};
 
   /**
    * Mergest 2 query strings in to once unique query string
-   *
+   * @api public
+   * @method query
    * @param {String} base
    * @param {String} addition
-   * @api public
+   * @return ConditionalExpression
    */
-
   util.query = function (base, addition) {
     var query = util.chunkQuery(base || '')
       , components = [];
@@ -200,11 +207,11 @@ var io = {};
 
   /**
    * Transforms a querystring in to an object
-   *
-   * @param {String} qs
    * @api public
+   * @method chunkQuery
+   * @param {String} qs
+   * @return query
    */
-
   util.chunkQuery = function (qs) {
     var query = {}
       , params = qs.split('&')
@@ -233,6 +240,12 @@ var io = {};
 
   var pageLoaded = false;
 
+  /**
+   * Description
+   * @method load
+   * @param {} fn
+   * @return 
+   */
   util.load = function (fn) {
     if ('document' in global && document.readyState === 'complete' || pageLoaded) {
       return fn();
@@ -243,10 +256,14 @@ var io = {};
 
   /**
    * Adds an event.
-   *
    * @api private
+   * @method on
+   * @param {} element
+   * @param {} event
+   * @param {} fn
+   * @param {} capture
+   * @return 
    */
-
   util.on = function (element, event, fn, capture) {
     if (element.attachEvent) {
       element.attachEvent('on' + event, fn);
@@ -257,12 +274,11 @@ var io = {};
 
   /**
    * Generates the correct `XMLHttpRequest` for regular and cross domain requests.
-   *
-   * @param {Boolean} [xdomain] Create a request that can be used cross domain.
-   * @returns {XMLHttpRequest|false} If we can create a XMLHttpRequest.
    * @api private
+   * @method request
+   * @param {} xdomain
+   * @return Literal
    */
-
   util.request = function (xdomain) {
 
     if (xdomain && 'undefined' != typeof XDomainRequest && !util.ua.hasCORS) {
@@ -301,11 +317,11 @@ var io = {};
 
   /**
    * Defers a function to ensure a spinner is not displayed by the browser
-   *
-   * @param {Function} fn
    * @api public
+   * @method defer
+   * @param {Function} fn
+   * @return 
    */
-
   util.defer = function (fn) {
     if (!util.ua.webkit || 'undefined' != typeof importScripts) {
       return fn();
@@ -318,10 +334,14 @@ var io = {};
 
   /**
    * Merges two objects.
-   *
    * @api public
+   * @method merge
+   * @param {} target
+   * @param {} additional
+   * @param {} deep
+   * @param {} lastseen
+   * @return target
    */
-
   util.merge = function merge (target, additional, deep, lastseen) {
     var seen = lastseen || []
       , depth = typeof deep == 'undefined' ? 2 : deep
@@ -343,21 +363,30 @@ var io = {};
 
   /**
    * Merges prototypes from objects
-   *
    * @api public
+   * @method mixin
+   * @param {} ctor
+   * @param {} ctor2
+   * @return 
    */
-
   util.mixin = function (ctor, ctor2) {
     util.merge(ctor.prototype, ctor2.prototype);
   };
 
   /**
    * Shortcut for prototypical and static inheritance.
-   *
    * @api private
+   * @method inherit
+   * @param {} ctor
+   * @param {} ctor2
+   * @return 
    */
-
   util.inherit = function (ctor, ctor2) {
+    /**
+     * Description
+     * @method f
+     * @return 
+     */
     function f() {};
     f.prototype = ctor2.prototype;
     ctor.prototype = new f;
@@ -379,10 +408,12 @@ var io = {};
 
   /**
    * Intersects values of two arrays into a third
-   *
    * @api public
+   * @method intersect
+   * @param {} arr
+   * @param {} arr2
+   * @return ret
    */
-
   util.intersect = function (arr, arr2) {
     var ret = []
       , longest = arr.length > arr2.length ? arr : arr2
@@ -398,11 +429,14 @@ var io = {};
 
   /**
    * Array indexOf compatibility.
-   *
    * @see bit.ly/a5Dxa2
    * @api public
+   * @method indexOf
+   * @param {} arr
+   * @param {} o
+   * @param {} i
+   * @return ConditionalExpression
    */
-
   util.indexOf = function (arr, o, i) {
 
     for (var j = arr.length, i = i < 0 ? i + j < 0 ? 0 : i + j : i || 0;
@@ -413,10 +447,11 @@ var io = {};
 
   /**
    * Converts enumerables to array.
-   *
    * @api public
+   * @method toArray
+   * @param {} enu
+   * @return arr
    */
-
   util.toArray = function (enu) {
     var arr = [];
 
@@ -485,18 +520,20 @@ var io = {};
 
   /**
    * Event emitter constructor.
-   *
    * @api public.
+   * @method EventEmitter
+   * @return 
    */
-
   function EventEmitter () {};
 
   /**
    * Adds a listener
-   *
    * @api public
+   * @method on
+   * @param {} name
+   * @param {} fn
+   * @return ThisExpression
    */
-
   EventEmitter.prototype.on = function (name, fn) {
     if (!this.$events) {
       this.$events = {};
@@ -517,13 +554,20 @@ var io = {};
 
   /**
    * Adds a volatile listener.
-   *
    * @api public
+   * @method once
+   * @param {} name
+   * @param {} fn
+   * @return ThisExpression
    */
-
   EventEmitter.prototype.once = function (name, fn) {
     var self = this;
 
+    /**
+     * Description
+     * @method on
+     * @return 
+     */
     function on () {
       self.removeListener(name, on);
       fn.apply(this, arguments);
@@ -537,10 +581,12 @@ var io = {};
 
   /**
    * Removes a listener.
-   *
    * @api public
+   * @method removeListener
+   * @param {} name
+   * @param {} fn
+   * @return ThisExpression
    */
-
   EventEmitter.prototype.removeListener = function (name, fn) {
     if (this.$events && this.$events[name]) {
       var list = this.$events[name];
@@ -574,10 +620,11 @@ var io = {};
 
   /**
    * Removes all listeners for an event.
-   *
    * @api public
+   * @method removeAllListeners
+   * @param {} name
+   * @return ThisExpression
    */
-
   EventEmitter.prototype.removeAllListeners = function (name) {
     if (name === undefined) {
       this.$events = {};
@@ -593,10 +640,11 @@ var io = {};
 
   /**
    * Gets all listeners for a certain event.
-   *
    * @api publci
+   * @method listeners
+   * @param {} name
+   * @return MemberExpression
    */
-
   EventEmitter.prototype.listeners = function (name) {
     if (!this.$events) {
       this.$events = {};
@@ -615,10 +663,11 @@ var io = {};
 
   /**
    * Emits an event.
-   *
    * @api public
+   * @method emit
+   * @param {} name
+   * @return Literal
    */
-
   EventEmitter.prototype.emit = function (name) {
     if (!this.$events) {
       return false;
@@ -675,11 +724,24 @@ var io = {};
 
   var JSON = exports.JSON = {};
 
+  /**
+   * Description
+   * @method f
+   * @param {} n
+   * @return ConditionalExpression
+   */
   function f(n) {
       // Format integers to have at least two digits.
       return n < 10 ? '0' + n : n;
   }
 
+  /**
+   * Description
+   * @method date
+   * @param {} d
+   * @param {} key
+   * @return ConditionalExpression
+   */
   function date(d, key) {
     return isFinite(d.valueOf()) ?
         d.getUTCFullYear()     + '-' +
@@ -706,6 +768,12 @@ var io = {};
       rep;
 
 
+  /**
+   * Description
+   * @method quote
+   * @param {} string
+   * @return ConditionalExpression
+   */
   function quote(string) {
 
 // If the string contains no control characters, no quote characters, and no
@@ -722,6 +790,13 @@ var io = {};
   }
 
 
+  /**
+   * Description
+   * @method str
+   * @param {} key
+   * @param {} holder
+   * @return 
+   */
   function str(key, holder) {
 
 // Produce a string from holder[key].
@@ -847,6 +922,14 @@ var io = {};
 
 // If the JSON object does not yet have a stringify method, give it one.
 
+  /**
+   * Description
+   * @method stringify
+   * @param {} value
+   * @param {} replacer
+   * @param {} space
+   * @return CallExpression
+   */
   JSON.stringify = function (value, replacer, space) {
 
 // The stringify method takes a value and an optional replacer, and an optional
@@ -891,12 +974,26 @@ var io = {};
 
 // If the JSON object does not yet have a parse method, give it one.
 
+  /**
+   * Description
+   * @method parse
+   * @param {} text
+   * @param {} reviver
+   * @return 
+   */
   JSON.parse = function (text, reviver) {
   // The parse method takes a text and an optional reviver function, and returns
   // a JavaScript value if the text is a valid JSON text.
 
       var j;
 
+      /**
+       * Description
+       * @method walk
+       * @param {} holder
+       * @param {} key
+       * @return CallExpression
+       */
       function walk(holder, key) {
 
   // The walk method is used to recursively walk the resulting structure so
@@ -1033,10 +1130,11 @@ var io = {};
 
   /**
    * Encodes a packet.
-   *
    * @api private
+   * @method encodePacket
+   * @param {} packet
+   * @return CallExpression
    */
-
   parser.encodePacket = function (packet) {
     var type = indexOf(packets, packet.type)
       , id = packet.id || ''
@@ -1101,11 +1199,11 @@ var io = {};
 
   /**
    * Encodes multiple messages (payload).
-   *
-   * @param {Array} messages
    * @api private
+   * @method encodePayload
+   * @param {} packets
+   * @return decoded
    */
-
   parser.encodePayload = function (packets) {
     var decoded = '';
 
@@ -1128,6 +1226,12 @@ var io = {};
 
   var regexp = /([^:]+):([0-9]+)?(\+)?:([^:]+)?:?([\s\S]*)?/;
 
+  /**
+   * Description
+   * @method decodePacket
+   * @param {} data
+   * @return packet
+   */
   parser.decodePacket = function (data) {
     var pieces = data.match(regexp);
 
@@ -1205,11 +1309,11 @@ var io = {};
 
   /**
    * Decodes data payload. Detects multiple messages
-   *
-   * @return {Array} messages
    * @api public
+   * @method decodePayload
+   * @param {} data
+   * @return 
    */
-
   parser.decodePayload = function (data) {
     // IE doesn't like data[i] for unicode chars, charAt works fine
     if (data.charAt(0) == '\ufffd') {
@@ -1251,11 +1355,13 @@ var io = {};
 
   /**
    * This is the transport template for all supported transport methods.
-   *
    * @constructor
    * @api public
+   * @method Transport
+   * @param {} socket
+   * @param {} sessid
+   * @return 
    */
-
   function Transport (socket, sessid) {
     this.socket = socket;
     this.sessid = sessid;
@@ -1270,10 +1376,10 @@ var io = {};
 
   /**
    * Indicates whether heartbeats is enabled for this transport
-   *
    * @api private
+   * @method heartbeats
+   * @return Literal
    */
-
   Transport.prototype.heartbeats = function () {
     return true;
   };
@@ -1282,11 +1388,11 @@ var io = {};
    * Handles the response from the server. When a new response is received
    * it will automatically update the timeout, decode the message and
    * forwards the response to the onMessage function for further processing.
-   *
-   * @param {String} data Response from the server.
    * @api private
+   * @method onData
+   * @param {String} data Response from the server.
+   * @return ThisExpression
    */
-
   Transport.prototype.onData = function (data) {
     this.clearCloseTimeout();
 
@@ -1313,10 +1419,11 @@ var io = {};
 
   /**
    * Handles packets.
-   *
    * @api private
+   * @method onPacket
+   * @param {} packet
+   * @return ThisExpression
    */
-
   Transport.prototype.onPacket = function (packet) {
     this.socket.setHeartbeatTimeout();
 
@@ -1339,10 +1446,10 @@ var io = {};
 
   /**
    * Sets close timeout
-   *
    * @api private
+   * @method setCloseTimeout
+   * @return 
    */
-
   Transport.prototype.setCloseTimeout = function () {
     if (!this.closeTimeout) {
       var self = this;
@@ -1355,10 +1462,10 @@ var io = {};
 
   /**
    * Called when transport disconnects.
-   *
    * @api private
+   * @method onDisconnect
+   * @return ThisExpression
    */
-
   Transport.prototype.onDisconnect = function () {
     if (this.isOpen) this.close();
     this.clearTimeouts();
@@ -1368,10 +1475,10 @@ var io = {};
 
   /**
    * Called when transport connects
-   *
    * @api private
+   * @method onConnect
+   * @return ThisExpression
    */
-
   Transport.prototype.onConnect = function () {
     this.socket.onConnect();
     return this;
@@ -1379,10 +1486,10 @@ var io = {};
 
   /**
    * Clears close timeout
-   *
    * @api private
+   * @method clearCloseTimeout
+   * @return 
    */
-
   Transport.prototype.clearCloseTimeout = function () {
     if (this.closeTimeout) {
       clearTimeout(this.closeTimeout);
@@ -1392,10 +1499,10 @@ var io = {};
 
   /**
    * Clear timeouts
-   *
    * @api private
+   * @method clearTimeouts
+   * @return 
    */
-
   Transport.prototype.clearTimeouts = function () {
     this.clearCloseTimeout();
 
@@ -1406,11 +1513,11 @@ var io = {};
 
   /**
    * Sends a packet
-   *
-   * @param {Object} packet object.
    * @api private
+   * @method packet
+   * @param {Object} packet object.
+   * @return 
    */
-
   Transport.prototype.packet = function (packet) {
     this.send(io.parser.encodePacket(packet));
   };
@@ -1418,21 +1525,21 @@ var io = {};
   /**
    * Send the received heartbeat message back to server. So the server
    * knows we are still connected.
-   *
-   * @param {String} heartbeat Heartbeat response from the server.
    * @api private
+   * @method onHeartbeat
+   * @param {String} heartbeat Heartbeat response from the server.
+   * @return 
    */
-
   Transport.prototype.onHeartbeat = function (heartbeat) {
     this.packet({ type: 'heartbeat' });
   };
 
   /**
    * Called when the transport opens.
-   *
    * @api private
+   * @method onOpen
+   * @return 
    */
-
   Transport.prototype.onOpen = function () {
     this.isOpen = true;
     this.clearCloseTimeout();
@@ -1442,10 +1549,10 @@ var io = {};
   /**
    * Notifies the base when the connection with the Socket.IO server
    * has been disconnected.
-   *
    * @api private
+   * @method onClose
+   * @return 
    */
-
   Transport.prototype.onClose = function () {
     var self = this;
 
@@ -1462,11 +1569,10 @@ var io = {};
   /**
    * Generates a connection url based on the Socket.IO URL Protocol.
    * See <https://github.com/learnboost/socket.io-node/> for more details.
-   *
-   * @returns {String} Connection url
    * @api private
+   * @method prepareUrl
+   * @return BinaryExpression
    */
-
   Transport.prototype.prepareUrl = function () {
     var options = this.socket.options;
 
@@ -1478,12 +1584,12 @@ var io = {};
 
   /**
    * Checks if the transport is ready to start a connection.
-   *
+   * @api private
+   * @method ready
    * @param {Socket} socket The socket instance that needs a transport
    * @param {Function} fn The callback
-   * @api private
+   * @return 
    */
-
   Transport.prototype.ready = function (socket, fn) {
     fn.call(this);
   };
@@ -1508,10 +1614,11 @@ var io = {};
   /**
    * Create a new `Socket.IO client` which can establish a persistent
    * connection with a Socket.IO enabled server.
-   *
    * @api public
+   * @method Socket
+   * @param {} options
+   * @return 
    */
-
   function Socket (options) {
     this.options = {
         port: 80
@@ -1563,10 +1670,11 @@ var io = {};
 
   /**
    * Returns a namespace listener/emitter for this socket
-   *
    * @api public
+   * @method of
+   * @param {} name
+   * @return MemberExpression
    */
-
   Socket.prototype.of = function (name) {
     if (!this.namespaces[name]) {
       this.namespaces[name] = new io.SocketNamespace(this, name);
@@ -1581,10 +1689,10 @@ var io = {};
 
   /**
    * Emits the given event to the Socket and all namespaces
-   *
    * @api private
+   * @method publish
+   * @return 
    */
-
   Socket.prototype.publish = function () {
     this.emit.apply(this, arguments);
 
@@ -1600,16 +1708,28 @@ var io = {};
 
   /**
    * Performs the handshake
-   *
    * @api private
+   * @method empty
+   * @return 
    */
-
   function empty () { };
 
+  /**
+   * Description
+   * @method handshake
+   * @param {} fn
+   * @return 
+   */
   Socket.prototype.handshake = function (fn) {
     var self = this
       , options = this.options;
 
+    /**
+     * Description
+     * @method complete
+     * @param {} data
+     * @return 
+     */
     function complete (data) {
       if (data instanceof Error) {
         self.connecting = false;
@@ -1645,6 +1765,11 @@ var io = {};
       if (this.isXDomain()) {
         xhr.withCredentials = true;
       }
+      /**
+       * Description
+       * @method onreadystatechange
+       * @return 
+       */
       xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
           xhr.onreadystatechange = empty;
@@ -1665,10 +1790,11 @@ var io = {};
 
   /**
    * Find an available transport based on the options supplied in the constructor.
-   *
    * @api private
+   * @method getTransport
+   * @param {} override
+   * @return Literal
    */
-
   Socket.prototype.getTransport = function (override) {
     var transports = override || this.transports, match;
 
@@ -1685,12 +1811,11 @@ var io = {};
 
   /**
    * Connects to the server.
-   *
-   * @param {Function} [fn] Callback.
-   * @returns {io.Socket}
    * @api public
+   * @method connect
+   * @param {} fn
+   * @return ThisExpression
    */
-
   Socket.prototype.connect = function (fn) {
     if (this.connecting) {
       return this;
@@ -1711,6 +1836,12 @@ var io = {};
 
       self.setHeartbeatTimeout();
 
+      /**
+       * Description
+       * @method connect
+       * @param {} transports
+       * @return 
+       */
       function connect (transports){
         if (self.transport) self.transport.clearTimeouts();
 
@@ -1761,10 +1892,10 @@ var io = {};
   /**
    * Clears and sets a new heartbeat timeout using the value given by the
    * server during the handshake.
-   *
    * @api private
+   * @method setHeartbeatTimeout
+   * @return 
    */
-
   Socket.prototype.setHeartbeatTimeout = function () {
     clearTimeout(this.heartbeatTimeoutTimer);
     if(this.transport && !this.transport.heartbeats()) return;
@@ -1777,12 +1908,11 @@ var io = {};
 
   /**
    * Sends a message.
-   *
-   * @param {Object} data packet.
-   * @returns {io.Socket}
    * @api public
+   * @method packet
+   * @param {Object} data packet.
+   * @return ThisExpression
    */
-
   Socket.prototype.packet = function (data) {
     if (this.connected && !this.doBuffer) {
       this.transport.packet(data);
@@ -1795,10 +1925,11 @@ var io = {};
 
   /**
    * Sets buffer state
-   *
    * @api private
+   * @method setBuffer
+   * @param {} v
+   * @return 
    */
-
   Socket.prototype.setBuffer = function (v) {
     this.doBuffer = v;
 
@@ -1812,10 +1943,10 @@ var io = {};
   /**
    * Flushes the buffer data over the wire.
    * To be invoked manually when 'manualFlush' is set to true.
-   *
    * @api public
+   * @method flushBuffer
+   * @return 
    */
-
   Socket.prototype.flushBuffer = function() {
     this.transport.payload(this.buffer);
     this.buffer = [];
@@ -1824,11 +1955,10 @@ var io = {};
 
   /**
    * Disconnect the established connect.
-   *
-   * @returns {io.Socket}
    * @api public
+   * @method disconnect
+   * @return ThisExpression
    */
-
   Socket.prototype.disconnect = function () {
     if (this.connected || this.connecting) {
       if (this.open) {
@@ -1844,10 +1974,10 @@ var io = {};
 
   /**
    * Disconnects the socket with a sync XHR.
-   *
    * @api private
+   * @method disconnectSync
+   * @return 
    */
-
   Socket.prototype.disconnectSync = function () {
     // ensure disconnection
     var xhr = io.util.request();
@@ -1870,11 +2000,10 @@ var io = {};
   /**
    * Check if we need to use cross domain enabled transports. Cross domain would
    * be a different port or different domain name.
-   *
-   * @returns {Boolean}
    * @api private
+   * @method isXDomain
+   * @return LogicalExpression
    */
-
   Socket.prototype.isXDomain = function () {
 
     var port = global.location.port ||
@@ -1886,10 +2015,10 @@ var io = {};
 
   /**
    * Called upon handshake.
-   *
    * @api private
+   * @method onConnect
+   * @return 
    */
-
   Socket.prototype.onConnect = function () {
     if (!this.connected) {
       this.connected = true;
@@ -1904,20 +2033,20 @@ var io = {};
 
   /**
    * Called when the transport opens
-   *
    * @api private
+   * @method onOpen
+   * @return 
    */
-
   Socket.prototype.onOpen = function () {
     this.open = true;
   };
 
   /**
    * Called when the transport closes.
-   *
    * @api private
+   * @method onClose
+   * @return 
    */
-
   Socket.prototype.onClose = function () {
     this.open = false;
     clearTimeout(this.heartbeatTimeoutTimer);
@@ -1925,20 +2054,21 @@ var io = {};
 
   /**
    * Called when the transport first opens a connection
-   *
-   * @param text
+   * @method onPacket
+   * @param {} packet
+   * @return 
    */
-
   Socket.prototype.onPacket = function (packet) {
     this.of(packet.endpoint).onPacket(packet);
   };
 
   /**
    * Handles an error.
-   *
    * @api private
+   * @method onError
+   * @param {} err
+   * @return 
    */
-
   Socket.prototype.onError = function (err) {
     if (err && err.advice) {
       if (err.advice === 'reconnect' && (this.connected || this.connecting)) {
@@ -1954,10 +2084,11 @@ var io = {};
 
   /**
    * Called when the transport disconnects.
-   *
    * @api private
+   * @method onDisconnect
+   * @param {} reason
+   * @return 
    */
-
   Socket.prototype.onDisconnect = function (reason) {
     var wasConnected = this.connected
       , wasConnecting = this.connecting;
@@ -1981,10 +2112,10 @@ var io = {};
 
   /**
    * Called upon reconnection.
-   *
    * @api private
+   * @method reconnect
+   * @return 
    */
-
   Socket.prototype.reconnect = function () {
     this.reconnecting = true;
     this.reconnectionAttempts = 0;
@@ -1995,6 +2126,11 @@ var io = {};
       , tryMultiple = this.options['try multiple transports']
       , limit = this.options['reconnection limit'];
 
+    /**
+     * Description
+     * @method reset
+     * @return 
+     */
     function reset () {
       if (self.connected) {
         for (var i in self.namespaces) {
@@ -2020,6 +2156,11 @@ var io = {};
       self.options['try multiple transports'] = tryMultiple;
     };
 
+    /**
+     * Description
+     * @method maybeReconnect
+     * @return 
+     */
     function maybeReconnect () {
       if (!self.reconnecting) {
         return;
@@ -2083,11 +2224,13 @@ var io = {};
 
   /**
    * Socket namespace constructor.
-   *
    * @constructor
    * @api public
+   * @method SocketNamespace
+   * @param {} socket
+   * @param {} name
+   * @return 
    */
-
   function SocketNamespace (socket, name) {
     this.socket = socket;
     this.name = name || '';
@@ -2114,20 +2257,21 @@ var io = {};
   /**
    * Creates a new namespace, by proxying the request to the socket. This
    * allows us to use the synax as we do on the server.
-   *
    * @api public
+   * @method of
+   * @return CallExpression
    */
-
   SocketNamespace.prototype.of = function () {
     return this.socket.of.apply(this.socket, arguments);
   };
 
   /**
    * Sends a packet.
-   *
    * @api private
+   * @method packet
+   * @param {} packet
+   * @return ThisExpression
    */
-
   SocketNamespace.prototype.packet = function (packet) {
     packet.endpoint = this.name;
     this.socket.packet(packet);
@@ -2137,10 +2281,12 @@ var io = {};
 
   /**
    * Sends a message
-   *
    * @api public
+   * @method send
+   * @param {} data
+   * @param {} fn
+   * @return CallExpression
    */
-
   SocketNamespace.prototype.send = function (data, fn) {
     var packet = {
         type: this.flags.json ? 'json' : 'message'
@@ -2158,10 +2304,11 @@ var io = {};
 
   /**
    * Emits an event
-   *
    * @api public
+   * @method emit
+   * @param {} name
+   * @return CallExpression
    */
-  
   SocketNamespace.prototype.emit = function (name) {
     var args = Array.prototype.slice.call(arguments, 1)
       , lastArg = args[args.length - 1]
@@ -2184,10 +2331,10 @@ var io = {};
 
   /**
    * Disconnects the namespace
-   *
    * @api private
+   * @method disconnect
+   * @return ThisExpression
    */
-
   SocketNamespace.prototype.disconnect = function () {
     if (this.name === '') {
       this.socket.disconnect();
@@ -2201,13 +2348,19 @@ var io = {};
 
   /**
    * Handles a packet
-   *
    * @api private
+   * @method onPacket
+   * @param {} packet
+   * @return 
    */
-
   SocketNamespace.prototype.onPacket = function (packet) {
     var self = this;
 
+    /**
+     * Description
+     * @method ack
+     * @return 
+     */
     function ack () {
       self.packet({
           type: 'ack'
@@ -2274,10 +2427,12 @@ var io = {};
 
   /**
    * Flag interface.
-   *
    * @api private
+   * @method Flag
+   * @param {} nsp
+   * @param {} name
+   * @return 
    */
-
   function Flag (nsp, name) {
     this.namespace = nsp;
     this.name = name;
@@ -2285,10 +2440,10 @@ var io = {};
 
   /**
    * Send a message
-   *
    * @api public
+   * @method send
+   * @return 
    */
-
   Flag.prototype.send = function () {
     this.namespace.flags[this.name] = true;
     this.namespace.send.apply(this.namespace, arguments);
@@ -2296,10 +2451,10 @@ var io = {};
 
   /**
    * Emit an event
-   *
    * @api public
+   * @method emit
+   * @return 
    */
-
   Flag.prototype.emit = function () {
     this.namespace.flags[this.name] = true;
     this.namespace.emit.apply(this.namespace, arguments);
@@ -2329,12 +2484,13 @@ var io = {};
    * persistent connection with the Socket.IO server. This transport will also
    * be inherited by the FlashSocket fallback as it provides a API compatible
    * polyfill for the WebSockets.
-   *
    * @constructor
    * @extends {io.Transport}
    * @api public
+   * @method WS
+   * @param {} socket
+   * @return 
    */
-
   function WS (socket) {
     io.Transport.apply(this, arguments);
   };
@@ -2356,11 +2512,10 @@ var io = {};
   /**
    * Initializes a new `WebSocket` connection with the Socket.IO server. We attach
    * all the appropriate listeners to handle the responses from the server.
-   *
-   * @returns {Transport}
    * @api public
+   * @method open
+   * @return ThisExpression
    */
-
   WS.prototype.open = function () {
     var query = io.util.query(this.socket.options.query)
       , self = this
@@ -2373,17 +2528,39 @@ var io = {};
 
     this.websocket = new Socket(this.prepareUrl() + query);
 
+    /**
+     * Description
+     * @method onopen
+     * @return 
+     */
     this.websocket.onopen = function () {
       self.onOpen();
       self.socket.setBuffer(false);
     };
+    /**
+     * Description
+     * @method onmessage
+     * @param {} ev
+     * @return 
+     */
     this.websocket.onmessage = function (ev) {
       self.onData(ev.data);
     };
+    /**
+     * Description
+     * @method onclose
+     * @return 
+     */
     this.websocket.onclose = function () {
       self.onClose();
       self.socket.setBuffer(true);
     };
+    /**
+     * Description
+     * @method onerror
+     * @param {} e
+     * @return 
+     */
     this.websocket.onerror = function (e) {
       self.onError(e);
     };
@@ -2403,6 +2580,12 @@ var io = {};
   // setTimeout, when they resume from sleeping the browser will crash if 
   // we don't allow the browser time to detect the socket has been closed
   if (io.util.ua.iDevice) {
+    /**
+     * Description
+     * @method send
+     * @param {} data
+     * @return ThisExpression
+     */
     WS.prototype.send = function (data) {
       var self = this;
       setTimeout(function() {
@@ -2411,6 +2594,12 @@ var io = {};
       return this;
     };
   } else {
+    /**
+     * Description
+     * @method send
+     * @param {} data
+     * @return ThisExpression
+     */
     WS.prototype.send = function (data) {
       this.websocket.send(data);
       return this;
@@ -2419,10 +2608,11 @@ var io = {};
 
   /**
    * Payload
-   *
    * @api private
+   * @method payload
+   * @param {} arr
+   * @return ThisExpression
    */
-
   WS.prototype.payload = function (arr) {
     for (var i = 0, l = arr.length; i < l; i++) {
       this.packet(arr[i]);
@@ -2432,11 +2622,10 @@ var io = {};
 
   /**
    * Disconnect the established `WebSocket` connection.
-   *
-   * @returns {Transport}
    * @api public
+   * @method close
+   * @return ThisExpression
    */
-
   WS.prototype.close = function () {
     this.websocket.close();
     return this;
@@ -2445,19 +2634,20 @@ var io = {};
   /**
    * Handle the errors that `WebSocket` might be giving when we
    * are attempting to connect or send messages.
-   *
-   * @param {Error} e The error.
    * @api private
+   * @method onError
+   * @param {Error} e The error.
+   * @return 
    */
-
   WS.prototype.onError = function (e) {
     this.socket.onError(e);
   };
 
   /**
    * Returns the appropriate scheme for the URI generation.
-   *
    * @api private
+   * @method scheme
+   * @return ConditionalExpression
    */
   WS.prototype.scheme = function () {
     return this.socket.options.secure ? 'wss' : 'ws';
@@ -2466,11 +2656,10 @@ var io = {};
   /**
    * Checks if the browser has support for native `WebSockets` and that
    * it's not the polyfill created for the FlashSocket transport.
-   *
-   * @return {Boolean}
    * @api public
+   * @method check
+   * @return LogicalExpression
    */
-
   WS.check = function () {
     return ('WebSocket' in global && !('__addTask' in WebSocket))
           || 'MozWebSocket' in global;
@@ -2478,11 +2667,10 @@ var io = {};
 
   /**
    * Check if the `WebSocket` transport support cross domain communications.
-   *
-   * @returns {Boolean}
    * @api public
+   * @method xdomainCheck
+   * @return Literal
    */
-
   WS.xdomainCheck = function () {
     return true;
   };
@@ -2519,11 +2707,12 @@ var io = {};
 
   /**
    * XHR constructor
-   *
    * @costructor
    * @api public
+   * @method XHR
+   * @param {} socket
+   * @return 
    */
-
   function XHR (socket) {
     if (!socket) return;
 
@@ -2539,11 +2728,10 @@ var io = {};
 
   /**
    * Establish a connection
-   *
-   * @returns {Transport}
    * @api public
+   * @method open
+   * @return ThisExpression
    */
-
   XHR.prototype.open = function () {
     this.socket.setBuffer(false);
     this.onOpen();
@@ -2559,10 +2747,11 @@ var io = {};
   /**
    * Check if we need to send data to the Socket.IO server, if we have data in our
    * buffer we encode it and forward it to the `post` method.
-   *
    * @api private
+   * @method payload
+   * @param {} payload
+   * @return 
    */
-
   XHR.prototype.payload = function (payload) {
     var msgs = [];
 
@@ -2575,12 +2764,11 @@ var io = {};
 
   /**
    * Send data to the Socket.IO server.
-   *
-   * @param data The message
-   * @returns {Transport}
    * @api public
+   * @method send
+   * @param data The message
+   * @return ThisExpression
    */
-
   XHR.prototype.send = function (data) {
     this.post(data);
     return this;
@@ -2588,17 +2776,27 @@ var io = {};
 
   /**
    * Posts a encoded message to the Socket.IO server.
-   *
-   * @param {String} data A encoded message.
    * @api private
+   * @method empty
+   * @return 
    */
-
   function empty () { };
 
+  /**
+   * Description
+   * @method post
+   * @param {} data
+   * @return 
+   */
   XHR.prototype.post = function (data) {
     var self = this;
     this.socket.setBuffer(true);
 
+    /**
+     * Description
+     * @method stateChange
+     * @return 
+     */
     function stateChange () {
       if (this.readyState == 4) {
         this.onreadystatechange = empty;
@@ -2612,6 +2810,11 @@ var io = {};
       }
     }
 
+    /**
+     * Description
+     * @method onload
+     * @return 
+     */
     function onload () {
       this.onload = empty;
       self.socket.setBuffer(false);
@@ -2630,11 +2833,10 @@ var io = {};
 
   /**
    * Disconnects the established `XHR` connection.
-   *
-   * @returns {Transport}
    * @api public
+   * @method close
+   * @return ThisExpression
    */
-
   XHR.prototype.close = function () {
     this.onClose();
     return this;
@@ -2642,13 +2844,11 @@ var io = {};
 
   /**
    * Generates a configured XHR request
-   *
-   * @param {String} url The url that needs to be requested.
-   * @param {String} method The method the request should use.
-   * @returns {XMLHttpRequest}
    * @api private
+   * @method request
+   * @param {String} method The method the request should use.
+   * @return req
    */
-
   XHR.prototype.request = function (method) {
     var req = io.util.request(this.socket.isXDomain())
       , query = io.util.query(this.socket.options.query, 't=' + +new Date);
@@ -2671,22 +2871,22 @@ var io = {};
 
   /**
    * Returns the scheme to use for the transport URLs.
-   *
    * @api private
+   * @method scheme
+   * @return ConditionalExpression
    */
-
   XHR.prototype.scheme = function () {
     return this.socket.options.secure ? 'https' : 'http';
   };
 
   /**
    * Check if the XHR transports are supported
-   *
-   * @param {Boolean} xdomain Check if we support cross domain requests.
-   * @returns {Boolean}
    * @api public
+   * @method check
+   * @param {} socket
+   * @param {Boolean} xdomain Check if we support cross domain requests.
+   * @return Literal
    */
-
   XHR.check = function (socket, xdomain) {
     try {
       var request = io.util.request(xdomain),
@@ -2703,11 +2903,11 @@ var io = {};
 
   /**
    * Check if the XHR transport supports cross domain requests.
-   *
-   * @returns {Boolean}
    * @api public
+   * @method xdomainCheck
+   * @param {} socket
+   * @return CallExpression
    */
-
   XHR.xdomainCheck = function (socket) {
     return XHR.check(socket, true);
   };
@@ -2736,12 +2936,13 @@ var io = {};
    * for Internet Explorer. Regular forever iframe implementations will 
    * continuously trigger the browsers buzy indicators. If the forever iframe
    * is created inside a `htmlfile` these indicators will not be trigged.
-   *
    * @constructor
    * @extends {io.Transport.XHR}
    * @api public
+   * @method HTMLFile
+   * @param {} socket
+   * @return 
    */
-
   function HTMLFile (socket) {
     io.Transport.XHR.apply(this, arguments);
   };
@@ -2764,10 +2965,10 @@ var io = {};
    * Creates a new Ac...eX `htmlfile` with a forever loading iframe
    * that can be used to listen to messages. Inside the generated
    * `htmlfile` a reference will be made to the HTMLFile transport.
-   *
    * @api private
+   * @method get
+   * @return 
    */
-
   HTMLFile.prototype.get = function () {
     this.doc = new window[(['Active'].concat('Object').join('X'))]('htmlfile');
     this.doc.open();
@@ -2817,10 +3018,10 @@ var io = {};
    * Destroy the established connection, iframe and `htmlfile`.
    * And calls the `CollectGarbage` function of Internet Explorer
    * to release the memory.
-   *
    * @api private
+   * @method destroy
+   * @return 
    */
-
   HTMLFile.prototype.destroy = function () {
     if (this.iframe){
       try {
@@ -2837,11 +3038,10 @@ var io = {};
 
   /**
    * Disconnects the established connection.
-   *
-   * @returns {Transport} Chaining.
    * @api public
+   * @method close
+   * @return CallExpression
    */
-
   HTMLFile.prototype.close = function () {
     this.destroy();
     return io.Transport.XHR.prototype.close.call(this);
@@ -2850,11 +3050,11 @@ var io = {};
   /**
    * Checks if the browser supports this transport. The browser
    * must have an `Ac...eXObject` implementation.
-   *
-   * @return {Boolean}
    * @api public
+   * @method check
+   * @param {} socket
+   * @return Literal
    */
-
   HTMLFile.check = function (socket) {
     if (typeof window != "undefined" && (['Active'].concat('Object').join('X')) in window){
       try {
@@ -2867,11 +3067,10 @@ var io = {};
 
   /**
    * Check if cross domain requests are supported.
-   *
-   * @returns {Boolean}
    * @api public
+   * @method xdomainCheck
+   * @return Literal
    */
-
   HTMLFile.xdomainCheck = function () {
     // we can probably do handling for sub-domains, we should
     // test that it's cross domain but a subdomain here
@@ -2908,11 +3107,11 @@ var io = {};
   /**
    * The XHR-polling transport uses long polling XHR requests to create a
    * "persistent" connection with the server.
-   *
    * @constructor
    * @api public
+   * @method XHRPolling
+   * @return 
    */
-
   function XHRPolling () {
     io.Transport.XHR.apply(this, arguments);
   };
@@ -2939,22 +3138,21 @@ var io = {};
 
   /**
    * Indicates whether heartbeats is enabled for this transport
-   *
    * @api private
+   * @method heartbeats
+   * @return Literal
    */
-
   XHRPolling.prototype.heartbeats = function () {
     return false;
   };
 
-  /** 
+  /**
    * Establish a connection, for iPhone and Android this will be done once the page
    * is loaded.
-   *
-   * @returns {Transport} Chaining.
    * @api public
+   * @method open
+   * @return Literal
    */
-
   XHRPolling.prototype.open = function () {
     var self = this;
 
@@ -2964,17 +3162,27 @@ var io = {};
 
   /**
    * Starts a XHR request to wait for incoming messages.
-   *
    * @api private
+   * @method empty
+   * @return 
    */
-
   function empty () {};
 
+  /**
+   * Description
+   * @method get
+   * @return 
+   */
   XHRPolling.prototype.get = function () {
     if (!this.isOpen) return;
 
     var self = this;
 
+    /**
+     * Description
+     * @method stateChange
+     * @return 
+     */
     function stateChange () {
       if (this.readyState == 4) {
         this.onreadystatechange = empty;
@@ -2988,6 +3196,11 @@ var io = {};
       }
     };
 
+    /**
+     * Description
+     * @method onload
+     * @return 
+     */
     function onload () {
       this.onload = empty;
       this.onerror = empty;
@@ -2996,6 +3209,11 @@ var io = {};
       self.get();
     };
 
+    /**
+     * Description
+     * @method onerror
+     * @return 
+     */
     function onerror () {
       self.retryCounter ++;
       if(!self.retryCounter || self.retryCounter > 3) {
@@ -3019,10 +3237,10 @@ var io = {};
 
   /**
    * Handle the unclean close behavior.
-   *
    * @api private
+   * @method onClose
+   * @return 
    */
-
   XHRPolling.prototype.onClose = function () {
     io.Transport.XHR.prototype.onClose.call(this);
 
@@ -3040,12 +3258,12 @@ var io = {};
    * before the browsers onload event is called so we need to defer opening of
    * the transport until the onload event is called. Wrapping the cb in our
    * defer method solve this.
-   *
+   * @api private
+   * @method ready
    * @param {Socket} socket The socket instance that needs a transport
    * @param {Function} fn The callback
-   * @api private
+   * @return 
    */
-
   XHRPolling.prototype.ready = function (socket, fn) {
     var self = this;
 
@@ -3097,12 +3315,13 @@ var io = {};
    * inserting a script tag in the page. This script tag will receive the
    * information of the Socket.IO server. When new information is received
    * it creates a new script tag for the new data stream.
-   *
    * @constructor
    * @extends {io.Transport.xhr-polling}
    * @api public
+   * @method JSONPPolling
+   * @param {} socket
+   * @return 
    */
-
   function JSONPPolling (socket) {
     io.Transport['xhr-polling'].apply(this, arguments);
 
@@ -3134,11 +3353,11 @@ var io = {};
    * The iframe is used because script tags can create POST based requests.
    * The iframe is positioned outside of the view so the user does not
    * notice it's existence.
-   *
-   * @param {String} data A encoded message.
    * @api private
+   * @method post
+   * @param {String} data A encoded message.
+   * @return 
    */
-
   JSONPPolling.prototype.post = function (data) {
     var self = this
       , query = io.util.query(
@@ -3170,11 +3389,21 @@ var io = {};
 
     this.form.action = this.prepareUrl() + query;
 
+    /**
+     * Description
+     * @method complete
+     * @return 
+     */
     function complete () {
       initIframe();
       self.socket.setBuffer(false);
     };
 
+    /**
+     * Description
+     * @method initIframe
+     * @return 
+     */
     function initIframe () {
       if (self.iframe) {
         self.form.removeChild(self.iframe);
@@ -3205,6 +3434,11 @@ var io = {};
     } catch(e) {}
 
     if (this.iframe.attachEvent) {
+      /**
+       * Description
+       * @method onreadystatechange
+       * @return 
+       */
       iframe.onreadystatechange = function () {
         if (self.iframe.readyState == 'complete') {
           complete();
@@ -3220,10 +3454,10 @@ var io = {};
   /**
    * Creates a new JSONP poll that can be used to listen
    * for messages from the Socket.IO server.
-   *
    * @api private
+   * @method get
+   * @return 
    */
-
   JSONPPolling.prototype.get = function () {
     var self = this
       , script = document.createElement('script')
@@ -3239,6 +3473,11 @@ var io = {};
 
     script.async = true;
     script.src = this.prepareUrl() + query;
+    /**
+     * Description
+     * @method onerror
+     * @return 
+     */
     script.onerror = function () {
       self.onClose();
     };
@@ -3273,12 +3512,12 @@ var io = {};
 
   /**
    * The indicator hack only works after onload
-   *
+   * @api private
+   * @method ready
    * @param {Socket} socket The socket instance that needs a transport
    * @param {Function} fn The callback
-   * @api private
+   * @return 
    */
-
   JSONPPolling.prototype.ready = function (socket, fn) {
     var self = this;
     if (!indicator) return fn.call(this);
@@ -3290,22 +3529,20 @@ var io = {};
 
   /**
    * Checks if browser supports this transport.
-   *
-   * @return {Boolean}
    * @api public
+   * @method check
+   * @return BinaryExpression
    */
-
   JSONPPolling.check = function () {
     return 'document' in global;
   };
 
   /**
    * Check if cross domain requests are supported
-   *
-   * @returns {Boolean}
    * @api public
+   * @method xdomainCheck
+   * @return Literal
    */
-
   JSONPPolling.xdomainCheck = function () {
     return true;
   };

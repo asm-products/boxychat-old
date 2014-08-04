@@ -3,7 +3,7 @@
     <div class="col-sm-6">
   <form action="/auth/login/" method="post">
     <div class="form-group">
-      <input class="form-control" type="text" name="username" placeholder="Username">
+      <input class="form-control" type="text" name="username" placeholder="Email">
     </div>
     <div class="form-group">
       <input class="form-control" type="password" name="password" placeholder="Password">
@@ -14,18 +14,15 @@
   <a href="/reset">Forgot your password?</a>
 </div>
 <div class="col-sm-6">
-  <form action="/user/create/" method="post">
+  <form action="/user/create/" method="post" id="userCreation">
   <div class="form-group">
-    <input class="form-control" type="text" name="firstName" placeholder="First">
+    <input class="form-control" type="text" name="name" placeholder="Name">
   </div>
   <div class="form-group">
-    <input class="form-control" type="text" name="lastName" placeholder="Last">
+    <input class="form-control" type="text" name="company" placeholder="Company" id="company">
   </div>
   <div class="form-group">
     <input class="form-control" type="text" name="email" placeholder="Email">
-  </div>
-  <div class="form-group">
-    <input class="form-control" type="text" name="username" placeholder="Username">
   </div>
   <div class="form-group">
     <input class="form-control" type="password" name="password" placeholder="Password">

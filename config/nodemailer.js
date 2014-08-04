@@ -6,4 +6,4 @@ module.exports.nodemailer = {
   host: 'smtp.mailgun.org',
   user: process.env.MAILGUN_USER,
   pass: process.env.MAILGUN_PASS
-}
+};

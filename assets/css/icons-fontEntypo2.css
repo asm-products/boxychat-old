@@ -226,6 +226,7 @@
 .icon-forward:before			{ content:'\27A6'}
 .icon-user:before				{ content:'\1F464'}
 .icon-users:before				{ content:'\1F465'}
+.icon-room:before				{ content:'\1F465'}
 .icon-add-user:before			{ content:'\E700'}
 .icon-vcard:before				{ content:'\E722'}
 .icon-export:before				{ content:'\E715'}

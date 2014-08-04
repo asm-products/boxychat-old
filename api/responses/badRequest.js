@@ -1,23 +1,21 @@
 /**
  * 400 (Bad Request) Handler
- *
  * Usage:
  * return res.badRequest(
  *   'Please choose a valid `password` (6-12 characters)',
  *   '/trial/signup'
  * );
- * 
- * @param {Array|Object|String} validationErrors
  *      optional errors
  *      usually an array of validation errors from the ORM
- *
- * @param {String} redirectTo
  *      optional URL
  *      (absolute or relative, e.g. google.com/foo or /bar/baz)
  *      of the page to redirect to.  Usually only relevant for traditional HTTP requests,
  *      since if this was triggered from an AJAX or socket request, JSON should be sent instead.
+ * @method exports
+ * @param {} validationErrors
+ * @param {String} redirectTo
+ * @return CallExpression
  */
-
 module.exports = function badRequest(validationErrors, redirectTo) {
   
   // Get access to `req` and `res`

@@ -4,6 +4,12 @@ var passport      = require('passport'),
 module.exports = {
 
  express: {
+    /**
+     * Description
+     * @method customMiddleware
+     * @param {} app
+     * @return 
+     */
     customMiddleware: function(app){
       console.log('express midleware for passport');
       app.use(passport.initialize());

@@ -21,6 +21,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
   // ============================================================
 
+  /**
+   * Description
+   * @method transitionEnd
+   * @return Literal
+   */
   function transitionEnd() {
     var el = document.createElement('bootstrap')
 
@@ -41,9 +46,20 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   }
 
   // http://blog.alexmaccaw.com/css-transitions
+  /**
+   * Description
+   * @method emulateTransitionEnd
+   * @param {} duration
+   * @return ThisExpression
+   */
   $.fn.emulateTransitionEnd = function (duration) {
     var called = false, $el = this
     $(this).one($.support.transition.end, function () { called = true })
+    /**
+     * Description
+     * @method callback
+     * @return 
+     */
     var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
     setTimeout(callback, duration)
     return this
@@ -71,10 +87,22 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // ======================
 
   var dismiss = '[data-dismiss="alert"]'
+  /**
+   * Description
+   * @method Alert
+   * @param {} el
+   * @return 
+   */
   var Alert   = function (el) {
     $(el).on('click', dismiss, this.close)
   }
 
+  /**
+   * Description
+   * @method close
+   * @param {} e
+   * @return 
+   */
   Alert.prototype.close = function (e) {
     var $this    = $(this)
     var selector = $this.attr('data-target')
@@ -98,6 +126,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
     $parent.removeClass('in')
 
+    /**
+     * Description
+     * @method removeElement
+     * @return 
+     */
     function removeElement() {
       $parent.trigger('closed.bs.alert').remove()
     }
@@ -115,6 +148,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   var old = $.fn.alert
 
+  /**
+   * Description
+   * @method alert
+   * @param {} option
+   * @return CallExpression
+   */
   $.fn.alert = function (option) {
     return this.each(function () {
       var $this = $(this)
@@ -131,6 +170,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // ALERT NO CONFLICT
   // =================
 
+  /**
+   * Description
+   * @method noConflict
+   * @return ThisExpression
+   */
   $.fn.alert.noConflict = function () {
     $.fn.alert = old
     return this
@@ -159,6 +203,13 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // BUTTON PUBLIC CLASS DEFINITION
   // ==============================
 
+  /**
+   * Description
+   * @method Button
+   * @param {} element
+   * @param {} options
+   * @return 
+   */
   var Button = function (element, options) {
     this.$element  = $(element)
     this.options   = $.extend({}, Button.DEFAULTS, options)
@@ -169,6 +220,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     loadingText: 'loading...'
   }
 
+  /**
+   * Description
+   * @method setState
+   * @param {} state
+   * @return 
+   */
   Button.prototype.setState = function (state) {
     var d    = 'disabled'
     var $el  = this.$element
@@ -193,6 +250,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     }, this), 0)
   }
 
+  /**
+   * Description
+   * @method toggle
+   * @return 
+   */
   Button.prototype.toggle = function () {
     var changed = true
     var $parent = this.$element.closest('[data-toggle="buttons"]')
@@ -215,6 +277,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   var old = $.fn.button
 
+  /**
+   * Description
+   * @method button
+   * @param {} option
+   * @return CallExpression
+   */
   $.fn.button = function (option) {
     return this.each(function () {
       var $this   = $(this)
@@ -234,6 +302,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // BUTTON NO CONFLICT
   // ==================
 
+  /**
+   * Description
+   * @method noConflict
+   * @return ThisExpression
+   */
   $.fn.button.noConflict = function () {
     $.fn.button = old
     return this
@@ -267,6 +340,13 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // CAROUSEL CLASS DEFINITION
   // =========================
 
+  /**
+   * Description
+   * @method Carousel
+   * @param {} element
+   * @param {} options
+   * @return 
+   */
   var Carousel = function (element, options) {
     this.$element    = $(element)
     this.$indicators = this.$element.find('.carousel-indicators')
@@ -288,6 +368,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     wrap: true
   }
 
+  /**
+   * Description
+   * @method cycle
+   * @param {} e
+   * @return ThisExpression
+   */
   Carousel.prototype.cycle =  function (e) {
     e || (this.paused = false)
 
@@ -300,6 +386,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return this
   }
 
+  /**
+   * Description
+   * @method getActiveIndex
+   * @return CallExpression
+   */
   Carousel.prototype.getActiveIndex = function () {
     this.$active = this.$element.find('.item.active')
     this.$items  = this.$active.parent().children()
@@ -307,6 +398,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return this.$items.index(this.$active)
   }
 
+  /**
+   * Description
+   * @method to
+   * @param {} pos
+   * @return CallExpression
+   */
   Carousel.prototype.to = function (pos) {
     var that        = this
     var activeIndex = this.getActiveIndex()
@@ -319,6 +416,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return this.slide(pos > activeIndex ? 'next' : 'prev', $(this.$items[pos]))
   }
 
+  /**
+   * Description
+   * @method pause
+   * @param {} e
+   * @return ThisExpression
+   */
   Carousel.prototype.pause = function (e) {
     e || (this.paused = true)
 
@@ -332,16 +435,33 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return this
   }
 
+  /**
+   * Description
+   * @method next
+   * @return CallExpression
+   */
   Carousel.prototype.next = function () {
     if (this.sliding) return
     return this.slide('next')
   }
 
+  /**
+   * Description
+   * @method prev
+   * @return CallExpression
+   */
   Carousel.prototype.prev = function () {
     if (this.sliding) return
     return this.slide('prev')
   }
 
+  /**
+   * Description
+   * @method slide
+   * @param {} type
+   * @param {} next
+   * @return ThisExpression
+   */
   Carousel.prototype.slide = function (type, next) {
     var $active   = this.$element.find('.item.active')
     var $next     = next || $active[type]()
@@ -404,6 +524,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   var old = $.fn.carousel
 
+  /**
+   * Description
+   * @method carousel
+   * @param {} option
+   * @return CallExpression
+   */
   $.fn.carousel = function (option) {
     return this.each(function () {
       var $this   = $(this)
@@ -424,6 +550,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // CAROUSEL NO CONFLICT
   // ====================
 
+  /**
+   * Description
+   * @method noConflict
+   * @return ThisExpression
+   */
   $.fn.carousel.noConflict = function () {
     $.fn.carousel = old
     return this
@@ -473,6 +604,13 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // COLLAPSE PUBLIC CLASS DEFINITION
   // ================================
 
+  /**
+   * Description
+   * @method Collapse
+   * @param {} element
+   * @param {} options
+   * @return 
+   */
   var Collapse = function (element, options) {
     this.$element      = $(element)
     this.options       = $.extend({}, Collapse.DEFAULTS, options)
@@ -486,11 +624,21 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     toggle: true
   }
 
+  /**
+   * Description
+   * @method dimension
+   * @return ConditionalExpression
+   */
   Collapse.prototype.dimension = function () {
     var hasWidth = this.$element.hasClass('width')
     return hasWidth ? 'width' : 'height'
   }
 
+  /**
+   * Description
+   * @method show
+   * @return 
+   */
   Collapse.prototype.show = function () {
     if (this.transitioning || this.$element.hasClass('in')) return
 
@@ -516,6 +664,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
     this.transitioning = 1
 
+    /**
+     * Description
+     * @method complete
+     * @return 
+     */
     var complete = function () {
       this.$element
         .removeClass('collapsing')
@@ -535,6 +688,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
       [dimension](this.$element[0][scrollSize])
   }
 
+  /**
+   * Description
+   * @method hide
+   * @return 
+   */
   Collapse.prototype.hide = function () {
     if (this.transitioning || !this.$element.hasClass('in')) return
 
@@ -555,6 +713,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
     this.transitioning = 1
 
+    /**
+     * Description
+     * @method complete
+     * @return 
+     */
     var complete = function () {
       this.transitioning = 0
       this.$element
@@ -571,6 +734,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
       .emulateTransitionEnd(350)
   }
 
+  /**
+   * Description
+   * @method toggle
+   * @return 
+   */
   Collapse.prototype.toggle = function () {
     this[this.$element.hasClass('in') ? 'hide' : 'show']()
   }
@@ -581,6 +749,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   var old = $.fn.collapse
 
+  /**
+   * Description
+   * @method collapse
+   * @param {} option
+   * @return CallExpression
+   */
   $.fn.collapse = function (option) {
     return this.each(function () {
       var $this   = $(this)
@@ -599,6 +773,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // COLLAPSE NO CONFLICT
   // ====================
 
+  /**
+   * Description
+   * @method noConflict
+   * @return ThisExpression
+   */
   $.fn.collapse.noConflict = function () {
     $.fn.collapse = old
     return this
@@ -646,10 +825,22 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   var backdrop = '.dropdown-backdrop'
   var toggle   = '[data-toggle=dropdown]'
+  /**
+   * Description
+   * @method Dropdown
+   * @param {} element
+   * @return 
+   */
   var Dropdown = function (element) {
     $(element).on('click.bs.dropdown', this.toggle)
   }
 
+  /**
+   * Description
+   * @method toggle
+   * @param {} e
+   * @return Literal
+   */
   Dropdown.prototype.toggle = function (e) {
     var $this = $(this)
 
@@ -681,6 +872,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return false
   }
 
+  /**
+   * Description
+   * @method keydown
+   * @param {} e
+   * @return 
+   */
   Dropdown.prototype.keydown = function (e) {
     if (!/(38|40|27)/.test(e.keyCode)) return
 
@@ -713,6 +910,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     $items.eq(index).focus()
   }
 
+  /**
+   * Description
+   * @method clearMenus
+   * @param {} e
+   * @return 
+   */
   function clearMenus(e) {
     $(backdrop).remove()
     $(toggle).each(function () {
@@ -725,6 +928,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     })
   }
 
+  /**
+   * Description
+   * @method getParent
+   * @param {} $this
+   * @return ConditionalExpression
+   */
   function getParent($this) {
     var selector = $this.attr('data-target')
 
@@ -744,6 +953,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   var old = $.fn.dropdown
 
+  /**
+   * Description
+   * @method dropdown
+   * @param {} option
+   * @return CallExpression
+   */
   $.fn.dropdown = function (option) {
     return this.each(function () {
       var $this = $(this)
@@ -760,6 +975,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // DROPDOWN NO CONFLICT
   // ====================
 
+  /**
+   * Description
+   * @method noConflict
+   * @return ThisExpression
+   */
   $.fn.dropdown.noConflict = function () {
     $.fn.dropdown = old
     return this
@@ -792,6 +1012,13 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // MODAL CLASS DEFINITION
   // ======================
 
+  /**
+   * Description
+   * @method Modal
+   * @param {} element
+   * @param {} options
+   * @return 
+   */
   var Modal = function (element, options) {
     this.options   = options
     this.$element  = $(element)
@@ -813,10 +1040,22 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     show: true
   }
 
+  /**
+   * Description
+   * @method toggle
+   * @param {} _relatedTarget
+   * @return CallExpression
+   */
   Modal.prototype.toggle = function (_relatedTarget) {
     return this[!this.isShown ? 'show' : 'hide'](_relatedTarget)
   }
 
+  /**
+   * Description
+   * @method show
+   * @param {} _relatedTarget
+   * @return 
+   */
   Modal.prototype.show = function (_relatedTarget) {
     var that = this
     var e    = $.Event('show.bs.modal', { relatedTarget: _relatedTarget })
@@ -864,6 +1103,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     })
   }
 
+  /**
+   * Description
+   * @method hide
+   * @param {} e
+   * @return 
+   */
   Modal.prototype.hide = function (e) {
     if (e) e.preventDefault()
 
@@ -891,6 +1136,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
       this.hideModal()
   }
 
+  /**
+   * Description
+   * @method enforceFocus
+   * @return 
+   */
   Modal.prototype.enforceFocus = function () {
     $(document)
       .off('focusin.bs.modal') // guard against infinite focus loop
@@ -901,6 +1151,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
       }, this))
   }
 
+  /**
+   * Description
+   * @method escape
+   * @return 
+   */
   Modal.prototype.escape = function () {
     if (this.isShown && this.options.keyboard) {
       this.$element.on('keyup.dismiss.bs.modal', $.proxy(function (e) {
@@ -911,6 +1166,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     }
   }
 
+  /**
+   * Description
+   * @method hideModal
+   * @return 
+   */
   Modal.prototype.hideModal = function () {
     var that = this
     this.$element.hide()
@@ -920,11 +1180,22 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     })
   }
 
+  /**
+   * Description
+   * @method removeBackdrop
+   * @return 
+   */
   Modal.prototype.removeBackdrop = function () {
     this.$backdrop && this.$backdrop.remove()
     this.$backdrop = null
   }
 
+  /**
+   * Description
+   * @method backdrop
+   * @param {} callback
+   * @return 
+   */
   Modal.prototype.backdrop = function (callback) {
     var animate = this.$element.hasClass('fade') ? 'fade' : ''
 
@@ -973,6 +1244,13 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   var old = $.fn.modal
 
+  /**
+   * Description
+   * @method modal
+   * @param {} option
+   * @param {} _relatedTarget
+   * @return CallExpression
+   */
   $.fn.modal = function (option, _relatedTarget) {
     return this.each(function () {
       var $this   = $(this)
@@ -991,6 +1269,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // MODAL NO CONFLICT
   // =================
 
+  /**
+   * Description
+   * @method noConflict
+   * @return ThisExpression
+   */
   $.fn.modal.noConflict = function () {
     $.fn.modal = old
     return this
@@ -1037,6 +1320,13 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // TOOLTIP PUBLIC CLASS DEFINITION
   // ===============================
 
+  /**
+   * Description
+   * @method Tooltip
+   * @param {} element
+   * @param {} options
+   * @return 
+   */
   var Tooltip = function (element, options) {
     this.type       =
     this.options    =
@@ -1060,6 +1350,14 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     container: false
   }
 
+  /**
+   * Description
+   * @method init
+   * @param {} type
+   * @param {} element
+   * @param {} options
+   * @return 
+   */
   Tooltip.prototype.init = function (type, element, options) {
     this.enabled  = true
     this.type     = type
@@ -1087,10 +1385,21 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
       this.fixTitle()
   }
 
+  /**
+   * Description
+   * @method getDefaults
+   * @return MemberExpression
+   */
   Tooltip.prototype.getDefaults = function () {
     return Tooltip.DEFAULTS
   }
 
+  /**
+   * Description
+   * @method getOptions
+   * @param {} options
+   * @return options
+   */
   Tooltip.prototype.getOptions = function (options) {
     options = $.extend({}, this.getDefaults(), this.$element.data(), options)
 
@@ -1104,6 +1413,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return options
   }
 
+  /**
+   * Description
+   * @method getDelegateOptions
+   * @return options
+   */
   Tooltip.prototype.getDelegateOptions = function () {
     var options  = {}
     var defaults = this.getDefaults()
@@ -1115,6 +1429,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return options
   }
 
+  /**
+   * Description
+   * @method enter
+   * @param {} obj
+   * @return 
+   */
   Tooltip.prototype.enter = function (obj) {
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
@@ -1130,6 +1450,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     }, self.options.delay.show)
   }
 
+  /**
+   * Description
+   * @method leave
+   * @param {} obj
+   * @return 
+   */
   Tooltip.prototype.leave = function (obj) {
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
@@ -1145,6 +1471,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     }, self.options.delay.hide)
   }
 
+  /**
+   * Description
+   * @method show
+   * @return 
+   */
   Tooltip.prototype.show = function () {
     var e = $.Event('show.bs.' + this.type)
 
@@ -1204,6 +1535,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
       this.applyPlacement(calculatedOffset, placement)
       this.hoverState = null
 
+      /**
+       * Description
+       * @method complete
+       * @return 
+       */
       var complete = function() {
         that.$element.trigger('shown.bs.' + that.type)
       }
@@ -1216,6 +1552,13 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     }
   }
 
+  /**
+   * Description
+   * @method applyPlacement
+   * @param {} offset
+   * @param {} placement
+   * @return 
+   */
   Tooltip.prototype.applyPlacement = function (offset, placement) {
     var replace
     var $tip   = this.tip()
@@ -1236,6 +1579,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     // $.fn.offset doesn't round pixel values
     // so we use setOffset directly with our own function B-0
     $.offset.setOffset($tip[0], $.extend({
+      /**
+       * Description
+       * @method using
+       * @param {} props
+       * @return 
+       */
       using: function (props) {
         $tip.css({
           top: Math.round(props.top),
@@ -1276,10 +1625,23 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     if (replace) $tip.offset(offset)
   }
 
+  /**
+   * Description
+   * @method replaceArrow
+   * @param {} delta
+   * @param {} dimension
+   * @param {} position
+   * @return 
+   */
   Tooltip.prototype.replaceArrow = function (delta, dimension, position) {
     this.arrow().css(position, delta ? (50 * (1 - delta / dimension) + '%') : '')
   }
 
+  /**
+   * Description
+   * @method setContent
+   * @return 
+   */
   Tooltip.prototype.setContent = function () {
     var $tip  = this.tip()
     var title = this.getTitle()
@@ -1288,11 +1650,21 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     $tip.removeClass('fade in top bottom left right')
   }
 
+  /**
+   * Description
+   * @method hide
+   * @return ThisExpression
+   */
   Tooltip.prototype.hide = function () {
     var that = this
     var $tip = this.tip()
     var e    = $.Event('hide.bs.' + this.type)
 
+    /**
+     * Description
+     * @method complete
+     * @return 
+     */
     function complete() {
       if (that.hoverState != 'in') $tip.detach()
       that.$element.trigger('hidden.bs.' + that.type)
@@ -1315,6 +1687,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return this
   }
 
+  /**
+   * Description
+   * @method fixTitle
+   * @return 
+   */
   Tooltip.prototype.fixTitle = function () {
     var $e = this.$element
     if ($e.attr('title') || typeof($e.attr('data-original-title')) != 'string') {
@@ -1322,10 +1699,20 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     }
   }
 
+  /**
+   * Description
+   * @method hasContent
+   * @return CallExpression
+   */
   Tooltip.prototype.hasContent = function () {
     return this.getTitle()
   }
 
+  /**
+   * Description
+   * @method getPosition
+   * @return CallExpression
+   */
   Tooltip.prototype.getPosition = function () {
     var el = this.$element[0]
     return $.extend({}, (typeof el.getBoundingClientRect == 'function') ? el.getBoundingClientRect() : {
@@ -1334,6 +1721,15 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     }, this.$element.offset())
   }
 
+  /**
+   * Description
+   * @method getCalculatedOffset
+   * @param {} placement
+   * @param {} pos
+   * @param {} actualWidth
+   * @param {} actualHeight
+   * @return ConditionalExpression
+   */
   Tooltip.prototype.getCalculatedOffset = function (placement, pos, actualWidth, actualHeight) {
     return placement == 'bottom' ? { top: pos.top + pos.height,   left: pos.left + pos.width / 2 - actualWidth / 2  } :
            placement == 'top'    ? { top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2  } :
@@ -1341,6 +1737,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
         /* placement == 'right' */ { top: pos.top + pos.height / 2 - actualHeight / 2, left: pos.left + pos.width   }
   }
 
+  /**
+   * Description
+   * @method getTitle
+   * @return title
+   */
   Tooltip.prototype.getTitle = function () {
     var title
     var $e = this.$element
@@ -1352,14 +1753,29 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return title
   }
 
+  /**
+   * Description
+   * @method tip
+   * @return AssignmentExpression
+   */
   Tooltip.prototype.tip = function () {
     return this.$tip = this.$tip || $(this.options.template)
   }
 
+  /**
+   * Description
+   * @method arrow
+   * @return AssignmentExpression
+   */
   Tooltip.prototype.arrow = function () {
     return this.$arrow = this.$arrow || this.tip().find('.tooltip-arrow')
   }
 
+  /**
+   * Description
+   * @method validate
+   * @return 
+   */
   Tooltip.prototype.validate = function () {
     if (!this.$element[0].parentNode) {
       this.hide()
@@ -1368,23 +1784,49 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     }
   }
 
+  /**
+   * Description
+   * @method enable
+   * @return 
+   */
   Tooltip.prototype.enable = function () {
     this.enabled = true
   }
 
+  /**
+   * Description
+   * @method disable
+   * @return 
+   */
   Tooltip.prototype.disable = function () {
     this.enabled = false
   }
 
+  /**
+   * Description
+   * @method toggleEnabled
+   * @return 
+   */
   Tooltip.prototype.toggleEnabled = function () {
     this.enabled = !this.enabled
   }
 
+  /**
+   * Description
+   * @method toggle
+   * @param {} e
+   * @return 
+   */
   Tooltip.prototype.toggle = function (e) {
     var self = e ? $(e.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type) : this
     self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
   }
 
+  /**
+   * Description
+   * @method destroy
+   * @return 
+   */
   Tooltip.prototype.destroy = function () {
     clearTimeout(this.timeout)
     this.hide().$element.off('.' + this.type).removeData('bs.' + this.type)
@@ -1396,6 +1838,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   var old = $.fn.tooltip
 
+  /**
+   * Description
+   * @method tooltip
+   * @param {} option
+   * @return CallExpression
+   */
   $.fn.tooltip = function (option) {
     return this.each(function () {
       var $this   = $(this)
@@ -1414,6 +1862,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // TOOLTIP NO CONFLICT
   // ===================
 
+  /**
+   * Description
+   * @method noConflict
+   * @return ThisExpression
+   */
   $.fn.tooltip.noConflict = function () {
     $.fn.tooltip = old
     return this
@@ -1436,6 +1889,13 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // POPOVER PUBLIC CLASS DEFINITION
   // ===============================
 
+  /**
+   * Description
+   * @method Popover
+   * @param {} element
+   * @param {} options
+   * @return 
+   */
   var Popover = function (element, options) {
     this.init('popover', element, options)
   }
@@ -1457,10 +1917,20 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   Popover.prototype.constructor = Popover
 
+  /**
+   * Description
+   * @method getDefaults
+   * @return MemberExpression
+   */
   Popover.prototype.getDefaults = function () {
     return Popover.DEFAULTS
   }
 
+  /**
+   * Description
+   * @method setContent
+   * @return 
+   */
   Popover.prototype.setContent = function () {
     var $tip    = this.tip()
     var title   = this.getTitle()
@@ -1478,10 +1948,20 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     if (!$tip.find('.popover-title').html()) $tip.find('.popover-title').hide()
   }
 
+  /**
+   * Description
+   * @method hasContent
+   * @return LogicalExpression
+   */
   Popover.prototype.hasContent = function () {
     return this.getTitle() || this.getContent()
   }
 
+  /**
+   * Description
+   * @method getContent
+   * @return LogicalExpression
+   */
   Popover.prototype.getContent = function () {
     var $e = this.$element
     var o  = this.options
@@ -1492,10 +1972,20 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
             o.content)
   }
 
+  /**
+   * Description
+   * @method arrow
+   * @return AssignmentExpression
+   */
   Popover.prototype.arrow = function () {
     return this.$arrow = this.$arrow || this.tip().find('.arrow')
   }
 
+  /**
+   * Description
+   * @method tip
+   * @return MemberExpression
+   */
   Popover.prototype.tip = function () {
     if (!this.$tip) this.$tip = $(this.options.template)
     return this.$tip
@@ -1507,6 +1997,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   var old = $.fn.popover
 
+  /**
+   * Description
+   * @method popover
+   * @param {} option
+   * @return CallExpression
+   */
   $.fn.popover = function (option) {
     return this.each(function () {
       var $this   = $(this)
@@ -1525,6 +2021,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // POPOVER NO CONFLICT
   // ===================
 
+  /**
+   * Description
+   * @method noConflict
+   * @return ThisExpression
+   */
   $.fn.popover.noConflict = function () {
     $.fn.popover = old
     return this
@@ -1547,6 +2048,13 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // SCROLLSPY CLASS DEFINITION
   // ==========================
 
+  /**
+   * Description
+   * @method ScrollSpy
+   * @param {} element
+   * @param {} options
+   * @return 
+   */
   function ScrollSpy(element, options) {
     var href
     var process  = $.proxy(this.process, this)
@@ -1570,6 +2078,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     offset: 10
   }
 
+  /**
+   * Description
+   * @method refresh
+   * @return 
+   */
   ScrollSpy.prototype.refresh = function () {
     var offsetMethod = this.$element[0] == window ? 'offset' : 'position'
 
@@ -1596,6 +2109,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
       })
   }
 
+  /**
+   * Description
+   * @method process
+   * @return 
+   */
   ScrollSpy.prototype.process = function () {
     var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
     var scrollHeight = this.$scrollElement[0].scrollHeight || this.$body[0].scrollHeight
@@ -1621,6 +2139,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     }
   }
 
+  /**
+   * Description
+   * @method activate
+   * @param {} target
+   * @return 
+   */
   ScrollSpy.prototype.activate = function (target) {
     this.activeTarget = target
 
@@ -1651,6 +2175,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   var old = $.fn.scrollspy
 
+  /**
+   * Description
+   * @method scrollspy
+   * @param {} option
+   * @return CallExpression
+   */
   $.fn.scrollspy = function (option) {
     return this.each(function () {
       var $this   = $(this)
@@ -1668,6 +2198,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // SCROLLSPY NO CONFLICT
   // =====================
 
+  /**
+   * Description
+   * @method noConflict
+   * @return ThisExpression
+   */
   $.fn.scrollspy.noConflict = function () {
     $.fn.scrollspy = old
     return this
@@ -1701,10 +2236,21 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // TAB CLASS DEFINITION
   // ====================
 
+  /**
+   * Description
+   * @method Tab
+   * @param {} element
+   * @return 
+   */
   var Tab = function (element) {
     this.element = $(element)
   }
 
+  /**
+   * Description
+   * @method show
+   * @return 
+   */
   Tab.prototype.show = function () {
     var $this    = this.element
     var $ul      = $this.closest('ul:not(.dropdown-menu)')
@@ -1737,12 +2283,25 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     })
   }
 
+  /**
+   * Description
+   * @method activate
+   * @param {} element
+   * @param {} container
+   * @param {} callback
+   * @return 
+   */
   Tab.prototype.activate = function (element, container, callback) {
     var $active    = container.find('> .active')
     var transition = callback
       && $.support.transition
       && $active.hasClass('fade')
 
+    /**
+     * Description
+     * @method next
+     * @return 
+     */
     function next() {
       $active
         .removeClass('active')
@@ -1780,6 +2339,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   var old = $.fn.tab
 
+  /**
+   * Description
+   * @method tab
+   * @param {} option
+   * @return CallExpression
+   */
   $.fn.tab = function ( option ) {
     return this.each(function () {
       var $this = $(this)
@@ -1796,6 +2361,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // TAB NO CONFLICT
   // ===============
 
+  /**
+   * Description
+   * @method noConflict
+   * @return ThisExpression
+   */
   $.fn.tab.noConflict = function () {
     $.fn.tab = old
     return this
@@ -1827,6 +2397,13 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // AFFIX CLASS DEFINITION
   // ======================
 
+  /**
+   * Description
+   * @method Affix
+   * @param {} element
+   * @param {} options
+   * @return 
+   */
   var Affix = function (element, options) {
     this.options = $.extend({}, Affix.DEFAULTS, options)
     this.$window = $(window)
@@ -1847,6 +2424,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     offset: 0
   }
 
+  /**
+   * Description
+   * @method getPinnedOffset
+   * @return AssignmentExpression
+   */
   Affix.prototype.getPinnedOffset = function () {
     if (this.pinnedOffset) return this.pinnedOffset
     this.$element.removeClass(Affix.RESET).addClass('affix')
@@ -1855,10 +2437,20 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return (this.pinnedOffset = position.top - scrollTop)
   }
 
+  /**
+   * Description
+   * @method checkPositionWithEventLoop
+   * @return 
+   */
   Affix.prototype.checkPositionWithEventLoop = function () {
     setTimeout($.proxy(this.checkPosition, this), 1)
   }
 
+  /**
+   * Description
+   * @method checkPosition
+   * @return 
+   */
   Affix.prototype.checkPosition = function () {
     if (!this.$element.is(':visible')) return
 
@@ -1908,6 +2500,12 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   var old = $.fn.affix
 
+  /**
+   * Description
+   * @method affix
+   * @param {} option
+   * @return CallExpression
+   */
   $.fn.affix = function (option) {
     return this.each(function () {
       var $this   = $(this)
@@ -1925,6 +2523,11 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // AFFIX NO CONFLICT
   // =================
 
+  /**
+   * Description
+   * @method noConflict
+   * @return ThisExpression
+   */
   $.fn.affix.noConflict = function () {
     $.fn.affix = old
     return this

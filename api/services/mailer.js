@@ -3,8 +3,10 @@ module.exports = {
 
   /**
    * Sends an email to a given recipient
-   * @param  {object}   email           an object containing all of the necessary data to email
-   * @param  {Function} cb[err, res]    the callback to call once email is sent, or if it fails
+   * @method send
+   * @param {object}   email           an object containing all of the necessary data to email
+   * @param {Function} cb[err, res]    the callback to call once email is sent, or if it fails
+   * @return 
    */
   send: function(email, cb){
 
@@ -12,18 +14,18 @@ module.exports = {
     var transport = nodemailer.createTransport("SMTP", {
       service: "Gmail",
       auth: {
-          user: "gsky89@gmail.com",
-          pass: "troppolol90"
+          user: "user",
+          pass: "pass"
       }
     });
 
     /** sets up the mail options, from and such like that **/
     var from    = email.from || 'nobody@nobody.com';
-
-    if (sails.config.nodemailer.prepend_subject){
-      var subject = sails.config.nodemailer.prepend_subject +  email.subject;
+    var subject;
+    if (sails.config.nodemailer.prependSubject){
+      subject = sails.config.nodemailer.prependSubject +  email.subject;
     }else{
-      var subject = email.subject;
+      subject = email.subject;
     }
 
     var mailOptions = {
@@ -31,7 +33,7 @@ module.exports = {
       to: email.to,
       subject: subject,
       html: email.messageHtml
-    }
+    };
 
     /** Actually sends the email */
     transport.sendMail(mailOptions, function(err, response){
@@ -39,4 +41,4 @@ module.exports = {
       return cb(null, response);
     });
   }
-}
+};

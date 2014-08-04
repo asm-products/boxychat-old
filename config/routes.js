@@ -30,18 +30,18 @@ module.exports.routes = {
     controller: 'user',
     action: 'index'
   },
-  '/out':{
-    controller: 'home',
-    action: 'out'
-  },
-  '/reset':{
-    controller: 'home',
-    action: 'reset'
-  },
-  '/success':{
-    controller: 'home',
-    action: 'success'
-  },
+//  '/out':{
+//    controller: 'home',
+//    action: 'out'
+//  },
+//  '/reset':{
+//    controller: 'home',
+//    action: 'reset'
+//  },
+//  '/success':{
+//    controller: 'home',
+//    action: 'success'
+//  },
   '/user': {
     controller: 'user',
     action: 'index'
@@ -53,6 +53,10 @@ module.exports.routes = {
   '/user/profile': {
     controller: 'user',
     action: 'profile'
+  },
+  'post /company/exists': {
+    controller: 'CompanyController',
+    action: 'companyExists'
   },
   'post /login': {
     controller: 'AuthController',
@@ -79,10 +83,26 @@ module.exports.routes = {
     controller: 'UserController',
     action: 'update'
   },
-  'get /soc': {
-    controller: 'HomeController',
-    action: 'soc'
-  }
+//  'get /soc': {
+//    controller: 'HomeController',
+//    action: 'soc'
+//  },
+  '/group/:roomId/join': {
+    controller: 'GroupController',
+    action: 'join',
+  },
+  'post /chat/room/:roomId': {
+    controller: 'ChatController',
+    action: 'room'
+  },
+    'post /chat/private/:userId': {
+        controller: 'ChatController',
+        action: 'direct'
+    },
+  'get /chat/conversations': {
+    controller: 'ChatController',
+    action: 'getConversations'
+  } //'ChatController.room',
 
 
   // Custom routes here...
