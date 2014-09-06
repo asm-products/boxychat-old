@@ -179,97 +179,134 @@ function textToImg(data) {
     return data;
 }
 
+function addProgressBar(){
+    if ($("#progress").length === 0) {
+        $("body").append($("<div><dt/><dd/></div>").attr("id", "progress"));
+        $("#progress").width((50 + Math.random() * 30) + "%");
+    }
+}
+
+function removeProgressBar(){
+    //End loading animation
+    $("#progress").width("101%").delay(200).fadeOut(400, function() {
+        $(this).remove();
+    });
+}
+
 eventManager.set('textMessage', textToImg);
 eventManager.set('textMessage', linkify);
 
 eventManager.set('textMessageAfter', getUrls);
 
+apiManager = new ApiManager(io.connect());
+eventManager.set('loaded', function() {
+    pageManager = new PageManager(page, apiManager);
+});
 
 // Immediately start connecting
-socket = io.connect();
+//socket = io.connect();
 
 console.log('Connecting Socket.io to Sails.js...');
 
-//event 'message' when we receive a message
-socket.on('message', function (msg) {
-    BoxyChat.handleNewMessage(msg, 'user');
-//    if (!$('#chat-user-' + msg.from).length)
-//        BoxyChat.newChatContent(msg.from, 'user');
-//    $('#chat-user-' + msg.from + ' .chat-messages').append(BoxyChat.loadTemplate('templates/chat/messageOther.html', {message: msg.msg, name: session.users[msg.from].name, avatar: '/images/tomas.jpg'}));
-//    if (BoxyChat.getCurrentChatId() != 'user-' + msg.from) {
-//        $('#user-' + msg.from + ' .figureimage .icon-check').addClass('hidden');
-//        var $counter = $('#user-' + msg.from + ' .figureimage .number');
-//        $counter.html(parseInt($counter.html()) + 1).removeClass('hidden');
+////event 'message' when we receive a message
+//socket.on('message', function (msg) {
+//    BoxyeChat.handleNewMessage(msg, 'user');
+////    if (!$('#chat-user-' + msg.from).length)
+////        BoxyChat.newChatContent(msg.from, 'user');
+////    $('#chat-user-' + msg.from + ' .chat-messages').append(BoxyChat.loadTemplate('templates/chat/messageOther.html', {message: msg.msg, name: session.users[msg.from].name, avatar: '/images/tomas.jpg'}));
+////    if (BoxyChat.getCurrentChatId() != 'user-' + msg.from) {
+////        $('#user-' + msg.from + ' .figureimage .icon-check').addClass('hidden');
+////        var $counter = $('#user-' + msg.from + ' .figureimage .number');
+////        $counter.html(parseInt($counter.html()) + 1).removeClass('hidden');
+////    }
+////    else
+////        BoxyChat.scrollCurrentChat();
+//});
+//
+//socket.on('group', function (msg) {
+//    if (msg.verb == 'messaged') {
+//        BoxyChat.handleNewMessage(msg.data, 'room');
+//
 //    }
-//    else
-//        BoxyChat.scrollCurrentChat();
-});
-
-socket.on('group', function (msg) {
-    if (msg.verb == 'messaged') {
-        BoxyChat.handleNewMessage(msg.data, 'room');
-
-    }
-    //console.log(nol);
-    console.log(msg);
-});
-
-socket.on('updated', function (msg) {
-    console.log('updated');
-    console.log(msg);
-});
-
-//event 'user' when a user changes status (online/offline)
-socket.on('user', function (msg) {
-    console.log("jdei")
-    if (msg.data.type == 'userStatus') {
-        console.log(msg)
-        if ($('#user-' + msg.data.id).length && !$('#room-' + msg.data.id + ' .test').length) {
-            $('#user-' + msg.data.id + ' .figureimage').append(BoxyChat.loadTemplate('templates/chat/onlineUserTick.html'));
-        }
-    }
-
-});
+//    //console.log(nol);
+//    console.log(msg);
+//});
+//
+//socket.on('updated', function (msg) {
+//    console.log('updated');
+//    console.log(msg);
+//});
+//
+////event 'user' when a user changes status (online/offline)
+//socket.on('user', function (msg) {
+//    console.log("jdei")
+//    if (msg.data.type == 'userStatus') {
+//        console.log(msg)
+//        if ($('#user-' + msg.data.id).length && !$('#room-' + msg.data.id + ' .test').length) {
+//            $('#user-' + msg.data.id + ' .figureimage').append(BoxyChat.loadTemplate('templates/chat/onlineUserTick.html'));
+//        }
+//    }
+//
+//});
 
 // on connect we get the available conversations (user/group list)
-socket.on('connect', function socketConnected() {
-    socket.on('ready', function () {
-        socket.get('/chat/conversations', function (res) {
-            res.groups.forEach(function (el) {
-                if (!session.groups[el.id]) {
-                    session.groups[el.id] = el;
-                    $('#user-list').append(BoxyChat.loadTemplate('templates/chat/userListEntry.html', {
-                        id: el.id,
-                        name: 'GROUP ' + el.name,
-                        avatar: '/images/tomas.jpg',
-                        type: 'room'
-                    }));
-                }
-            });
+//socket.on('connect', function socketConnected() {
+//    socket.on('ready', function () {
+//        socket.get('/chat/contacts', function (res) {
+//            //res.groups.forEach(function (el) {
+//            //    if (!session.groups[el.id]) {
+//            //        session.groups[el.id] = el;
+//            //        $('#user-list').append(BoxyChat.loadTemplate('templates/chat/userListEntry.html', {
+//            //            id: el.id,
+//            //            name: 'GROUP ' + el.name,
+//            //            avatar: '/images/tomas.jpg',
+//            //            type: 'room'
+//            //        }));
+//            //    }
+//            //});
+//
+//            res.users.forEach(function (el) {
+//                if (!session.users[el.id]) {
+//                    session.users[el.id] = el;
+//                    $('#user-list').append(BoxyChat.loadTemplate('templates/chat/userListEntry.html', {
+//                        id: el.id,
+//                        name: el.name,
+//                        avatar: '/images/tomas.jpg',
+//                        type: 'user'
+//                    }));
+//                }
+//            });
+//
+//            res.online.forEach(function (el) {
+//                if (!session.online[el.id])
+//                    session.online[el.id] = el;
+//                if ($('#user-' + el).length) {
+//                    $('#user-' + el + ' .figureimage').append(BoxyChat.loadTemplate('templates/chat/onlineUserTick.html'));
+//                }
+//            });
+//        });
+//    });
+//});
 
-            res.users.forEach(function (el) {
-                if (!session.users[el.id]) {
-                    session.users[el.id] = el;
-                    $('#user-list').append(BoxyChat.loadTemplate('templates/chat/userListEntry.html', {
-                        id: el.id,
-                        name: el.name,
-                        avatar: '/images/tomas.jpg',
-                        type: 'user'
-                    }));
-                }
-            });
+$(function() {
+    // Prepare Variables
+    var rootUrl = History.getRootUrl();
 
-            res.online.forEach(function (el) {
-                if (!session.online[el.id])
-                    session.online[el.id] = el;
-                if ($('#user-' + el).length) {
-                    $('#user-' + el + ' .figureimage').append(BoxyChat.loadTemplate('templates/chat/onlineUserTick.html'));
-                }
-            });
-        });
-    });
+    // Internal Helper
+    $.expr[':'].internal = function (obj, index, meta, stack) {
+        // Prepare
+        var
+            $this = $(obj),
+            url = $this.attr('href') || '',
+            isInternalLink;
+
+        // Check link
+        isInternalLink = url.substring(0, rootUrl.length) === rootUrl || url.indexOf(':') === -1;
+
+        // Ignore or Keep
+        return isInternalLink;
+    };
 });
-
 //on press ENTER key on the message text field it will send the message
 $(document).on('keypress', '.message-text', function (ev) {
     if (ev.which === 13 && $.trim($(this).val()).length > 0) {
@@ -281,9 +318,8 @@ $(document).on('keypress', '.message-text', function (ev) {
         var chatType = 'private';
         if (type == 'room')
             chatType = 'room';
-        socket.post("/chat/" + chatType + "/" + id.replace('text-' + type + '-', ''), {message: $(this).val()}, function (res) {
-            console.log(res);
-        });
+
+        apiManager.postMessage(chatType, id.replace('text-' + type + '-', ''), $(this).val())
 
         $('#chat-' + id.replace('text-', '') + ' .chat-messages').append("<div class='message message-right no-figure'><div class='bubble no-triangle'>" + eventManager.call('textMessage', {msg: $(this).val()}).msg + "<div>" + eventManager.call('textMessageAfter', {msg: $(this).val()}).msg + "</div></div></div>");
         $(this).val('');
@@ -293,6 +329,13 @@ $(document).on('keypress', '.message-text', function (ev) {
 
 //on click on a user/group will create, if necessary, and open the conversation
 $(document).on('click', '.chat-conversation', function (ev) {
+    console.log('naa');
+    $('.menuLabel').addClass('hidden');
+    $('.tpmenu').removeClass('active');
+    $('.menu-chat').removeClass('hidden').parent().parent().addClass('active');
+
+    $('.centrals').addClass('hidden');
+    $('#chats').removeClass('hidden');
     var id = $(this).attr('id');
     var type = id.substring(0, 4);
     if (!$('#chat-' + id).length) {
@@ -325,6 +368,14 @@ $(document).on('click', '.videochatbtn', function (ev) {
         $chat.removeClass("space-video");
     }
 });
+
+//$(document).on('click', '.user-profile', function (ev) {
+//    $('.menuLabel').addClass('hidden');
+//    $('.tpmenu').removeClass('active');
+//    $('.centrals').addClass('hidden');
+//    $('#account').removeClass('hidden');
+//});
+
 $(document).on('click', '.tpmenu', function (ev) {
     $('.menuLabel').addClass('hidden');
     $('.tpmenu').removeClass('active');
@@ -332,4 +383,23 @@ $(document).on('click', '.tpmenu', function (ev) {
     $('.centrals').addClass('hidden');
     if($('#' + val.toLowerCase()).length)
         $('#' + val.toLowerCase()).removeClass('hidden');
+});
+$(document).on('click', '.hide-user-list', function(ev){
+    $(this).parent().parent().find('.user-list').toggle();
+    $(this).find('span').toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
+});
+$(document).on('click', 'a:internal:not(.no-ajaxy)', function(ev){
+    // Prepare
+    var
+        $this = $(this),
+        url = $this.attr('href'),
+        title = $this.attr('title')||null;
+
+    // Continue as normal for cmd clicks etc
+    if ( event.which == 2 || event.metaKey  || url == '#') { return true; }
+
+    pageManager.page(url);
+    $('.dropdown').removeClass('open');
+    event.preventDefault();
+    return false;
 });

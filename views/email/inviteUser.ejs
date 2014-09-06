@@ -342,19 +342,16 @@ table.alert:hover td {
 
                                         <table class="twelve columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="left-text-pad" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica Neue', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px 10px;" align="left" valign="top">
                                                     <h4 class="" style="color: #222222; font-family: 'Helvetica Neue', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-break: normal; font-size: 25px; margin: 0; padding: 30px 0 10px;" align="left">
-                                                        Hi <strong><%= user.name %></strong>, just one more step!
+                                                        Hi <strong><%= user.name %></strong>!
                                                     </h4>
                                                     <p class="instructions" style="color: #222222; font-family: 'Helvetica Neue', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 10px 0 30px;" align="left">
-                                                        We just need to verify your email address to complete your BoxyChat signup.
+                                                        <strong><%= other.name %></strong> wants to get in touch with you.
                                                     </p>
                                                     <center style="width: 100%; min-width: 580px;">
                                                         <table class="button verify-button" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 200px; overflow: hidden; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; color: #ffffff; font-family: 'Helvetica Neue', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; display: block; width: auto !important; border-radius: 4px; background: #48A4CF; margin: 0; padding: 13px 0 12px;" align="center" bgcolor="#48A4CF" valign="top">
-                                                                    <a href="http://localhost:1337/user/<%= user.id %>/activate/<%= user.activationToken %>" style="color: #ffffff; text-decoration: none; font-weight: bold; font-family: Helvetica, Arial, sans-serif; font-size: 15px;">Verify Your Email</a>
+                                                                    <a href="http://localhost:1337/login" style="color: #ffffff; text-decoration: none; font-weight: bold; font-family: Helvetica, Arial, sans-serif; font-size: 15px;">Sign in!</a>
                                                                 </td>
                                                             </tr></table></center>
-                                                    <p class="info" style="color: #222222; font-family: 'Helvetica Neue', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 40px 0 0;" align="left">
-                                                        If you have not signed up for BoxyChat, please ignore this email.
-                                                    </p>
                                                     <p class="info" style="color: #222222; font-family: 'Helvetica Neue', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 35px 0 0;" align="left">
                                                         The team at BoxyChat.
                                                     </p>

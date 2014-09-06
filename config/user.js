@@ -1,4 +1,4 @@
 module.exports.user = {
-    requireUserActivation: false,
+    requireUserActivation: true,
     jidDomain: 'localhost'
 };

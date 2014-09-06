@@ -1,33 +1,148 @@
-<section class="container home">
-  <div class="row">
-    <div class="col-sm-12">
+<div class="modal fade bs-example-modal-lg in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+     aria-hidden="false" style="display: none;" id="accountin">
+    <div class="modal-dialog modal-lg" style="
+    width: 420px;
+">
+        <div class="modal-content" style="
+    border-radius: 2px;
+">
+            <div style="
+    margin-top: 24px;
+    margin-left: 19px;
+    color: #666666;
+">Accountin Chat
+            </div>
+            <div style="
+    margin-top: 21px;
+    margin-left: 19px;
+    height: 40px;
+"><input type="text" class="form-control" placeholder="Search" style="
+    width: 294px;
+    float: left;
+    border-radius: 2px;
+">
+                <button type="submit" class="btn" style="
+    width: 80px;
+    float: right;
+    margin-right: 17px;
+    background-color: #1557F0;
+    border-radius: 2px;
+    color: white;
+">Invite
+                </button>
+            </div>
+            <div style="
+    padding-left: 21px;
+    padding-bottom: 10px;
+">
+                <ul class="user-list" style="
+    margin-right: 20px;
+">
 
-      <table class="table">
+                    <li id="room-538f34f9b0ffe684901afb2a" class="chat-conversation">
+                        <a href="#">
+                            <figure style="position:relative;float: left;">
+                                <span class="more"><span class="fa fa-ellipsis-v"></span></span>
 
-        <tr>
-          <th>User</th>
-          <th>User ID</th>
-          <th>User Email</th>
-          <th>Delete</th>
-        </tr>
+                                <div class="figureimage">
+                                    <img src="/images/tomas.jpg" alt="GROUP Super avatar">
 
-        <% _.each(users, function (user) { %>
-        <tr data-id="<%= user.id %>" data-model="user">
-        <td><%= user.username %></td>
-        <td><%= user.id %></td>
-        <td><%= user.email %></td>
-      <td>
-            <form action="/user/destroy/" method="POST">
-              <input type="hidden" name="id" value="<%= user.id %>"/>
-                  <input type="hidden" name="_method" value="delete"/>
-          <input type="submit" class="btn btn-sm btn-danger" value="Delete"/>
-          <input type="hidden" name="_csrf" value="<%= _csrf %>" />
-          </form>
-              </td>
-        </tr>
-        <% }) %>
-      </table>
 
+                                </div>
+                                <figcaption style="
+    font-weight: normal;
+    font-size: 14px;
+    float: left;
+">Scooby Dick
+                                </figcaption>
+                            </figure><span style="
+    float: right;
+    color: #1557F0;
+"><i class="fa fa-check-circle">
+                                </i></span></a>
+                    </li>
+                    <li id="room-538f34f9b0ffe684901afb2a" class="chat-conversation">
+                        <a href="#">
+                            <figure style="position:relative;float: left;">
+                                <span class="more"><span class="fa fa-ellipsis-v"></span></span>
+
+                                <div class="figureimage">
+                                    <img src="/images/tomas.jpg" alt="GROUP Super avatar">
+
+
+                                </div>
+                                <figcaption style="
+    font-weight: normal;
+    font-size: 14px;
+    float: left;
+">Scooby Dick
+                                </figcaption>
+                            </figure><span style="
+    float: right;
+    color: #1557F0;
+"></span></a>
+                    </li>
+                    <li id="room-538f34f9b0ffe684901afb2a" class="chat-conversation">
+                        <a href="#">
+                            <figure style="position:relative;float: left;">
+                                <span class="more"><span class="fa fa-ellipsis-v"></span></span>
+
+                                <div class="figureimage">
+                                    <img src="/images/tomas.jpg" alt="GROUP Super avatar">
+
+
+                                </div>
+                                <figcaption style="
+    font-weight: normal;
+    font-size: 14px;
+    float: left;
+">Scooby Dick
+                                </figcaption>
+                            </figure><span style="
+    float: right;
+    color: #1557F0;
+"></span></a>
+                    </li>
+                    <li id="room-538f34f9b0ffe684901afb2a" class="chat-conversation">
+                        <a href="#">
+                            <figure style="position:relative;float: left;">
+                                <span class="more"><span class="fa fa-ellipsis-v"></span></span>
+
+                                <div class="figureimage">
+                                    <img src="/images/tomas.jpg" alt="GROUP Super avatar">
+
+
+                                </div>
+                                <figcaption style="
+    font-weight: normal;
+    font-size: 14px;
+    float: left;
+">Scooby Dick
+                                </figcaption>
+                            </figure><span style="
+    float: right;
+    color: #1557F0;
+"><span style="font-size: 12px">Invited</span><i class="fa fa-envelope">
+                                </i></span></a>
+                    </li>
+                </ul>
+            </div>
+            <div style="
+    height: 57px;
+    background-color: #F5F5F5;
+    border-top: 1px solid #E6E6E6;
+            border-left-width: 0px;
+    padding-left: 21px;
+    padding-top: 10px;
+">
+                <div><span style="
+    font-size: 12px;
+    color: #8A8A8A;
+">Invite link</span></div>
+                <div><span style="
+    font-size: 12px;
+"><a href="http://bc.at/invite/asd">http://bc.at/invite/asd</a></span></div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

@@ -1,35 +1,143 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6">
-  <form action="/auth/login/" method="post">
-    <div class="form-group">
-      <input class="form-control" type="text" name="username" placeholder="Email">
-    </div>
-    <div class="form-group">
-      <input class="form-control" type="password" name="password" placeholder="Password">
-    </div>
-    <input type="hidden" name="_csrf" value="<%= _csrf %>">
-    <input class="btn btn-default" type="submit" value="Log In">
-  </form>
-  <a href="/reset">Forgot your password?</a>
-</div>
-<div class="col-sm-6">
-  <form action="/user/create/" method="post" id="userCreation">
-  <div class="form-group">
-    <input class="form-control" type="text" name="name" placeholder="Name">
-  </div>
-  <div class="form-group">
-    <input class="form-control" type="text" name="company" placeholder="Company" id="company">
-  </div>
-  <div class="form-group">
-    <input class="form-control" type="text" name="email" placeholder="Email">
-  </div>
-  <div class="form-group">
-    <input class="form-control" type="password" name="password" placeholder="Password">
-  </div>
-  <input type="hidden" name="_csrf" value="<%= _csrf %>">
-  <input class="btn btn-default" type="submit" value="Sign Up">
+<!--<div class="container">de-->
+    <!--<div class="row">-->
+        <!--<div class="col-sm-6">-->
+            <!--<form action="/auth/login/" method="post">-->
+                <!--<div class="form-group">-->
+                    <!--<input class="form-control" type="text" name="username" placeholder="Email">-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<input class="form-control" type="password" name="password" placeholder="Password">-->
+                <!--</div>-->
+                <!--<input type="hidden" name="_csrf" value="<%= _csrf %>">-->
+                <!--<input class="btn btn-default" type="submit" value="Log In">-->
+            <!--</form>-->
+            <!--<a href="/reset">Forgot your password?</a>-->
+        <!--</div>-->
+        <!--<div class="col-sm-6">-->
+            <!--<form action="/user/create/" method="post" id="userCreation">-->
+                <!--<div class="form-group">-->
+                    <!--<input class="form-control" type="text" name="name" placeholder="Name">-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<input class="form-control" type="text" name="company" placeholder="Company" id="company">-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<input class="form-control" type="text" name="email" placeholder="Email">-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<input class="form-control" type="password" name="password" placeholder="Password">-->
+                <!--</div>-->
+                <!--<input type="hidden" name="_csrf" value="<%= _csrf %>">-->
+                <!--<input class="btn btn-default" type="submit" value="Sign Up">-->
 
-</form>
+            <!--</form>-->
+        <!--</div>-->
+    <!--</div>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>BoxyChat - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" type="text/css" href="/css/theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/vendor/brankic.css" />
+    <link rel="stylesheet" type="text/css" href="css/vendor/ionicons.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/vendor/font-awesome.min.css" />
+
+    <!-- javascript -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!--<script src="js/theme.js"></script>-->
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+        .signup {
+            display:none;
+        }
+    </style>
+</head>
+<body id="signin" class="clear">
+
+<a href=/" class="logo">
+    <i class="brankic-pen"></i>
+</a>
+
+<h3>Welcome back!</h3>
+
+<div class="content">
+    <form action="/auth/login/" method="post" class="login">
+        <div class="fields">
+            <strong>Email address</strong>
+            <input class="form-control" type="text" name="username" placeholder="Your email" />
+        </div>
+        <div class="fields">
+            <strong>Password</strong>
+            <input class="form-control" type="password" name="password" placeholder="Password" />
+        </div>
+        <div class="info">
+            <label>
+                <input type="checkbox" name="remember" checked />
+                Remember me
+            </label>
+        </div>
+        <input type="hidden" name="_csrf" value="<%= _csrf %>">
+        <div class="actions">
+            <button class="btn btn-primary btn-lg">Sign in to your account</button>
+        </div>
+    </form>
+
+    <form action="/user/create/" method="post" class="signup">
+
+        <div class="fields">
+            <strong>Name</strong>
+            <input class="form-control" type="teyt" name="name" placeholder="Password" />
+        </div>
+        <div class="fields">
+            <strong>Email address</strong>
+            <input class="form-control" type="text" name="email" placeholder="Your email" />
+        </div>
+        <div class="fields">
+            <strong>Password</strong>
+            <input class="form-control" type="password" name="password" placeholder="Password" />
+        </div>
+        <input type="hidden" name="_csrf" value="<%= _csrf %>">
+        <div class="actions">
+            <button class="btn btn-primary btn-lg">Sign up</button>
+        </div>
+    </form>
 </div>
+
+<div class="bottom-wrapper login">
+    <div class="message">
+        <span>Don't have an account?</span>
+        <a href="#" class="switcher">Sign up here</a>.
+    </div>
 </div>
+<div class="bottom-wrapper signup">
+    <div class="message">
+        <span>So you already have an account?</span>
+        <a href="#" class="switcher">Sign in here</a>.
+    </div>
+</div>
+<script>
+    $('.switcher').click(function(e){
+        if($('.login').is(":visible")) {
+            $('.login').fadeOut('slow', function(){
+                $('.signup').fadeIn('slow');
+            });
+        }
+        else {
+            $('.signup').fadeOut('slow', function(){
+                $('.login').fadeIn('slow');
+            });
+        }
+    });
+</script>
+</body>
+</html>

@@ -38,14 +38,18 @@ module.exports.routes = {
 //    controller: 'home',
 //    action: 'reset'
 //  },
-//  '/success':{
-//    controller: 'home',
-//    action: 'success'
-//  },
-  '/user': {
+  '/success':{
+    controller: 'home',
+    action: 'success'
+  },
+  '/space': {
     controller: 'user',
     action: 'index'
   },
+    '/space/*': {
+        controller: 'user',
+        action: 'index'
+    },
   '/login': {
     controller: 'auth',
     action: 'index'
@@ -60,7 +64,7 @@ module.exports.routes = {
   },
   'post /login': {
     controller: 'AuthController',
-    action: 'login'
+    action: 'login',
   },
   'get /logout': {
     controller: 'AuthController',
@@ -89,7 +93,7 @@ module.exports.routes = {
 //  },
   '/group/:roomId/join': {
     controller: 'GroupController',
-    action: 'join',
+    action: 'join'
   },
   'post /chat/room/:roomId': {
     controller: 'ChatController',
@@ -102,9 +106,23 @@ module.exports.routes = {
   'get /chat/conversations': {
     controller: 'ChatController',
     action: 'getConversations'
-  } //'ChatController.room',
-
-
+  }, //'ChatController.room',
+    'get /chat/contacts': {
+        controller: 'ChatController',
+        action: 'getContacts'
+    },
+    'get /chat/contacts/project/:projectId': {
+        controller: 'ChatController',
+        action: 'getContactsProject'
+    },
+    'get /projects/own': {
+        controller: 'ProjectController',
+        action: 'ownProjects'
+    },
+    'post /request/invite': {
+        controller: 'RequestController',
+        action: 'invite'
+    }
   // Custom routes here...
 
 

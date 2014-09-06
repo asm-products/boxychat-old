@@ -35,6 +35,9 @@ var jsFilesToInject = [
   // finally, include a simple boilerplate script that connects a socket
   // to the Sails backend with some example code
     'js/linkify.js',
+    'js/page.js',
+    'js/ApiManager.js',
+    'js/PageManager.js',
     'js/EventManager.js',
   'js/chatManager.js',
   'js/connection.example.js',

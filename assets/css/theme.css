@@ -1,0 +1,348 @@
+@import url(bootstrap.min.css);
+#signin {
+    background: #9795bb;
+    background-image: -webkit-radial-gradient(circle farthest-side at right bottom, #9795bb, #59688d 80%, #426686);
+    background-image: -moz-radial-gradient(circle farthest-side at right bottom, #9795bb, #59688d 80%, #426686);
+    background-image: -o-radial-gradient(circle farthest-side at right bottom, #9795bb, #59688d 80%, #426686);
+    background-image: -ms-radial-gradient(circle farthest-side at right bottom, #9795bb, #59688d 80%, #426686);
+    background-image: radial-gradient(circle farthest-side at right bottom, #9795bb, #59688d 80%, #426686); }
+#signin.clear {
+    background-image: none;
+    background: #F2F5F8; }
+#signin.clear .logo .brankic-pen {
+    color: #8CAAC0; }
+#signin.clear h3 {
+    color: #323438; }
+#signin.clear .content {
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 0px; }
+#signin.clear .bottom-wrapper .message {
+    text-shadow: 1px 1px #fff;
+    border: 1px solid #C7CFD3;
+    color: #333;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82), 0 1px 0 rgba(255, 255, 255, 0.83); }
+#signin.clear .bottom-wrapper .message a {
+    color: #428bca; }
+
+#signin .logo {
+    margin-top: 30px;
+    text-align: center;
+    display: block;
+    text-decoration: none; }
+#signin .logo .brankic-pen {
+    color: #FFFFD8;
+    font-size: 40px; }
+@media (max-width: 767px) {
+#signin .logo .brankic-pen {
+        font-size: 34px; } }
+#signin h3 {
+    font-size: 24px;
+    color: #fff;
+    text-align: center;
+    margin-top: 35px; }
+@media (max-width: 767px) {
+#signin h3 {
+        font-size: 20px;
+        margin-top: 15px; } }
+#signin .content {
+    max-width: 485px;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 42px 48px;
+    background: #fff;
+    box-shadow: 0 1px 40px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 0px; }
+@media (max-width: 767px) {
+#signin .content {
+        max-width: 90%;
+        padding: 35px; } }
+#signin .content .fields {
+    margin-bottom: 20px; }
+#signin .content .fields strong {
+    display: block;
+    margin-bottom: 10px; }
+#signin .content .fields input[type="text"],
+#signin .content .fields input[type="password"] {
+    margin-bottom: 15px; }
+#signin .content .info {
+    margin-top: 40px; }
+#signin .content .actions {
+    margin-top: 40px;
+    text-align: center;
+    margin-bottom: 10px; }
+#signin .bottom-wrapper {
+    padding-bottom: 120px; }
+#signin .bottom-wrapper .message {
+    max-width: 360px;
+    margin: 0 auto;
+    margin-top: 60px;
+    text-align: center;
+    border-radius: 0px;
+    padding: 18px;
+    border: 1px solid #8B9BC4;
+    color: #fff; }
+#signin .bottom-wrapper .message a {
+    margin-left: 6px;
+    color: #fff; }
+
+
+#account {
+    padding: 0; }
+#account #sidebar {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    width: 200px;
+    background: #fcfcfc;
+    border-right: 1px solid #E8ECF1; }
+@media (max-width: 991px) {
+    #account #sidebar {
+        width: 28%; } }
+@media (max-width: 767px) {
+    #account #sidebar {
+        position: relative;
+        width: 100%; } }
+#account #sidebar .sidebar-toggler {
+    position: absolute;
+    top: 8px;
+    left: 32px;
+    font-size: 36px;
+    cursor: pointer; }
+#account #sidebar h3 {
+    margin: 0;
+    text-align: center;
+    font-size: 19px;
+    padding: 22px 0; }
+@media (max-width: 767px) {
+    #account #sidebar h3 {
+        padding: 22px 0 0; } }
+#account #sidebar .menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; }
+@media (max-width: 767px) {
+    #account #sidebar .menu {
+        margin-top: 15px;
+        padding-bottom: 10px; } }
+#account #sidebar .menu li a {
+    display: block;
+    padding: 13px 30px;
+    font-size: 15px;
+    color: #555;
+    text-decoration: none;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear; }
+#account #sidebar .menu li a.active, #account #sidebar .menu li a:hover {
+    color: #6787DA; }
+#account #sidebar .menu li a i {
+    min-width: 30px; }
+#account #sidebar .menu li a i.ion-ios7-person-outline {
+    font-size: 30px;
+    position: relative;
+    top: 4px; }
+#account #sidebar .menu li a i.ion-ios7-email-outline {
+    font-size: 24px;
+    position: relative;
+    top: 4px; }
+#account #sidebar .menu li a i.ion-ios7-help-outline {
+    font-size: 24px;
+    position: relative;
+    top: 4px; }
+#account #sidebar .menu li a i.ion-card {
+    font-size: 21px;
+    position: relative;
+    top: 3px; }
+#account #panel {
+    top: 60px;
+    position: fixed;
+    /* width: 78%; */
+    /* margin-left: 200px; */
+    left: 500px;
+    right: 0px;
+    padding: 24px 50px;
+    padding-bottom: 80px;
+    overflow: auto;
+    bottom: 0px;
+    /* account-profile.html specific styles */
+    /* account-billing specific styles */
+    /* account-notifications specific styles */
+    /* account-support specific styles */ }
+@media (max-width: 991px) {
+    #account #panel {
+        width: 72%;
+        margin-left: 28%; } }
+@media (max-width: 767px) {
+    #account #panel {
+        position: relative;
+        width: 100%;
+        margin-left: 0;
+        padding: 24px; } }
+#account #panel.profile h3 {
+    margin: 0;
+    font-size: 18px; }
+#account #panel.profile .intro {
+    margin-top: 25px;
+    color: #555; }
+#account #panel.profile form {
+    width: 65%;
+    margin-top: 35px; }
+@media (max-width: 991px) {
+    #account #panel.profile form {
+        width: 100%; } }
+#account #panel.profile form .form-group {
+    margin-bottom: 25px; }
+#account #panel.profile form .avatar-field {
+    position: relative;
+    left: -15px;
+    margin-bottom: 35px; }
+#account #panel.profile form .avatar-field label {
+    margin-top: 22px;
+    color: #4F587A;
+    font-weight: 500;
+    margin-bottom: 10px; }
+#account #panel.profile form .action {
+    margin-top: 40px; }
+#account #panel.billing h3 {
+    margin: 0;
+    font-size: 18px; }
+#account #panel.billing .plan {
+    margin-top: 40px; }
+#account #panel.billing .plan .current-plan {
+    font-size: 15px; }
+#account #panel.billing .plan .current-plan label {
+    margin-right: 20px;
+    font-weight: 600; }
+#account #panel.billing .plan .current-plan .change-plan {
+    display: inline-block;
+    margin-left: 20px;
+    font-size: 14px; }
+#account #panel.billing .plan .current-plan .change-plan .ion-edit {
+    margin-left: 5px;
+    font-size: 13px; }
+#account #panel.billing .plan .current-plan .status .value {
+    color: #3FA244;
+    font-weight: 600; }
+#account #panel.billing .plan .current-cc {
+    position: relative;
+    margin-top: 35px;
+    padding-top: 35px;
+    padding-bottom: 40px;
+    font-size: 15px;
+    color: #444; }
+#account #panel.billing .plan .current-cc:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 2px;
+    width: 100px;
+    background: #eee; }
+#account #panel.billing .plan .current-cc:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    width: 100px;
+    background: #eee; }
+#account #panel.billing .plan .current-cc label {
+    margin-right: 20px;
+    font-weight: 600; }
+#account #panel.billing .plan .current-cc img {
+    max-width: 25px;
+    margin-right: 8px;
+    position: relative;
+    top: -2px; }
+#account #panel.billing .plan .current-cc .manage-cc {
+    display: inline-block;
+    margin-left: 20px;
+    font-size: 14px; }
+#account #panel.billing .plan .current-cc .manage-cc .ion-edit {
+    margin-left: 5px;
+    font-size: 13px; }
+#account #panel.billing .plan .current-cc .next {
+    font-size: 13px;
+    display: block;
+    margin-top: 4px; }
+#account #panel.billing .plan .invoices {
+    margin-top: 40px; }
+#account #panel.billing .plan .invoices h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #555; }
+#account #panel.billing .plan .invoices table {
+    margin-top: 25px; }
+#account #panel.billing .plan .invoices table tr:first-child td {
+    border-top: 0; }
+#account #panel.notifications h3 {
+    margin: 0;
+    font-size: 18px; }
+#account #panel.notifications .settings {
+    margin-top: 40px; }
+#account #panel.notifications .settings .digest h4 {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 15px; }
+#account #panel.notifications .settings .digest p {
+    width: 80%;
+    font-size: 13px; }
+#account #panel.notifications .settings .types {
+    margin-top: 40px; }
+#account #panel.notifications .settings .types h4 {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 30px; }
+#account #panel.notifications .settings .types section {
+    margin-bottom: 30px; }
+#account #panel.notifications .settings .types section .title {
+    text-transform: uppercase;
+    color: #999;
+    font-weight: normal;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 15px; }
+#account #panel.notifications .settings .types section .row {
+    margin-bottom: 5px; }
+@media (max-width: 767px) {
+    #account #panel.notifications .settings .types section .row {
+        margin-bottom: 15px; } }
+#account #panel.notifications .settings .types section .bootstrap-switch {
+    float: right;
+    font-family: "Helvetica Neue", Arial; }
+@media (max-width: 767px) {
+    #account #panel.notifications .settings .types section .bootstrap-switch {
+        float: left;
+        margin-top: 5px; } }
+#account #panel.notifications .settings .types section .bootstrap-switch .bootstrap-switch-default {
+    font-size: 13px; }
+#account #panel.notifications .settings .actions {
+    margin-top: 40px; }
+#account #panel.support h3 {
+    margin: 0;
+    font-size: 18px; }
+#account #panel.support .topics {
+    margin-top: 40px; }
+#account #panel.support .topics .topic {
+    margin-top: 30px; }
+#account #panel.support .topics .topic i {
+    font-size: 36px;
+    /*color: #74A9E2;*/
+    color: #9696D1;
+    position: relative;
+    top: 2px; }
+#account #panel.support .topics .topic i.ion-pie-graph {
+    font-size: 34px;
+    top: 4px; }
+#account #panel.support .topics .topic i.ion-archive {
+    font-size: 37px; }
+#account #panel.support .topics .topic a {
+    font-size: 16px;
+    color: #444;
+    font-weight: 600;
+    text-decoration: none; }
+#account #panel.support .topics .topic p {
+    font-size: 15px;
+    margin-top: 3px;
+    color: #444; }
