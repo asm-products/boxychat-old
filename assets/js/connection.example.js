@@ -1,3 +1,4 @@
+
 //
 //bla.set('test', function(data) {
 //    return data + " world"
@@ -11,7 +12,8 @@
 //
 //console.log(bla.call('test', "hello"));
 function getUrls(text) {
-
+    console.log('udehudhe');
+console.log(text);
     var links = new Array();
     var urlPattern = /\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
     while (match = urlPattern.exec(text.msg)) {
@@ -39,6 +41,7 @@ function getUrls(text) {
             html += '<iframe src="//player.vimeo.com/video/' + links[i].id + '" width="500"  height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
         }
     }
+    console.log(html)
     text.msg = html;
     return text;
 }
@@ -46,7 +49,7 @@ function getUrls(text) {
 function testUrlForMedia(pastedData) {
     var success = false;
     var media = {};
-    if (pastedData.match('http://(www.)?youtube|youtu\.be')) {
+    if (pastedData.match('https?://(www.)?youtube|youtu\.be')) {
         if (pastedData.match('embed')) {
             youtube_id = pastedData.split(/embed\//)[1].split('"')[0];
         }
@@ -175,6 +178,7 @@ function linkify2(msg) {
     return msg;
 };
 function textToImg(data) {
+    console.log(data)
     data.msg = data.msg.replace(/(http:\/\/[\w\-\.]+\.[a-zA-Z]{2,3}(?:\/\S*)?(?:[\w])+\.(?:jpg|png|gif|jpeg|bmp))/ig, "<span><img src='$1' alt='' class='thumblightbox' style='width: 250px;'></span>");
     return data;
 }
@@ -287,7 +291,28 @@ console.log('Connecting Socket.io to Sails.js...');
 //        });
 //    });
 //});
-
+function test() {
+    var num = $('.notifications-button .badge').html();
+    if(num === "") {
+        $('.notifications-button .badge').html('1');
+    }
+    else {
+        $('.notifications-button .badge').html(parseInt(num) + 1);
+    }
+    $('.notifications-button .icon').removeClass('fa-bell-o').addClass('fa-bell');
+    $('.notifications-button .badge').css('font-size: 20px');
+    $('.notifications-button .badge').animate({
+        fontSize: "20px"
+    }, {duration: 200, complete: function() {
+        $('.notifications-button .badge').animate({
+            fontSize: "11px"
+        }, 200);
+    }} );
+}
+function test1(){
+    $('.notifications-button .badge').empty();
+    $('.notifications-button .icon').removeClass('fa-bell').addClass('fa-bell-o');
+}
 $(function() {
     // Prepare Variables
     var rootUrl = History.getRootUrl();
@@ -319,7 +344,7 @@ $(document).on('keypress', '.message-text', function (ev) {
         if (type == 'room')
             chatType = 'room';
 
-        apiManager.postMessage(chatType, id.replace('text-' + type + '-', ''), $(this).val())
+        apiManager.postMessage(chatType, id.replace('text-' + type + '-', ''), $(this).val());
 
         $('#chat-' + id.replace('text-', '') + ' .chat-messages').append("<div class='message message-right no-figure'><div class='bubble no-triangle'>" + eventManager.call('textMessage', {msg: $(this).val()}).msg + "<div>" + eventManager.call('textMessageAfter', {msg: $(this).val()}).msg + "</div></div></div>");
         $(this).val('');
@@ -332,7 +357,7 @@ $(document).on('click', '.chat-conversation', function (ev) {
     console.log('naa');
     $('.menuLabel').addClass('hidden');
     $('.tpmenu').removeClass('active');
-    $('.menu-chat').removeClass('hidden').parent().parent().addClass('active');
+    $('.menu-chats').removeClass('hidden').parent().parent().addClass('active');
 
     $('.centrals').addClass('hidden');
     $('#chats').removeClass('hidden');
@@ -349,8 +374,13 @@ $(document).on('click', '.chat-conversation', function (ev) {
     }
 
     BoxyChat.scrollCurrentChat();
+
     $('#' + id + ' .figureimage .number').addClass('hidden').html("0");
     $('#' + id + ' .figureimage .ic').removeClass('hidden');
+});
+
+$(document).on('click', '.project-link', function (ev) {
+    $(this).parent().parent().blur();
 });
 
 $(document).on('click', '.videochatbtn', function (ev) {
@@ -388,6 +418,13 @@ $(document).on('click', '.hide-user-list', function(ev){
     $(this).parent().parent().find('.user-list').toggle();
     $(this).find('span').toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
 });
+
+if (typeof String.prototype.startsWith != 'function') {
+    String.prototype.startsWith = function (str){
+        return this.slice(0, str.length) == str;
+    };
+}
+
 $(document).on('click', 'a:internal:not(.no-ajaxy)', function(ev){
     // Prepare
     var
@@ -396,10 +433,16 @@ $(document).on('click', 'a:internal:not(.no-ajaxy)', function(ev){
         title = $this.attr('title')||null;
 
     // Continue as normal for cmd clicks etc
-    if ( event.which == 2 || event.metaKey  || url == '#') { return true; }
+    if ( event.which == 2 || event.metaKey || url == '#') { return true; }
+    if(!url.startsWith('/')) {
+        var prj = projectName;
+        if(projectName.length > 0)
+            prj = projectName + '/';
+        url = '/space/' + prj + url;
+    }
 
     pageManager.page(url);
     $('.dropdown').removeClass('open');
-    event.preventDefault();
+    ev.preventDefault();
     return false;
 });

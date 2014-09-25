@@ -38,7 +38,19 @@ module.exports = {
                 });
         });
     },
+    historyDirect: function(req, res) {
+        var userId = req.param('userId');
+        var conversation;
+        if (req.session.user.id > userId) {
+            conversation = req.session.user.id + '-' + userId;
+        }
+        else
+            conversation = userId + '-' + req.session.user.id;
 
+        Message.find({where: {conversation: conversation}, sort: 'createdAt DESC', limit: 10}).exec(function(err, messages) {
+            res.send(messages);
+        });
+    },
     /**
      * Description
      * @method room
@@ -116,31 +128,39 @@ module.exports = {
     },
     getContacts: function (req, res) {
         var sendUsers = [];
-        User.find({contacts: req.session.user.id}).exec(function (err, users) {
+        Group.find({"users.id": req.session.user.id, type: 'private'}).exec(function (err, groups) {
             if (err) return res.serverError(err);
+            groups.forEach(function (e) {
+                Group.subscribe(req.socket, e.id);
+            });
+            User.find({contacts: req.session.user.id}).exec(function (err, users) {
+                if (err) return res.serverError(err);
 
-            var ids = [];
-            if (users) {
-                users.forEach(function (element) {
-                    if (element.id !== req.session.user.id) {
-                        User.subscribe(req.socket, element.id, ['update']);
-                        sendUsers.push({id: element.id, name: element.name, company: element.name});
-                        ids.push({id: element.id});
-                    }
-                });
-                var onlineUsers = [];
-                SessionUser.find({
-                    or: ids
-                }).exec(function (err, sessionUsers) {
-                    sessionUsers.forEach(function (el) {
-                        onlineUsers.push(el.id);
+                var ids = [];
+                if (users) {
+                    users.forEach(function (element) {
+                        if (element.id !== req.session.user.id) {
+                            console.log('hduehuhde')
+                            User.subscribe(req.socket, element.id, 'update');
+                            sendUsers.push({id: element.id, name: element.name, avatar: element.avatar});
+                            ids.push({id: element.id});
+                        }
                     });
-                    res.json({
-                        users: sendUsers,
-                        online: onlineUsers
+                    var onlineUsers = [];
+                    SessionUser.find({
+                        or: ids
+                    }).exec(function (err, sessionUsers) {
+                        sessionUsers.forEach(function (el) {
+                            onlineUsers.push(el.id);
+                        });
+                        res.json({
+                            groups: groups,
+                            users: sendUsers,
+                            online: onlineUsers
+                        });
                     });
-                });
-            }
+                }
+            });
         });
     },
     getContactsProject: function (req, res) {

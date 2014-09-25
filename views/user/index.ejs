@@ -4,9 +4,10 @@
     <title>BoxyChat</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/css/boxychat.css">
-    <link rel="stylesheet" href="/css/bootstrap-table.min.css">
     <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="/css/boxychat.css">
+    <link rel="stylesheet" href="/css/bootstrap-switch.min.css">
+
 
 </head>
 <body>
@@ -14,27 +15,34 @@
 <header id="boxyheader">
     <!-- user profile -->
     <section class="user-profile">
-        <figure>
-            <img src="/images/tomas.jpg" alt="Tomas avatar"/>
+        <figure class="comboBox">
+            <img src="/avatars/user/<%= user.id %>.jpg" data-avatar="<%= user.id %>"/>
             <figcaption>
                 <span><span class="icon-check"></span></span>
             </figcaption>
         </figure>
+        <ul class="dropdown-menu combodrop" tabindex="-1">
+            <li>test</li>
+            <li>furufh</li>
+        </ul>
     </section>
     <!-- /user profile -->
     <!-- left notifications -->
     <section class="notifications-bar">
-
-        <button class="unstyled-button notifications-button">
-            <!--<span class="badge">4</span>-->
-            <span class="fa fa-bell-o"></span>
-        </button>
-        <div class="dropdown right">
-            <button class="btn btn-projects dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+        <div class="left">
+            <button class="unstyled-button notifications-button comboBox left">
+                <span class="badge"></span>
+                <span class="fa fa-bell-o icon"></span>
+            </button>
+            <ul id="notification-list" class="dropdown-menu notification-list combodrop" tabindex="-1">
+            </ul>
+        </div>
+        <div class="right">
+            <span class="btn btn-projects dropdown-toggle comboBox" type="button">
                 <span class="project-name">Select Project</span>
                 <span class="fa fa-chevron-down"></span>
-            </button>
-            <ul class="dropdown-menu" id="project-drop" role="menu" aria-labelledby="dropdownMenu1">
+            </span>
+            <ul class="dropdown-menu combodrop" id="project-drop" tabindex="-1">
 
             </ul>
         </div>
@@ -45,24 +53,44 @@
         <!-- tabs -->
         <nav class="navtabs">
             <ul>
-                <li class="tpmenu active"><a href="#"><span class="icon-chat"></span> <span
-                                class="menuLabel menu-chat">Chats</span></a></li>
-                <li class="tpmenu"><a href="#"><span class="fa fa-user"></span> <span
-                                class="menuLabel hidden">People</span></a></li>
-                <li class="tpmenu"><a href="#"><span class="fa fa-folder"></span> <span
-                                class="menuLabel hidden">Files</span></a></li>
-                <li class="tpmenu"><a href="#"><span class="fa fa-check-circle"></span> <span class="menuLabel hidden">Tasks</span></a>
+                <li class="tpmenu active">
+                    <a href="#">
+                        <span class="icon-chat"></span>
+                        <span class="menuLabel menu-chats">Chats</span>
+                    </a>
                 </li>
-                <li class="tpmenu"><a href="#"><span class="fa fa-wrench"></span> <span class="menuLabel hidden">Account</span></a>
+                <!--<li class="tpmenu">-->
+                    <!--<a href="#">-->
+                        <!--<span class="fa fa-user"></span>-->
+                        <!--<span class="menuLabel hidden manu-people">People</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li class="tpmenu">-->
+                    <!--<a href="#">-->
+                        <!--<span class="fa fa-folder"></span>-->
+                        <!--<span class="menuLabel hidden menu-files">Files</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li class="tpmenu">-->
+                    <!--<a href="#">-->
+                        <!--<span class="fa fa-check-circle"></span>-->
+                        <!--<span class="menuLabel hidden menu-tasks">Tasks</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <li class="tpmenu">
+                    <a href="account">
+                        <span class="fa fa-wrench"></span>
+                        <span class="menuLabel hidden menu-account">Account</span>
+                    </a>
                 </li>
             </ul>
         </nav>
         <!-- /tabs -->
 
         <!-- more button -->
-        <nav class="navextra">
-            <a href="#" class="extrabt"><span class="fa fa-ellipsis-v"></span></a>
-        </nav>
+        <!--<nav class="navextra">-->
+            <!--<a href="#" class="extrabt"><span class="fa fa-ellipsis-v"></span></a>-->
+        <!--</nav>-->
         <!-- /more button -->
     </div>
     <!-- /right navigation -->
@@ -74,7 +102,8 @@
     <section>
         <div class="float-right">
             <span class="icon-search pointer" style="padding-right: 5px;"></span>
-            <span class="fa fa-plus pointer" data-toggle="modal" data-target="#invite-user"></span>
+            <span class="fa fa-users pointer" style="padding-right: 5px;" data-toggle="modal" data-target="#create-room"></span>
+            <span class="fa fa-user pointer" data-toggle="modal" data-target="#invite-user"></span>
         </div>
 
         <div class="margin-bottom">
@@ -111,75 +140,75 @@
         <div class="margin-bottom">
             <a href="#">BoxyChat Team <span class="fa fa-chevron-down"></span></a>
         </div>
-        &lt;!&ndash; user list &ndash;&gt;
-				<ul class="user-list">
-					&lt;!&ndash; Mr. Nagasaki Assistant &ndash;&gt;
-					<li>
-						<a href="#">
-							<figure>
-								<span class="more"><span class="fa fa-ellipsis-v"></span></span>
-								<div class="figureimage">
-									<img src="/images/tomas.jpg" alt="Tomas avatar" />
-									<div class="figureshadow"></div>
-								</div>
-								<figcaption>Mr. Nagasaki Assistant</figcaption>
-							</figure>
-						</a>
-					</li>
-					&lt;!&ndash; Mr. Nagasaki &ndash;&gt;
-					<li>
-						<a href="#">
-							<figure>
-								<span class="more"><span class="fa fa-ellipsis-v"></span></span>
-								<div class="figureimage">
-									<img src="/images/tomas.jpg" alt="Tomas avatar" />
-									<div class="figureshadow"></div>
-								</div>
-								<figcaption>Mr. Nagasaki</figcaption>
-							</figure>
-						</a>
-					</li>
-					&lt;!&ndash; Amy Stake, Ph.D &ndash;&gt;
-					<li>
-						<a href="#">
-							<figure>
-								<span class="more"><span class="fa fa-ellipsis-v"></span></span>
-								<div class="figureimage">
-									<img src="/images/amy.jpg" alt="Tomas avatar" />
-									<div class="figureshadow"></div>
-								</div>
-								<figcaption>Amy Stake, Ph.D</figcaption>
-							</figure>
-						</a>
-					</li>
-					&lt;!&ndash; Mr McGuffy McGufferson &ndash;&gt;
-					<li>
-						<a href="#">
-							<figure>
-								<span class="more"><span class="fa fa-ellipsis-v"></span></span>
-								<div class="figureimage">
-									<img src="/images/tomas.jpg" alt="Tomas avatar" />
-									<div class="figureshadow"></div>
-								</div>
-								<figcaption>Mr McGuffy McGufferson</figcaption>
-							</figure>
-						</a>
-					</li>
-					&lt;!&ndash; Sir Arthur Ryan Doyle Roberts &ndash;&gt;
-					<li>
-						<a href="#">
-							<figure>
-								<span class="more"><span class="fa fa-ellipsis-v"></span></span>
-								<div class="figureimage">
-									<img src="/images/tomas.jpg" alt="Tomas avatar" />
-									<div class="figureshadow"></div>
-								</div>
-								<figcaption>Sir Arthur Ryan Doyle Roberts</figcaption>
-							</figure>
-						</a>
-					</li>
-				</ul>
-				&lt;!&ndash; /user list &ndash;&gt;
+        <!-- user list -->
+				<!--<ul class="user-list">-->
+					<!--&lt;!&ndash; Mr. Nagasaki Assistant &ndash;&gt;-->
+					<!--<li>-->
+						<!--<a href="#">-->
+							<!--<figure>-->
+								<!--<span class="more"><span class="fa fa-ellipsis-v"></span></span>-->
+								<!--<div class="figureimage">-->
+									<!--<img src="/images/tomas.jpg" alt="Tomas avatar" />-->
+									<!--<div class="figureshadow"></div>-->
+								<!--</div>-->
+								<!--<figcaption>Mr. Nagasaki Assistant</figcaption>-->
+							<!--</figure>-->
+						<!--</a>-->
+					<!--</li>-->
+					<!--&lt;!&ndash; Mr. Nagasaki &ndash;&gt;-->
+					<!--<li>-->
+						<!--<a href="#">-->
+							<!--<figure>-->
+								<!--<span class="more"><span class="fa fa-ellipsis-v"></span></span>-->
+								<!--<div class="figureimage">-->
+									<!--<img src="/images/tomas.jpg" alt="Tomas avatar" />-->
+									<!--<div class="figureshadow"></div>-->
+								<!--</div>-->
+								<!--<figcaption>Mr. Nagasaki</figcaption>-->
+							<!--</figure>-->
+						<!--</a>-->
+					<!--</li>-->
+					<!--&lt;!&ndash; Amy Stake, Ph.D &ndash;&gt;-->
+					<!--<li>-->
+						<!--<a href="#">-->
+							<!--<figure>-->
+								<!--<span class="more"><span class="fa fa-ellipsis-v"></span></span>-->
+								<!--<div class="figureimage">-->
+									<!--<img src="/images/amy.jpg" alt="Tomas avatar" />-->
+									<!--<div class="figureshadow"></div>-->
+								<!--</div>-->
+								<!--<figcaption>Amy Stake, Ph.D</figcaption>-->
+							<!--</figure>-->
+						<!--</a>-->
+					<!--</li>-->
+					<!--&lt;!&ndash; Mr McGuffy McGufferson &ndash;&gt;-->
+					<!--<li>-->
+						<!--<a href="#">-->
+							<!--<figure>-->
+								<!--<span class="more"><span class="fa fa-ellipsis-v"></span></span>-->
+								<!--<div class="figureimage">-->
+									<!--<img src="/images/tomas.jpg" alt="Tomas avatar" />-->
+									<!--<div class="figureshadow"></div>-->
+								<!--</div>-->
+								<!--<figcaption>Mr McGuffy McGufferson</figcaption>-->
+							<!--</figure>-->
+						<!--</a>-->
+					<!--</li>-->
+					<!--&lt;!&ndash; Sir Arthur Ryan Doyle Roberts &ndash;&gt;-->
+					<!--<li>-->
+						<!--<a href="#">-->
+							<!--<figure>-->
+								<!--<span class="more"><span class="fa fa-ellipsis-v"></span></span>-->
+								<!--<div class="figureimage">-->
+									<!--<img src="/images/tomas.jpg" alt="Tomas avatar" />-->
+									<!--<div class="figureshadow"></div>-->
+								<!--</div>-->
+								<!--<figcaption>Sir Arthur Ryan Doyle Roberts</figcaption>-->
+							<!--</figure>-->
+						<!--</a>-->
+					<!--</li>-->
+				<!--</ul>-->
+				<!-- /user list -->
 
 			</section>-->
 
@@ -202,7 +231,7 @@
         <h3>My account</h3>
         <ul class="menu">
             <li>
-                <a href="account-profile.html">
+                <a id="account-menu-profile" href="account" class="account-menu">
                     <i class="fa fa-user"></i>
                     Profile
                 </a>
@@ -214,13 +243,13 @@
                 <!--</a>-->
             <!--</li>-->
             <li>
-                <a href="account-notifications.html" class="active">
+                <a id="account-menu-notifications" href="account/notifications" class="account-menu">
                     <i class="fa fa-envelope-o"></i>
                     Notifications
                 </a>
             </li>
             <li>
-                <a href="account-support.html">
+                <a id="account-menu-support" href="account/support" class="account-menu">
                     <i class="fa fa-question"></i>
                     Support
                 </a>
@@ -228,80 +257,8 @@
         </ul>
     </div>
 
-    <div id="panel" class="notifications">
-        <h3>
-            Email Notification Settings
-        </h3>
-
-        <div class="settings">
-            <form action="#">
-                <div class="digest">
-                    <h4>Daily digest</h4>
-                    <div class="row">
-                        <div class="col-md-9">
-                            <p>
-                                An email with a summary of all your activities for yesterday directly to your email's inbox.
-                            </p>
-                        </div>
-                        <div class="col-md-3">
-                            <select data-smart-select>
-                                <option>Never receive</option>
-                                <option>Every day</option>
-                                <option>Every Week</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="types">
-                    <h4>
-                        Types
-                    </h4>
-                    <section>
-                        <div class="title">Notifications and E-mails</div>
-
-                        <div class="row">
-                            <div class="col-sm-8">
-                                New comments on my posts
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="checkbox" data-switch value="3" checked />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-8">
-                                Assigned to new projects
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="checkbox" data-switch value="3" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-8">
-                                New invitations
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="checkbox" data-switch value="3" checked />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-8">
-                                Mentions you anywhere
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="checkbox" data-switch value="3" />
-                            </div>
-                        </div>
-                    </section>
-                </div>
-
-                <div class="actions">
-                    <input class="btn btn-primary" type="submit" value="Save changes" />
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
+        <div id="account-content"></div>
+        </section>
 </div>
 <div id="chats" class="centrals"></div>
 <div id="files" class="centrals hidden">
@@ -517,10 +474,8 @@ test
 ">×
     </button>
     <div class="modal-dialog" style="width:100%">
-        <div class="modal-body" style="width: 100% text-align: center;">
-            <a href="#" title="Image 2">
-                <img src="http://placehold.it/600x350/2255EE" class="thumbnail img-responsive">
-            </a>
+        <div class="modal-body closable" style="width: 100%; text-align: center;">
+
         </div>
     </div>
 </div>
@@ -528,17 +483,31 @@ test
 
 
 
-<div id="invite-user" class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="false" style="display: none;">
+<div id="invite-user" class="modal fade bs-example-modal-sm in invite-create" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="false" style="display: none;">
     <div class="modal-dialog modal-sm modal-invite">
         <div class="modal-content modal-invite-content">
             <div class="title">Invite someone</div>
             <div class="search-box"><input type="text" class="form-control search invite-user-text" placeholder="Search"><button type="button" class="btn submit invite-user-submit">Invite</button></div>
         </div>
+    </div>
 </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>
+<div id="create-room" class="modal fade bs-example-modal-sm in invite-create" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="false" style="display: none;">
+    <div class="modal-dialog modal-sm modal-invite">
+        <div class="modal-content modal-invite-content">
+            <div class="title">Create a new Group chat</div>
+            <div class="search-box"><input type="text" class="form-control search create-room-text" placeholder="Name"><button type="button" class="btn submit create-room-submit">Create</button></div>
+        </div>
+    </div>
+</div>
+
+<div id="add-user" class="modal fade bs-example-modal-sm in invite-create" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="false" style="display: none;">
+</div>
+
+
 <!--SCRIPTS-->
+<script src="/js/lib/jquery.min.js"></script>
+<script src="/js/lib/underscore.min.js"></script>
 <script src="/jst.js"></script>
 <script src="/js/socket.io.js"></script>
 <script src="/js/sails.io.js"></script>
@@ -549,34 +518,115 @@ test
 <script src="/js/EventManager.js"></script>
 <script src="/js/chatManager.js"></script>
 <script src="/js/connection.example.js"></script>
+<script src="/js/DataManager.js"></script>
 <script src="/js/bootstrap-switch.min.js"></script>
 <script src="/js/bootstrap-table.min.js"></script>
 <script src="/js/bootstrap.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/history.js"></script>
 <script src="/js/homepage.js"></script>
+<script src="/js/lib/filedrop-min.js"></script>
+<script src="/js/lib/growl.min.js"></script>
 <script src="/js/unveil.js"></script>
 <!--SCRIPTS END-->
+
 <script type="text/javascript">
+    userId = '<%= user.id %>';
+    projectName = '';
 
-
+    $(document).on('blur', '.combodrop', function(){ $(this).css('display', 'none'); });
     $(document).ready(function () {
+        var dataManager = new DataManager();
+        $(document).on('click', '.notification-action', function() {
+            if($(this).hasClass('accept')) {
+                apiManager.acceptNotification($(this).data('id'));
+            }
+        })
+        $('.comboBox').click(function(e){
+            e.preventDefault();
+            var left = $(this).position().left;
+            var top = $(this).position().top;
+            top = top + $(this).height() + 12;
+
+            $(this).parent().find('.combodrop').css('top', top);
+            $(this).parent().find('.combodrop').css('left', left);
+            $(this).parent().find('.combodrop').css('display', 'block');
+            console.log($(this).parent());
+            $(this).parent().find('.combodrop').focus();
+        });
+
         $(document).on('click', '.invite-user-submit', function(ev) {
             apiManager.inviteUser($('.invite-user-text').val());
             $('.invite-user-text').empty();
         });
-        $("[data-switch]").bootstrapSwitch({
-            "size": "small"
+
+        $(document).on('click', '.create-room-submit', function(ev) {
+            apiManager.createRoom($('.create-room-text').val());
+            $('.create-room-text').empty();
+            $('#create-room').modal('hide');
         });
+
+        $('#invite-user').on('hidden.bs.modal', function (e) {
+            $('.invite-user-text').empty();
+        });
+        $('#add-user').on('show.bs.modal', function (e) {
+            var chatId = BoxyChat.getCurrentChatId().replace('room-', '');
+            console.log(chatId)
+            var users = apiManager.session.users;
+            for (var key in users) {
+                if (users.hasOwnProperty(key)) {
+                    var user = users[key];
+                    dataManager.addData(user, function(data, old) { data.name_search = data.name.toLowerCase(); return data;});
+                }
+            }
+            console.log(apiManager.session.groups)
+            var group = apiManager.session.groups[chatId];
+            $('#add-user').html(BoxyChat.loadTemplate('templates/chat/invite.html', {group: group}));
+            console.log('add user to group')
+        });
+        $(document).on('keyup', '#add-user-search', function(ev) {
+            var chatId = BoxyChat.getCurrentChatId();
+            var group = apiManager.session.groups[chatId];
+            var val = $(this).val();
+            var filter = {};
+            if (val.length > 0) {
+                filter = {'name_search %': val}
+            }
+            console.log(filter)
+            var users = dataManager.exec(filter);
+            $('#add-user').find('.user-list').empty();
+            for (var key in users) {
+                if (users.hasOwnProperty(key)) {
+                    var user = users[key];
+                    $('#add-user').find('.user-list').append(BoxyChat.loadTemplate('templates/chat/addUserSingleList.html', {user: user, group: group}));
+                }
+            }
+        });
+
         $(".thumblightbox").unveil(300);
+        $(document).on('click', '.biglightbox, .closable', function(ev) {
+            $('#myModal').modal('hide');
+        });
         $(document).on('click', '.thumblightbox', function (ev) {
             $('.modal-body').empty();
-            $($(this).parents('span').html()).appendTo('.modal-body').css("width", "");
+            $($(this).parents('span').html()).appendTo('.modal-body').css("width", "").removeClass('thumblightbox').addClass('biglightbox');
             $('#myModal').modal({show: true});
         });
-        $('.dropdown-toggle').dropdown();
-    });
+        $(document).on('click', '.invite-group-user', function(ev) {
+            apiManager.inviteToGroup($(this).data('group'), $(this).data('id'));
 
+        });
+        $('.dropdown-toggle').dropdown();
+
+
+    });
+    function updateAvatar(id) {
+        $("img[data-avatar='" + id +"']").each(function(el) {
+            var url = $(this).attr('src')
+            url = url.split("?")[0];
+            $(this).attr('src', url + '?' + Math.random());
+        });
+    }
 </script>
 </body>
 </html>

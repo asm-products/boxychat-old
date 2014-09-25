@@ -1,3 +1,4 @@
+
 /**
  * Bootstrap
  * An asynchronous bootstrap function that runs before your Sails app gets lifted.
@@ -32,5 +33,6 @@ module.exports.bootstrap = function (cb) {
       });
     });
   });
+
   cb();
 };

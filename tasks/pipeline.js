@@ -22,6 +22,8 @@ var cssFilesToInject = [
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
+    'js/lib/jquery.min.js',
+    'js/lib/underscore.min.js',
     'jst.js',
   // Below, as a demonstration, you'll see the built-in dependencies
   // linked in the proper order order

@@ -122,6 +122,34 @@ module.exports.routes = {
     'post /request/invite': {
         controller: 'RequestController',
         action: 'invite'
+    },
+    'post /notification/accept': {
+        controller: 'NotificationController',
+        action: 'accept'
+    },
+    'get /history/private/:userId': {
+        controller: 'ChatController',
+        action: 'historyDirect'
+    },
+    'post /groups': {
+        controller: 'GroupController',
+        action: 'create'
+    },
+    'put /group/:groupId/user': {
+        controller: 'GroupController',
+        action: 'addUser'
+    },
+    'get /upload': {
+        controller: 'FileController',
+        action: 'index'
+    },
+    'post /upload': {
+        controller: 'FileController',
+        action: 'upload'
+    },
+    'post /upload/avatar': {
+        controller: 'FileController',
+        action: 'uploadAvatar'
     }
   // Custom routes here...
 

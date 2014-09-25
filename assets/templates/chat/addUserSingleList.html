@@ -1,0 +1,21 @@
+<li id="groupuser-{{ user.id }}" class="invite-group-user" data-id="{{ user.id }}" data-group="{{ group.id }}">
+    <a href="#">
+        <figure>
+            <div class="figureimage">
+                <img src="/avatars/user/{{ user.id }}.jpg" alt="GROUP Super avatar">
+            </div>
+            <figcaption>{{ user.name }}</figcaption>
+        </figure>
+        <% var already = false;
+            for( var u in group.users ) {
+                if(user.id == u.id)
+                already = true;
+        }
+        %>
+        <% if( already ) { %>
+        <span class="user-invited"><i class="fa fa-check-circle"></i> Invited</span>
+        <% } else { %>
+        <span class="user-invited"><i class="fa fa-plus-circle"></i></span>
+        <% } %>
+    </a>
+</li>

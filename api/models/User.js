@@ -15,6 +15,9 @@ module.exports = {
             required: true,
             unique: true
         },
+        avatar: {
+            type: 'string'
+        },
         password: {
             type: 'string',
             required: true

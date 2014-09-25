@@ -6,9 +6,9 @@
  */
 
 module.exports = {
-    invite: function(req, res, nect) {
+    accept: function(req, res, nect) {
         var params = req.params.all();
-        RequestManager.invite(params.email, req.session.user, function (err, data) {
+        NotificationManager.accept(params.id, req.session.user, function (err, data) {
             res.send({type: data.type, text: data.text, name: data.name, reference: data.reference});
         });
     }

@@ -4,7 +4,16 @@
                    <button class="unstyled-button"><span class="fa fa-microphone"></span></button>
                    <button id="video-{{ type }}-{{ id }}" class="unstyled-button videochatbtn"><span class="fa fa-video-camera"></span></button>
                </div>
-           <a href="#">{{ session.name }}<span class="fa fa-chevron-down"></span></a>
+            <% if(type == 'room') { %>
+                <span class="fa fa-plus pointer" style="
+    font-size: 20px;
+    vertical-align: middle;
+    margin-right: 10px;
+" data-toggle="modal" data-target="#add-user"></span><% } %>
+           <a href="#">{{ session.name }}<span class="fa fa-chevron-down" style="margin-left: 3px;"></span></a>
+        <div class="avatar-stack clearfix">
+
+        </div>
         </header>
     <section class="videochat hidden"></section>
     <section class="chat">

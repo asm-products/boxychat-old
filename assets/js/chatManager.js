@@ -1,4 +1,4 @@
-var session = {groups: [], users: [], online: []};
+//session = {groups: [], users: [], online: []};
 BoxyChat = {};
 
 /**
@@ -9,16 +9,24 @@ BoxyChat = {};
  * @return 
  */
 BoxyChat.newChatContent = function(id, type) {
-    console.log(id)
-    console.log(type)
+    var self = this;
     if(type == 'room')
-        var sess = session.groups[id];
+        var sess = apiManager.session.groups[id];
     else if(type == 'user')
-        var sess = session.users[id];
-    if(sess)
+        var sess = apiManager.session.users[id];
+    if(sess) {
         $('#chats').append(this.loadTemplate('templates/chat/defaultChat.html', { type: type, id: id, session: sess }));
+        apiManager.getMessagesDirect(id);
+    }
     else
         console.log("could not find");
+
+    if(type == 'room') {
+        apiManager.session.groups[id].users.forEach(function(ev) {
+            console.log(ev)
+            $('#chat-room-' + id + ' .avatar-stack').append(self.loadTemplate('templates/chat/avatarStack.html', ev));
+        });
+    }
 };
 
 /**
@@ -45,13 +53,30 @@ BoxyChat.scrollCurrentChat = function() {
     message.scrollTop(message.get(0).scrollHeight);
 };
 
+BoxyChat.handleHistoryMessage = function(msg, type) {
+    var id = msg.chatId;
+    msg.msg = msg.message;
+    var original = {msg: msg.message};
+    console.log('#chat-' + type +'-' + id + ' .chat-messages');
+    $('#chat-' + type +'-' + id + ' .chat-messages').prepend(BoxyChat.loadTemplate('templates/chat/messageOther.html', {css: 'opaque', message: eventManager.call('textMessage', msg).msg + "<div>" + eventManager.call('textMessageAfter', original).msg + "</div>", name: apiManager.session.users[msg.owner].name, id: msg.owner, avatar: '/images/tomas.jpg'}));
+    BoxyChat.scrollCurrentChat();
+};
+
+BoxyChat.handleOwnHistoryMessage = function(msg, type) {
+    var id = msg.chatId;
+    msg.msg = msg.message;
+    $('#chat-' + type + '-' + id + ' .chat-messages').prepend("<div class='message message-right no-figure opaque'><div class='bubble no-triangle'>" + eventManager.call('textMessage', msg).msg + "<div>" + eventManager.call('textMessageAfter', msg).msg + "</div></div><div style='clear:both'></div></div>");
+    BoxyChat.scrollCurrentChat();
+};
 BoxyChat.handleNewMessage = function(msg, type) {
+    console.log('handle')
+    console.log(msg)
     var original = {msg: msg.msg};
     var id = msg.room ? msg.room.id : msg.from;
     if (!$('#chat-' + type + '-' + id).length)
         BoxyChat.newChatContent(id, type);
-    $('#chat-' + type +'-' + id + ' .chat-messages').append(BoxyChat.loadTemplate('templates/chat/messageOther.html', {message: eventManager.call('textMessage', msg).msg + "<div>" + eventManager.call('textMessageAfter', original).msg + "</div>", name: session.users[msg.from].name, avatar: '/images/tomas.jpg'}));
-    if (BoxyChat.getCurrentChatId() != type + '-' + msg.from) {
+    $('#chat-' + type +'-' + id + ' .chat-messages').append(BoxyChat.loadTemplate('templates/chat/messageOther.html', {css: '', message: eventManager.call('textMessage', msg).msg + "<div>" + eventManager.call('textMessageAfter', original).msg + "</div>", name: apiManager.session.users[msg.from].name, id: msg.from}));
+    if (BoxyChat.getCurrentChatId() != type + '-' + id) {
         $('#' + type + '-' + id + ' .figureimage .ic').addClass('hidden');
         var $counter = $('#' + type + '-' + id + ' .figureimage .number');
         $counter.html(parseInt($counter.html()) + 1).removeClass('hidden');

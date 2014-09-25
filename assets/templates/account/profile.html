@@ -1,0 +1,68 @@
+<div id="panel" class="profile">
+    <h3>
+        Profile settings
+    </h3>
+
+    <p class="intro">
+        Change your account information, avatar, login credentials, etc.
+    </p>
+
+    <form>
+        <div class="form-group avatar-field clearfix">
+            <div id="avatarUpload" class="col-sm-3 avatarUpload">
+                <img id="ownAvatar" src="/avatars/user/{{ userId }}.jpg" data-avatar="{{ userId }}" class="img-responsive img-circle" />
+                <input type="file" class="droparea spot uploaderAvatar" name="avatar" data-post="/upload/avatar" data-width="220" data-height="345"/>
+            </div>
+            <div class="col-sm-9" id="uploadTest">
+                <label>Set up your avatar picture</label>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Name</label>
+            <input type="email" class="form-control" placeholder="Enter Name" value="Goncalo Margalho" />
+        </div>
+        <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control" placeholder="Enter email" value="gsky89@gmail.com" />
+        </div>
+        <div class="form-group">
+            <label>Timezone</label>
+            <select id="user_time_zone" data-smart-select>
+                <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                <option value="Alaska">(GMT-09:00) Alaska</option>
+                <option value="Pacific Time (US &amp; Canada)">
+                    (GMT-08:00) Pacific Time (US &amp; Canada)
+                </option>
+                <option value="Arizona">(GMT-07:00) Arizona</option>
+                <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+                <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
+                <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+                <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+                <option value="" disabled="disabled">-------------</option>
+                <option value="American Samoa">(GMT-11:00) American Samoa</option>
+                <option value="International Date Line West">(GMT-11:00) International Date Line West</option>
+                <option value="Midway Island">(GMT-11:00) Midway Island</option>
+                <option value="Tijuana">(GMT-08:00) Tijuana</option>
+                <option value="Chihuahua">(GMT-07:00) Chihuahua</option>
+                <option value="Mazatlan">(GMT-07:00) Mazatlan</option>
+                <option value="Central America">(GMT-06:00) Central America</option>
+                <option value="Guadalajara">(GMT-06:00) Guadalajara</option>
+                <option value="Mexico City">(GMT-06:00) Mexico City</option>
+                <option value="Monterrey" >(GMT-06:00) Monterrey</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>New password</label>
+            <input type="password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Confirm new password</label>
+            <input type="password" class="form-control" />
+        </div>
+        <div class="form-group action">
+            <span type="submit" class="own-button" >Save changes</span>
+        </div>
+    </form>
+</div>

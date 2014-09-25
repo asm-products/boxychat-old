@@ -38,9 +38,11 @@ module.exports = {
 
     inviteUser: function(err, request, user, sessionUser, mainCb) {
         if(request && request.id) {
-            var text = sessionUser.name + ' wants to talk to you.';
-            NotificationManager.create(request.type, request.to, text, request.id, function(err, notification) {
+            var text = 'wants to talk to you.';
+            NotificationManager.create(request.type, request.to, sessionUser.name, text, request.id, function(err, notification) {
                 if(notification && notification.id) {
+                    notification.name = user.name;
+                    console.log(notification);
                     mainCb(err, notification);
                     RequestManager.sendEmail(user, sessionUser);
                 }

@@ -1,6 +1,9 @@
-<div class="message message-left">
+<div class="message message-left
+    <% if (css) { %>
+        {{ css }}
+    <% } %>">
     <figure>
-            <img src="{{ avatar }}" alt="{{ name }} avatar" />
+            <img src="/avatars/user/{{ id }}.jpg" alt="{{ name }}" />
             <figcaption></figcaption>
         </figure>
     <div class="bubble"> {{ message }} </div>
