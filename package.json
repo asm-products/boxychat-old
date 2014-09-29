@@ -32,7 +32,8 @@
     "sails-disk": "~0.10.0",
     "sails-mongo": "^0.10.1",
     "sails-redis": "^0.10.2",
-    "slug": "^0.5.0"
+    "slug": "^0.5.0",
+    "serve-static": "*"
   },
   "devDependencies": {
     "mocha": "*",
