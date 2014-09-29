@@ -34,13 +34,13 @@ module.exports.session = {
   // on localhost is expected.
   // Read more about options at: https://github.com/visionmedia/connect-redis
   //
-  url: 'redis://rediscloud:m6OtydwwjwfznKLN@pub-redis-18833.eu-west-1-1.1.ec2.garantiadata.com:18833',
+  //url: 'redis://rediscloud:m6OtydwwjwfznKLN@pub-redis-18833.eu-west-1-1.1.ec2.garantiadata.com:18833',
    host: 'pub-redis-18833.eu-west-1-1.1.ec2.garantiadata.com',
    port: 18833,
   // ttl: <redis session TTL in seconds>,
   // db: 0,
   db: 'rediscloud',
-  pass: "letmego",
+  pass: "letmego"
   // prefix: 'sess:'
 
 

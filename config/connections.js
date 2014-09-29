@@ -59,10 +59,12 @@ module.exports.connections = {
 
     redis: {
         adapter   : 'sails-redis',
-        host      : '@pub-redis-18833.eu-west-1-1.1.ec2.garantiadata.com',
+        host      : 'pub-redis-18833.eu-west-1-1.1.ec2.garantiadata.com',
         // options    : {auth_pass: 'letmego'}
         port      : 18833,
-        user      : 'rediscloud',
+      user      : 'rediscloud',
+      db      : 'rediscloud',
+      database      : 'rediscloud',
         password  : 'm6OtydwwjwfznKLN@'
         // database  : 'your mongo db name here'
     },
