@@ -6,7 +6,7 @@
   "keywords": [],
   "dependencies": {
     "bcrypt": "^0.8.0",
-    "connect-redis": "1.4.5",
+    "connect-redis": "^1.4.5",
     "ejs": "~0.8.4",
     "gm": "^1.16.0",
     "grunt": "0.4.2",
@@ -31,7 +31,7 @@
     "sails": "~0.10.1",
     "sails-disk": "~0.10.0",
     "sails-mongo": "^0.10.1",
-    "sails-redis": "^0.10.2",
+    "sails-redis": "^0.10.3",
     "slug": "^0.5.0",
     "serve-static": "*"
   },

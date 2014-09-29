@@ -59,21 +59,15 @@ module.exports.connections = {
 
     redis: {
         adapter   : 'sails-redis',
-        host      : 'pub-redis-18833.eu-west-1-1.1.ec2.garantiadata.com',
-        // options    : {auth_pass: 'letmego'}
-        port      : 18833,
-      user      : 'rediscloud',
-      db      : 'rediscloud',
-      database      : 'rediscloud',
-        password  : 'm6OtydwwjwfznKLN@',
+        host      : 'localhost',
+        options    : {auth_pass: 'm6OtydwwjwfznKLN'},
+      host: 'pub-redis-18833.eu-west-1-1.1.ec2.garantiadata.com',
+      port:18833,
+      pass: "m6OtydwwjwfznKLN",
+        // port      : 27017,
+        // user      : 'username',
+        // password  : 'password',
         // database  : 'your mongo db name here'
-      options: { host: 'pub-redis-18833.eu-west-1-1.1.ec2.garantiadata.com',
-        port: 18833,
-        // ttl: <redis session TTL in seconds>,
-        // db: 0,
-        db: 'rediscloud',
-        pass: "letmego",
-        auth_pass: "letmego"}
     },
   // PostgreSQL is another officially supported relational database. 
   // http://en.wikipedia.org/wiki/PostgreSQL
