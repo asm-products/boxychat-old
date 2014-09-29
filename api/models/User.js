@@ -24,6 +24,7 @@ module.exports = {
         },
         contacts: {
             type: 'array'
+
         },
         groups: {
             type: 'array'
@@ -101,6 +102,7 @@ module.exports = {
                 user.password = hash;
                 user.activated = false; //make sure nobody is creating a user with activate set to true, this is probably just for paranoia sake
                 user.activationToken = crypto.token(new Date().getTime() + user.email);
+                user.contacts = [];
                 return cb(null, user);
             }
         });
