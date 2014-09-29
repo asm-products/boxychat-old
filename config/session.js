@@ -39,7 +39,7 @@ module.exports.session = {
    port: 18833,
   // ttl: <redis session TTL in seconds>,
   // db: 0,
-  user: 'rediscloud',
+  db: 'rediscloud',
   pass: "letmego",
   // prefix: 'sess:'
 
