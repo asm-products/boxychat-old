@@ -65,8 +65,15 @@ module.exports.connections = {
       user      : 'rediscloud',
       db      : 'rediscloud',
       database      : 'rediscloud',
-        password  : 'm6OtydwwjwfznKLN@'
+        password  : 'm6OtydwwjwfznKLN@',
         // database  : 'your mongo db name here'
+      options: { host: 'pub-redis-18833.eu-west-1-1.1.ec2.garantiadata.com',
+        port: 18833,
+        // ttl: <redis session TTL in seconds>,
+        // db: 0,
+        db: 'rediscloud',
+        pass: "letmego",
+        auth_pass: "letmego"}
     },
   // PostgreSQL is another officially supported relational database. 
   // http://en.wikipedia.org/wiki/PostgreSQL
