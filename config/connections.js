@@ -50,7 +50,7 @@ module.exports.connections = {
   //
   someMongodbServer: {
     adapter   : 'sails-mongo',
-    url      : 'mongodb://localhost/test',
+    url      : 'mongodb://heroku:zlfgatYcuvFmzmR3oyjakKR19kZlrDegSn0iOauwtjNfDGTNNBhzCIplAY85Au30UPNSMqJvNDOA8AcT9o_ZUA@lennon.mongohq.com:10035/app30136060',
     // port      : 27017,
     // user      : 'username',
     // password  : 'password',
@@ -59,11 +59,11 @@ module.exports.connections = {
 
     redis: {
         adapter   : 'sails-redis',
-        host      : 'localhost',
-        options    : {auth_pass: 'letmego'}
-        // port      : 27017,
-        // user      : 'username',
-        // password  : 'password',
+        host      : '@pub-redis-18833.eu-west-1-1.1.ec2.garantiadata.com',
+        // options    : {auth_pass: 'letmego'}
+        port      : 18833,
+        user      : 'rediscloud',
+        password  : 'm6OtydwwjwfznKLN@'
         // database  : 'your mongo db name here'
     },
   // PostgreSQL is another officially supported relational database. 
