@@ -17,7 +17,6 @@ module.exports = {
         );
     },
     uploadAvatar: function  (req, res) {
-        console.log(req);
         var userId = req.session.user.id;
         var avatarFile = __dirname + '/../../avatars/user/' + userId + '.jpg';
         req.file('avatar').upload({saveAs: avatarFile}, function (err, files) {
@@ -31,7 +30,10 @@ module.exports = {
                 .gravity('Center')
                 .crop('200', '200')
                 .write(avatarFile, function (err) {
-                    console.log(err)
+
+                    console.log(err);
+                    console.log('error');
+
                     if (!err) {
                         console.log('done');
                         User.publishUpdate(req.session.user.id,{ type:"userAvatar", id:req.session.user.id });
@@ -40,6 +42,9 @@ module.exports = {
                             files: files
                         });
 
+                    }
+                    else {
+                        return res.serverError(err);
                     }
 
                 });
